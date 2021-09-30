@@ -1,4 +1,4 @@
-package Projektas.Projektas;
+package Server;
 
 import java.io.IOException;
 import java.util.HashMap;

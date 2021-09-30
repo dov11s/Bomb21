@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11;
 public class Player 
 {
 
-	float speed = 2f;
+	float speed = 0.1f;
 	Vector2f position = new Vector2f(256,256);
 	Vector2f networkPosition = new Vector2f(0,0);
 	
