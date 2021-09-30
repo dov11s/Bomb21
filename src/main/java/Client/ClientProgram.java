@@ -47,11 +47,11 @@ public class ClientProgram extends Listener
 		{
 			GLFW.glfwPollEvents();
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-			GL11.glLoadIdentity();
 			
 			update();
 			render();
 			
+			GLFW.glfwSwapBuffers(window);
 			if (GLFW.glfwGetKey(window, GLFW.GLFW_KEY_ESCAPE) == GLFW.GLFW_TRUE)
 			{
 				GLFW.glfwSetWindowShouldClose(window, true);
