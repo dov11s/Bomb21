@@ -7,14 +7,14 @@
     <packaging>jar</packaging>
     <properties>
 		<lwjgl.version>3.2.3</lwjgl.version>
-		<lwjgl.natives>natives-windows</lwjgl.natives>
+		<lwjgl.natives>natives-windows</lwjgl.natives> 
     
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
-    
-    <dependencyManagement>
+   
+   <dependencyManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.lwjgl</groupId>
@@ -25,7 +25,7 @@
 		</dependency>
 		</dependencies>
 	</dependencyManagement>
-    
+	
     <dependencies>
         <dependency>
             <groupId>com.googlecode.soundlibs</groupId>
@@ -39,7 +39,8 @@
     		
     		
 		</dependency>
-		<dependency>
+		
+	<dependency>
 		<groupId>org.lwjgl</groupId>
 		<artifactId>lwjgl</artifactId>
 	</dependency>
@@ -351,5 +352,5 @@
 		<artifactId>lwjgl-zstd</artifactId>
 		<classifier>${lwjgl.natives}</classifier>
 	</dependency>
-    </dependencies>
+    </dependencies> 
 </project>
