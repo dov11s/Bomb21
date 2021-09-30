@@ -1,5 +1,5 @@
 
-package Projektas.Projektas;
+package Server;
 
 public class PacketUpdateY {
 

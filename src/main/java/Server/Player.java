@@ -1,4 +1,4 @@
-package Projektas.Projektas;
+package Server;
 
 import com.esotericsoftware.kryonet.Connection;
 
