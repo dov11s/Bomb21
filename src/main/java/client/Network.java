@@ -1,4 +1,4 @@
-package Client;
+package client;
 
 import java.io.IOException;
 
@@ -6,7 +6,7 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
-import shared.PackeUpdatePlayerPos;
+import shared.PacketUpdatePlayerPos;
 import shared.PacketAddPlayer;
 import shared.PacketRemovePlayer;
 import shared.Player;
@@ -24,7 +24,7 @@ public class Network extends Listener {
 	{
 		this.updateGameDataDelegate = updateGameDataDelegate;
 		this.client = new Client();
-		this.client.getKryo().register(PackeUpdatePlayerPos.class);
+		this.client.getKryo().register(PacketUpdatePlayerPos.class);
 		this.client.getKryo().register(PacketAddPlayer.class);
 		this.client.getKryo().register(PacketRemovePlayer.class);
 		this.client.getKryo().register(Vector2f.class);
@@ -58,12 +58,12 @@ public class Network extends Listener {
 			updateGameDataDelegate.removePlayer(packet.id);
 			
 		}
-		else if(object instanceof PackeUpdatePlayerPos)
+		else if(object instanceof PacketUpdatePlayerPos)
 		{
-			PackeUpdatePlayerPos packet = (PackeUpdatePlayerPos) object;
+			PacketUpdatePlayerPos packet = (PacketUpdatePlayerPos) object;
 			if (packet.accepted)
 			{
-				Player player = new Player(packet.id, packet.coordinate);
+				Player player = new Player(packet);
 				updateGameDataDelegate.updatePlayer(player);
 			}
 			
@@ -72,29 +72,57 @@ public class Network extends Listener {
 	
 	public void sendPacketButtonPressLeft()
 	{
-		PackeUpdatePlayerPos packet = new PackeUpdatePlayerPos();
-		packet.coordinate.x = -1;
+		PacketUpdatePlayerPos packet = new PacketUpdatePlayerPos();
+		packet.isHoldingLeft = true;
 		this.client.sendUDP(packet);
 	}
 	
 	public void sendPacketButtonPressRight()
 	{
-		PackeUpdatePlayerPos packet = new PackeUpdatePlayerPos();
-		packet.coordinate.x = 1;
+		PacketUpdatePlayerPos packet = new PacketUpdatePlayerPos();
+		packet.isHoldingRight = true;
 		this.client.sendUDP(packet);
 	}
 	
 	public void sendPacketButtonPressUp()
 	{
-		PackeUpdatePlayerPos packet = new 	PackeUpdatePlayerPos();
-		packet.coordinate.y = 1;
+		PacketUpdatePlayerPos packet = new 	PacketUpdatePlayerPos();
+		packet.isHoldingUp = true;
 		this.client.sendUDP(packet);
 	}
 	
 	public void sendPacketButtonPressDown()
 	{
-		PackeUpdatePlayerPos packet = new 	PackeUpdatePlayerPos();
-		packet.coordinate.y = -1;
+		PacketUpdatePlayerPos packet = new 	PacketUpdatePlayerPos();
+		packet.isHoldingDown = true;
+		this.client.sendUDP(packet);
+	}
+	
+	public void sendPacketButtonReleaseLeft()
+	{
+		PacketUpdatePlayerPos packet = new PacketUpdatePlayerPos();
+		packet.isHoldingLeft = false;
+		this.client.sendUDP(packet);
+	}
+	
+	public void sendPacketButtonReleaseRight()
+	{
+		PacketUpdatePlayerPos packet = new 	PacketUpdatePlayerPos();
+		packet.isHoldingRight = false;
+		this.client.sendUDP(packet);
+	}
+
+	public void sendPacketButtonReleaseUp()
+	{
+		PacketUpdatePlayerPos packet = new PacketUpdatePlayerPos();
+		packet.isHoldingUp = false;
+		this.client.sendUDP(packet);
+	}
+	
+	public void sendPacketButtonReleaseDown()
+	{
+		PacketUpdatePlayerPos packet = new 	PacketUpdatePlayerPos();
+		packet.isHoldingDown = false;
 		this.client.sendUDP(packet);
 	}
 }

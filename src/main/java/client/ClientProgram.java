@@ -1,4 +1,4 @@
-package Client;
+package client;
 
 
 public class ClientProgram
@@ -6,7 +6,7 @@ public class ClientProgram
 
 	public static void main(String[] args) throws Exception 
 	{
-		GameWindow window = new GameWindow();
+		new GameWindow();
 	}
 	
 }

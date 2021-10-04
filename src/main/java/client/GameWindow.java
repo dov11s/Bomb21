@@ -1,4 +1,4 @@
-package Client;
+package client;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,6 +57,7 @@ public class GameWindow implements UpdateGameDataDelegate
 	
 	private void runGame()
 	{
+		//TODO change this. Busy cycle. Eats cpu for no reason
 		while (GLFW.glfwWindowShouldClose(window) != true)
 		{
 			readKeys();
@@ -121,22 +122,66 @@ public class GameWindow implements UpdateGameDataDelegate
 
 		if(GLFW.glfwGetKey(this.window, GLFW.GLFW_KEY_W) == GLFW.GLFW_TRUE)
 		{
-			this.network.sendPacketButtonPressUp();
+			if (!this.mainPlayer.isHoldingUp)
+			{
+				this.network.sendPacketButtonPressUp();
+			}
+		}
+		else
+		{
+			if (this.mainPlayer.isHoldingUp)
+			{
+				this.network.sendPacketButtonReleaseUp();
+			}
+			
 		}
 		
 		if(GLFW.glfwGetKey(this.window, GLFW.GLFW_KEY_S) == GLFW.GLFW_TRUE)
 		{
-			this.network.sendPacketButtonPressDown();
+			if (!this.mainPlayer.isHoldingDown)
+			{
+				this.network.sendPacketButtonPressDown();
+			}
+		}
+		else
+		{
+			if (this.mainPlayer.isHoldingDown)
+			{
+				this.network.sendPacketButtonReleaseDown();
+			}
+			
 		}
 		
 		if(GLFW.glfwGetKey(this.window, GLFW.GLFW_KEY_A) == GLFW.GLFW_TRUE)
 		{
-			this.network.sendPacketButtonPressLeft();
+			if (!this.mainPlayer.isHoldingLeft)
+			{
+				this.network.sendPacketButtonPressLeft();
+			}
+		}
+		else
+		{
+			if (this.mainPlayer.isHoldingLeft)
+			{
+				this.network.sendPacketButtonReleaseLeft();
+			}
+			
 		}
 		
 		if(GLFW.glfwGetKey(this.window, GLFW.GLFW_KEY_D) == GLFW.GLFW_TRUE)
 		{
-			this.network.sendPacketButtonPressRight();
+			if (!this.mainPlayer.isHoldingRight)
+			{
+				this.network.sendPacketButtonPressRight();
+			}
+		}
+		else
+		{
+			if (this.mainPlayer.isHoldingRight)
+			{
+				this.network.sendPacketButtonReleaseRight();
+			}
+			
 		}
 		
 		if (GLFW.glfwGetKey(window, GLFW.GLFW_KEY_ESCAPE) == GLFW.GLFW_TRUE)
