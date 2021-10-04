@@ -57,7 +57,7 @@ public class GameWindow implements UpdateGameDataDelegate
 	
 	private void runGame()
 	{
-		//TODO change this. Busy cycle. Eats cpu for no reason
+		//TODO change this. Busy cycle. Eats cpu. 
 		while (GLFW.glfwWindowShouldClose(window) != true)
 		{
 			readKeys();
@@ -119,6 +119,9 @@ public class GameWindow implements UpdateGameDataDelegate
 	
 	private void readKeys()
 	{
+		
+		//TODO should read from events instead of polling
+		//https://www.glfw.org/docs/3.3/input_guide.html
 
 		if(GLFW.glfwGetKey(this.window, GLFW.GLFW_KEY_W) == GLFW.GLFW_TRUE)
 		{
