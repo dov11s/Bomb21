@@ -34,8 +34,8 @@ public class KryoServer extends Listener
 			this.server.getKryo().register(PacketRemovePlayer.class);
 			this.server.getKryo().register(Vector2f.class);
 			this.server.bind(this.port, this.port);
-			this.server.start();
 			this.server.addListener(this);
+			this.server.start();
 			System.out.println("The server is ready");
 			return true;
 		}
@@ -66,12 +66,12 @@ public class KryoServer extends Listener
 		System.out.println("Connection received.");
 	}
 	
-	public void received(Connection c, Object o)
+	public void received(Connection connection, Object object)
 	{
-		if(o instanceof PackeUpdatePlayerPos)
+		if(object instanceof PackeUpdatePlayerPos)
 		{
-			PackeUpdatePlayerPos packet = (PackeUpdatePlayerPos) o;
-			MPPlayer player = players.get(c.getID());
+			PackeUpdatePlayerPos packet = (PackeUpdatePlayerPos) object;
+			MPPlayer player = players.get(connection.getID());
 			//TODO add timer so player speed does not increase depending on packages sent and clean up the logic.
 			//TODO add logic of the game with a grid.. instead of random coordinates
 			
@@ -97,9 +97,10 @@ public class KryoServer extends Listener
 				packet.accepted = true;
 			}
 			
-			packet.id = c.getID();
-			this.server.sendToAllExceptUDP(c.getID(), packet);
-			this.server.sendToAllExceptTCP(c.getID(), packet);
+			packet.id = connection.getID();
+			
+			//Currently sending player data to everyone when something changes
+			this.server.sendToAllTCP(packet);
 			System.out.println("received and sent an update coordinate packet");
 			
 		}

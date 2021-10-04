@@ -1,9 +1,7 @@
 package Client;
 
-import com.esotericsoftware.kryonet.Listener;
 
-
-public class ClientProgram extends Listener
+public class ClientProgram
 {
 
 	public static void main(String[] args) throws Exception 

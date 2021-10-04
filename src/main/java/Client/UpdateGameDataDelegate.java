@@ -1,7 +1,5 @@
 package Client;
 
-import java.util.Map;
-
 import shared.Player;
 
 public interface UpdateGameDataDelegate

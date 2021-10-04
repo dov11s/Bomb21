@@ -6,6 +6,7 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
 import shared.Player;
+import shared.Vector2f;
 
 import org.lwjgl.opengl.GL;
 
@@ -36,7 +37,8 @@ public class GameWindow implements UpdateGameDataDelegate
 			return;
 		}
 		
-		this.mainPlayer = new Player();
+		
+		this.mainPlayer = new Player(this.network.client.getID(), new Vector2f(256,256));
 		this.players = new HashMap<Integer,Player>();
 		runGame();
 	}
@@ -98,9 +100,9 @@ public class GameWindow implements UpdateGameDataDelegate
 		//Render player
 		GL11.glColor3f(1,255,1);
 		GL11.glBegin(GL11.GL_TRIANGLES);
-		GL11.glVertex2f(mainPlayer.coordinate.x, mainPlayer.coordinate.y+8);
-		GL11.glVertex2f(mainPlayer.coordinate.x+8, mainPlayer.coordinate.y-8);
-		GL11.glVertex2f(mainPlayer.coordinate.x-8, mainPlayer.coordinate.y-8);
+		GL11.glVertex2f(this.mainPlayer.coordinate.x, mainPlayer.coordinate.y+8);
+		GL11.glVertex2f(this.mainPlayer.coordinate.x+8, mainPlayer.coordinate.y-8);
+		GL11.glVertex2f(this.mainPlayer.coordinate.x-8, mainPlayer.coordinate.y-8);
 		GL11.glEnd();
 		
 		//Render other players
@@ -146,12 +148,13 @@ public class GameWindow implements UpdateGameDataDelegate
 	@Override
 	public void updatePlayer(Player player)
 	{
-		if (this.players.put(player.id, player) == null)
+		if (this.mainPlayer.id == player.id)
 		{
-			if (this.mainPlayer.id == player.id)
-			{
-				this.mainPlayer = player;
-			}
+			this.mainPlayer = player;
+		}
+		else 
+		{
+			this.players.put(player.id, player);
 		}
 		
 	}

@@ -15,14 +15,14 @@ import shared.Vector2f;
 
 public class Network extends Listener {
 
-	UpdateGameDataDelegate delegate;
+	UpdateGameDataDelegate updateGameDataDelegate;
 	Client client;
 	String ip = "localhost";
 	int port = 27960;
 	
-	public boolean connect(UpdateGameDataDelegate delegate)
+	public boolean connect(UpdateGameDataDelegate updateGameDataDelegate)
 	{
-		this.delegate = delegate;
+		this.updateGameDataDelegate = updateGameDataDelegate;
 		this.client = new Client();
 		this.client.getKryo().register(PackeUpdatePlayerPos.class);
 		this.client.getKryo().register(PacketAddPlayer.class);
@@ -30,7 +30,7 @@ public class Network extends Listener {
 		this.client.getKryo().register(Vector2f.class);
 		this.client.addListener(this);
 	
-		client.start();
+		this.client.start();
 		try
 		{
 			client.connect(5000, ip, port, port);
@@ -42,30 +42,29 @@ public class Network extends Listener {
 		}
 		return true;
 	}
-
 	
-	public void received(Connection c, Object o)
+	public void received(Connection connection, Object object)
 	{
-		if(o instanceof PacketAddPlayer)
+		if(object instanceof PacketAddPlayer)
 		{
-			PacketAddPlayer packet = (PacketAddPlayer) o;
+			PacketAddPlayer packet = (PacketAddPlayer) object;
 			Player newPlayer = new Player();
-			delegate.addPlayer(packet.id, newPlayer);
+			updateGameDataDelegate.addPlayer(packet.id, newPlayer);
 			
 		}
-		else if(o instanceof PacketRemovePlayer)
+		else if(object instanceof PacketRemovePlayer)
 		{
-			PacketRemovePlayer packet = (PacketRemovePlayer) o;
-			delegate.removePlayer(packet.id);
+			PacketRemovePlayer packet = (PacketRemovePlayer) object;
+			updateGameDataDelegate.removePlayer(packet.id);
 			
 		}
-		else if(o instanceof PackeUpdatePlayerPos)
+		else if(object instanceof PackeUpdatePlayerPos)
 		{
-			PackeUpdatePlayerPos packet = (PackeUpdatePlayerPos) o;
+			PackeUpdatePlayerPos packet = (PackeUpdatePlayerPos) object;
 			if (packet.accepted)
 			{
 				Player player = new Player(packet.id, packet.coordinate);
-				delegate.updatePlayer(player);
+				updateGameDataDelegate.updatePlayer(player);
 			}
 			
 		}
