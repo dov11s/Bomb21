@@ -1,4 +1,4 @@
-package shared;
+package server;
 
 public abstract class AbstractFactory {
     public abstract GameObject createTrap(String color, float alpha, int timer);

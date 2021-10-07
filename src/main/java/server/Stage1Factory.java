@@ -1,4 +1,4 @@
-package shared;
+package server;
 
 public class Stage1Factory extends AbstractFactory{
 
@@ -8,7 +8,8 @@ public class Stage1Factory extends AbstractFactory{
     }
 
     @Override
-    public GameObject createWall(String color, float alpha, int timer) {
+    public GameObject createWall(String color, float alpha, int timer)
+    {
         return new Wall(color, alpha);
     }
 
@@ -23,8 +24,11 @@ public class Stage1Factory extends AbstractFactory{
     }
 
     @Override
-    public GameObject createGround(String color, float alpha, int timer) {
-        return new Ground(color, alpha);
+    public GameObject createGround(String color, float alpha, int timer)
+    {
+    	Ground ground = new Ground(color, alpha);
+    	ground.isWalkable = true;
+        return ground;
     }
 
 }

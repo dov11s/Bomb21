@@ -1,4 +1,6 @@
-package shared;
+package server;
+
+import shared.Player;
 
 public class Ground extends GameObject{
 

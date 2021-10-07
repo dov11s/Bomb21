@@ -9,15 +9,10 @@ import com.esotericsoftware.kryonet.Server;
 import shared.PacketUpdatePlayerPos;
 import shared.SimplifiedGameBoard;
 import shared.SimplifiedGameObject;
-import shared.Stage1Factory;
-import shared.GameBoard;
-import shared.GameObject;
-import shared.Ground;
 import shared.PacketAddPlayer;
 import shared.PacketRemovePlayer;
 import shared.PacketUpdateGameBoard;
 import shared.Vector2f;
-import shared.Wall;
 
 public class Network extends Listener
 {

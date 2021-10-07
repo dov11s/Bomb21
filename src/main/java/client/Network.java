@@ -6,19 +6,19 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
+import server.GameBoard;
+import server.GameObject;
+import server.Ground;
+import server.Stage1Factory;
+import server.Wall;
 import shared.PacketUpdatePlayerPos;
-import shared.GameBoard;
-import shared.GameObject;
-import shared.Ground;
 import shared.PacketAddPlayer;
 import shared.PacketRemovePlayer;
 import shared.PacketUpdateGameBoard;
 import shared.Player;
 import shared.SimplifiedGameBoard;
 import shared.SimplifiedGameObject;
-import shared.Stage1Factory;
 import shared.Vector2f;
-import shared.Wall;
 
 
 public class Network extends Listener 

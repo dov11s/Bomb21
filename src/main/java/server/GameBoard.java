@@ -1,6 +1,8 @@
-package shared;
+package server;
 
 import java.util.ArrayList;
+
+import shared.SimplifiedGameBoard;
 
 public class GameBoard {
 
@@ -45,5 +47,10 @@ public class GameBoard {
             	object.onTick();
             }
         }
+    }
+    
+    public int cellSize()
+    {
+    	return size / gridSize;
     }
 }

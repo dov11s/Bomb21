@@ -1,6 +1,5 @@
 package server;
 
-import shared.GameBoard;
 import shared.PacketUpdatePlayerPos;
 
 public interface UpdateGameDataDelegate

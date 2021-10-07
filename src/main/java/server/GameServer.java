@@ -3,9 +3,6 @@ package server;
 import java.util.HashMap;
 import java.util.Map;
 
-import shared.GameBoard;
-import shared.GameObject;
-import shared.Stage1Factory;
 import shared.Vector2f;
 import shared.PacketUpdatePlayerPos;
 
@@ -156,10 +153,12 @@ public class GameServer implements UpdateGameDataDelegate
 				coordsAfterMove.y -= p.speed; 
 			}
 			
-			boolean collidingLeft = ((int)coordsAfterMove.x / gameBoard.gridSize) != ((int)p.coordinate.x / gameBoard.gridSize);
-			boolean collidingRight = (((int)coordsAfterMove.x + p.size) / gameBoard.gridSize) != (((int)p.coordinate.x + p.size) / gameBoard.gridSize);
-			boolean collidingUp = (((int)coordsAfterMove.y + p.size) / gameBoard.gridSize) != (((int)p.coordinate.y + p.size) / gameBoard.gridSize);
-			boolean collidingDown = ((int)coordsAfterMove.x / gameBoard.gridSize) != ((int)p.coordinate.x / gameBoard.gridSize);
+			int cellSize = gameBoard.cellSize();
+			
+			boolean collidingLeft = ((int)coordsAfterMove.x / cellSize) < ((int)p.coordinate.x / cellSize);
+			boolean collidingRight = (((int)coordsAfterMove.x + p.size) / cellSize) > (((int)p.coordinate.x + p.size) /cellSize);
+			boolean collidingUp = (((int)coordsAfterMove.y + p.size) / cellSize) > (((int)p.coordinate.y + p.size) / cellSize);
+			boolean collidingDown = ((int)coordsAfterMove.y / cellSize) < ((int)p.coordinate.y / cellSize);
 			
 			boolean isColliding = collidingLeft || collidingRight || collidingUp || collidingDown;
 			 
@@ -174,9 +173,9 @@ public class GameServer implements UpdateGameDataDelegate
 				
 				if (collidingLeft)
 				{
-					x = ((int)coordsAfterMove.x) / gameBoard.gridSize;
-					y = (int)coordsAfterMove.y / gameBoard.gridSize;
-					y1 = ((int)coordsAfterMove.y + p.size) / gameBoard.gridSize;
+					x = ((int)coordsAfterMove.x) / cellSize;
+					y = (int)coordsAfterMove.y / cellSize;
+					y1 = ((int)coordsAfterMove.y + p.size) / cellSize;
 					
 					if (y == y1)
 					{
@@ -192,9 +191,9 @@ public class GameServer implements UpdateGameDataDelegate
 				}
 				else if (collidingRight)
 				{
-					x = ((int)coordsAfterMove.x + p.size) / gameBoard.gridSize; 
-					y = (int)coordsAfterMove.y / gameBoard.gridSize;
-					y1 = ((int)coordsAfterMove.y + p.size) / gameBoard.gridSize;
+					x = ((int)coordsAfterMove.x + p.size) / cellSize; 
+					y = (int)coordsAfterMove.y / cellSize;
+					y1 = ((int)coordsAfterMove.y + p.size) / cellSize;
 					
 					if (y == y1)
 					{
@@ -210,9 +209,9 @@ public class GameServer implements UpdateGameDataDelegate
 				}
 				else if (collidingUp)
 				{
-					y = ((int)coordsAfterMove.y + p.size) / gameBoard.gridSize; 
-					x = (int)coordsAfterMove.x / gameBoard.gridSize;
-					x1 = ((int)coordsAfterMove.x + p.size) / gameBoard.gridSize;
+					y = ((int)coordsAfterMove.y + p.size) / cellSize; 
+					x = (int)coordsAfterMove.x / cellSize;
+					x1 = ((int)coordsAfterMove.x + p.size) / cellSize;
 					
 					if (x == x1)
 					{
@@ -228,9 +227,9 @@ public class GameServer implements UpdateGameDataDelegate
 				}
 				else if (collidingDown)
 				{
-					y = ((int)coordsAfterMove.x) / gameBoard.gridSize;
-					x = (int)coordsAfterMove.y / gameBoard.gridSize;
-					x1 = ((int)coordsAfterMove.y + p.size) / gameBoard.gridSize;
+					y = ((int)coordsAfterMove.y) / cellSize;
+					x = (int)coordsAfterMove.x / cellSize;
+					x1 = ((int)coordsAfterMove.x + p.size) / cellSize;
 					
 					if (x == x1)
 					{

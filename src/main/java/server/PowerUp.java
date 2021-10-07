@@ -1,16 +1,19 @@
-package shared;
+package server;
 
-public class Bomb extends GameObject {
+import shared.Player;
+
+public class PowerUp extends GameObject{
 
     private int Timer;
 
-    public Bomb(String color, float alpha, int timer){
+    public PowerUp(String color, float alpha, int timer){
         super(color, alpha);
         this.Timer = timer;
     }
 
     public void onDamage(){
-        //cannot be destroyed?
+        if(this.isDestroyable)
+            System.out.println("Wall has been destroyed");
     }
     public void onTick(){
         this.Timer--;
@@ -19,6 +22,7 @@ public class Bomb extends GameObject {
     }
 
     public void onStep(Player player){
-        //cannot be stepped on?
+        if(this.isWalkable)
+            System.out.println("You gain powerup!");
     }
 }
