@@ -14,7 +14,7 @@ public class Wall extends GameObject{
     public void onTick(){
 
     }
-    public void onStep(){
+    public void onStep(Player player){
         if(!this.isWalkable)
             System.out.println("Can't walk on this!");
     }

@@ -29,6 +29,6 @@ public abstract class GameObject {
 
     public abstract void onDamage();
     public abstract void onTick();
-    public abstract void onStep();
+    public abstract void onStep(Player player);
 
 }
