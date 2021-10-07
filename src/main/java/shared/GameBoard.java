@@ -24,16 +24,13 @@ public class GameBoard {
     
     public SimplifiedGameBoard getSimpleGameBoard()
     {
-		SimplifiedGameBoard simpleGameboard = new SimplifiedGameBoard();
+		SimplifiedGameBoard simpleGameboard = new SimplifiedGameBoard(this.size, this.gridSize);
 		
-		simpleGameboard.gridSize = this.gridSize;
-		simpleGameboard.size = this.size;
         for (int i = 0; i < this.gridSize; i ++) 
         {
             for (int j = 0; j < this.gridSize; j ++)
             {
             	simpleGameboard.objects[i][j].color = this.objects[i][j].color;
-//            	simple
             }
         }
         return simpleGameboard;
