@@ -7,12 +7,17 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
 import shared.PacketUpdatePlayerPos;
+import shared.SimplifiedGameBoard;
+import shared.SimplifiedGameObject;
+import shared.Stage1Factory;
 import shared.GameBoard;
 import shared.GameObject;
+import shared.Ground;
 import shared.PacketAddPlayer;
 import shared.PacketRemovePlayer;
 import shared.PacketUpdateGameBoard;
 import shared.Vector2f;
+import shared.Wall;
 
 public class Network extends Listener
 {
@@ -25,14 +30,15 @@ public class Network extends Listener
 		try 
 		{
 			this.updateGameDataDelegate = updateGameDataDelegate;
-			this.server = new Server();
+			this.server = new Server(131072, 16384);
 			this.server.getKryo().register(PacketUpdatePlayerPos.class);
 			this.server.getKryo().register(PacketAddPlayer.class);
 			this.server.getKryo().register(PacketRemovePlayer.class);
 			this.server.getKryo().register(PacketUpdateGameBoard.class);
+			this.server.getKryo().register(SimplifiedGameObject.class);
+			this.server.getKryo().register(SimplifiedGameObject[].class);
+			this.server.getKryo().register(SimplifiedGameObject[][].class);
 			this.server.getKryo().register(Vector2f.class);
-			this.server.getKryo().register(GameBoard.class);
-			this.server.getKryo().register(GameObject.class);
 			this.server.bind(this.port, this.port);
 			this.server.addListener(this);
 			this.server.start();
@@ -73,14 +79,15 @@ public class Network extends Listener
 	
 	public void sendGameBoard(GameBoard gameBoard, MPPlayer player)
 	{
+		SimplifiedGameBoard simpleGameboard = gameBoard.getSimpleGameBoard();
 		if (player == null)
-		{
-			PacketUpdateGameBoard packet = new PacketUpdateGameBoard(gameBoard);
+		{    
+			PacketUpdateGameBoard packet = new PacketUpdateGameBoard(simpleGameboard);
 			this.server.sendToAllUDP(packet);
 		}
 		else
 		{
-			PacketUpdateGameBoard packet = new PacketUpdateGameBoard(gameBoard);
+			PacketUpdateGameBoard packet = new PacketUpdateGameBoard(simpleGameboard);
 			this.server.sendToUDP(player.c.getID(), packet);
 		}
 	}
@@ -104,3 +111,4 @@ public class Network extends Listener
 		System.out.println("Connection dropped.");
 	}
 }
+

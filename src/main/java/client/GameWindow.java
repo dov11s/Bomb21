@@ -6,6 +6,7 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
 import shared.Player;
+import shared.SimplifiedGameBoard;
 import shared.Vector2f;
 import shared.GameBoard;
 
@@ -18,7 +19,7 @@ public class GameWindow implements UpdateGameDataDelegate
 	private long window;
 	final private int SCREEN_LENGTH = 640;
 	final private int SCREEN_WIDTH = 480;
-	private GameBoard board;
+	private SimplifiedGameBoard board;
 	private Network network;
 	private Player mainPlayer;
 	private Map<Integer,Player> players;
@@ -121,9 +122,12 @@ public class GameWindow implements UpdateGameDataDelegate
 	}
 
 
-	private void renderObjects(GameBoard board)
+	private void renderObjects(SimplifiedGameBoard board)
 	{
-
+		if (board == null)
+		{
+			return;
+		}
 		int sizeX = SCREEN_LENGTH / board.gridSize;
 		int sizeY = SCREEN_WIDTH / board.gridSize;
 
@@ -272,7 +276,7 @@ public class GameWindow implements UpdateGameDataDelegate
 	}
 
 	@Override
-	public void updateBoard(GameBoard gameboard)
+	public void updateBoard(SimplifiedGameBoard gameboard)
 	{
 		this.board = gameboard;
 		

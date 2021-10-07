@@ -21,6 +21,24 @@ public class GameBoard {
         }
         this.objects[5][5] = Factory.createWall("#DBD3BF",1, 0);
     }
+    
+    public SimplifiedGameBoard getSimpleGameBoard()
+    {
+		SimplifiedGameBoard simpleGameboard = new SimplifiedGameBoard();
+		
+		simpleGameboard.gridSize = this.gridSize;
+		simpleGameboard.size = this.size;
+        for (int i = 0; i < this.gridSize; i ++) 
+        {
+            for (int j = 0; j < this.gridSize; j ++)
+            {
+            	simpleGameboard.objects[i][j].color = this.objects[i][j].color;
+//            	simple
+            }
+        }
+        return simpleGameboard;
+    }
+    
     public void runTick()
     {
         for (GameObject[] u: objects) 

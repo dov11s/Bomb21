@@ -9,11 +9,16 @@ import com.esotericsoftware.kryonet.Listener;
 import shared.PacketUpdatePlayerPos;
 import shared.GameBoard;
 import shared.GameObject;
+import shared.Ground;
 import shared.PacketAddPlayer;
 import shared.PacketRemovePlayer;
 import shared.PacketUpdateGameBoard;
 import shared.Player;
+import shared.SimplifiedGameBoard;
+import shared.SimplifiedGameObject;
+import shared.Stage1Factory;
 import shared.Vector2f;
+import shared.Wall;
 
 
 public class Network extends Listener 
@@ -27,14 +32,16 @@ public class Network extends Listener
 	public boolean connect(UpdateGameDataDelegate updateGameDataDelegate)
 	{
 		this.updateGameDataDelegate = updateGameDataDelegate;
-		this.client = new Client();
+		this.client = new Client(65536, 16384);
 		this.client.getKryo().register(PacketUpdatePlayerPos.class);
 		this.client.getKryo().register(PacketAddPlayer.class);
 		this.client.getKryo().register(PacketRemovePlayer.class);
 		this.client.getKryo().register(PacketUpdateGameBoard.class);
 		this.client.getKryo().register(Vector2f.class);
-		this.client.getKryo().register(GameBoard.class);
-		this.client.getKryo().register(GameObject.class);
+		this.client.getKryo().register(SimplifiedGameBoard.class);
+		this.client.getKryo().register(SimplifiedGameObject.class);
+		this.client.getKryo().register(SimplifiedGameObject[].class);
+		this.client.getKryo().register(SimplifiedGameObject[][].class);
 		this.client.addListener(this);
 	
 		this.client.start();

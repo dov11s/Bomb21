@@ -2,9 +2,9 @@ package shared;
 
 public class PacketUpdateGameBoard extends Packet
 {
-	public GameBoard gameBoard;
+	public SimplifiedGameBoard gameBoard;
 	
-	public PacketUpdateGameBoard(GameBoard gameBoard)
+	public PacketUpdateGameBoard(SimplifiedGameBoard gameBoard)
 	{
 		this.gameBoard = gameBoard;
 	}
