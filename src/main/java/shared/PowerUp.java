@@ -15,6 +15,7 @@ public class PowerUp extends GameObject{
     }
     public void onTick(){
         this.Timer--;
+        this.gameobjectdelegate.removeObject(this);
     }
 
     public void onStep(){
