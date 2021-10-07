@@ -23,6 +23,7 @@ public class GameBoard {
         }
         this.objects[5][5] = Factory.createWall("#DBD3BF",1, 0);
         this.objects[5][6] = Factory.createWall("#DBD3BF",1, 0);
+        this.objects[6][5] = Factory.createWall("#DBD3BF",1, 0);
     }
     
     public SimplifiedGameBoard getSimpleGameBoard()

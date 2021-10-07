@@ -22,7 +22,7 @@ public class Player
 		this.isHoldingRight = false;
 		this.isHoldingUp = false;
 		this.isHoldingDown = false;
-		this.speed = 1f;
+		this.speed = 2.6f;
 	}
 	
 	public Player(int id, Vector2f coordinate)

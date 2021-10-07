@@ -189,7 +189,7 @@ public class GameServer implements UpdateGameDataDelegate
 						gameBoard.objects[x][y1].onStep(p);
 					}
 				}
-				else if (collidingRight)
+				if (collidingRight)
 				{
 					x = ((int)coordsAfterMove.x + p.size) / cellSize; 
 					y = (int)coordsAfterMove.y / cellSize;
@@ -207,7 +207,7 @@ public class GameServer implements UpdateGameDataDelegate
 						gameBoard.objects[x][y1].onStep(p);
 					}
 				}
-				else if (collidingUp)
+				if (collidingUp)
 				{
 					y = ((int)coordsAfterMove.y + p.size) / cellSize; 
 					x = (int)coordsAfterMove.x / cellSize;
@@ -225,7 +225,7 @@ public class GameServer implements UpdateGameDataDelegate
 						gameBoard.objects[x1][y].onStep(p);
 					}
 				}
-				else if (collidingDown)
+				if (collidingDown)
 				{
 					y = ((int)coordsAfterMove.y) / cellSize;
 					x = (int)coordsAfterMove.x / cellSize;
