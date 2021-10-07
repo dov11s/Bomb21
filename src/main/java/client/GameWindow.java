@@ -60,12 +60,11 @@ public class GameWindow implements UpdateGameDataDelegate
 	
 	private void runGame()
 	{
-		//TODO change this. Busy cycle. Eats cpu. 
 		while (GLFW.glfwWindowShouldClose(window) != true)
 		{
 			readKeys();
 			updateScreen();
-			
+			waitFrame();
 		}
 	}
 	
@@ -100,7 +99,21 @@ public class GameWindow implements UpdateGameDataDelegate
 
 		GLFW.glfwSwapBuffers(window);
 	}
-	
+
+	//bad design
+	private void waitFrame()
+	{
+		try 
+		{
+			//around 120 tiems a second
+			Thread.sleep(8L);
+		} 
+		catch (InterruptedException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	private void renderPlayers()
 	{
 		//Render player
