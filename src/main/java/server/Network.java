@@ -5,6 +5,8 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
 import shared.PacketUpdatePlayerPos;
+import shared.GameBoard;
+import shared.GameObject;
 import shared.PacketAddPlayer;
 import shared.PacketRemovePlayer;
 import shared.Vector2f;
@@ -25,6 +27,8 @@ public class Network extends Listener
 			this.server.getKryo().register(PacketAddPlayer.class);
 			this.server.getKryo().register(PacketRemovePlayer.class);
 			this.server.getKryo().register(Vector2f.class);
+			this.server.getKryo().register(GameBoard.class);
+			this.server.getKryo().register(GameObject.class);
 			this.server.bind(this.port, this.port);
 			this.server.addListener(this);
 			this.server.start();

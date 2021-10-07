@@ -5,6 +5,7 @@ public class Player
 	public int id;
 	public Vector2f coordinate;
 	public float speed;
+	public int size;
 	public boolean isHoldingLeft;
 	public boolean isHoldingRight;
 	public boolean isHoldingUp;
@@ -15,6 +16,7 @@ public class Player
 		this.coordinate = new Vector2f();
 		this.coordinate.x = 256;
 		this.coordinate.y = 256;
+		this.size = 15;
 		this.isHoldingLeft = false;
 		this.isHoldingRight = false;
 		this.isHoldingUp = false;

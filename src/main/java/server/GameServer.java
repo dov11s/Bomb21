@@ -2,11 +2,14 @@ package server;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import shared.GameBoard;
+import shared.GameObject;
 import shared.PacketUpdatePlayerPos;
 
 public class GameServer implements UpdateGameDataDelegate
 {
-	
+	protected GameBoard gameBoard;
 	protected volatile Map<Integer, MPPlayer> players;
 	protected volatile Network network;
 	private GameCycleThread thread;
@@ -21,6 +24,8 @@ public class GameServer implements UpdateGameDataDelegate
 		}
 		
 		this.players = new HashMap<Integer, MPPlayer>();
+		
+		this.gameBoard = new GameBoard();
 		
 		this.thread = new GameCycleThread();
 		this.thread.start();
@@ -107,6 +112,12 @@ public class GameServer implements UpdateGameDataDelegate
         
         private void update()
         {
+        	updatePlayers();
+        	updateObjects();
+        }
+        
+        private void updatePlayers()
+        {
     		for(MPPlayer p : players.values())
     		{
     			
@@ -134,6 +145,12 @@ public class GameServer implements UpdateGameDataDelegate
     		}
         }
         
+        private void updateObjects()
+        {
+        	
+        }
+        
     }
+    
 }
 

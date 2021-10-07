@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public class GameBoard {
 
-    public int sizeX;
-    public int sizeY;
-    public ArrayList<ArrayList<GameObject>> objects;
+    public final int sizeX = 20;
+    public final int sizeY = 20;
+    GameObject[][] objects;
 
 
     public GameBoard()
     {
-        objects = new ArrayList<>(20);
+        this.objects = new GameObject[sizeX][sizeY];
+        this.objects[5][5] = new Wall("AAAAAA",1);
     }
 }
