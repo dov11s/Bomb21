@@ -220,6 +220,22 @@ public class GameWindow implements UpdateGameDataDelegate
 			}
 			
 		}
+
+		if(GLFW.glfwGetKey(this.window, GLFW.GLFW_KEY_E) == GLFW.GLFW_TRUE)
+		{
+			if (!this.mainPlayer.isHoldingUse)
+			{
+				this.network.sendPacketButtonPressUse();
+			}
+		}
+		else
+		{
+			if (this.mainPlayer.isHoldingUse)
+			{
+				this.network.sendPacketButtonReleaseUse();
+			}
+
+		}
 		
 		if (GLFW.glfwGetKey(window, GLFW.GLFW_KEY_ESCAPE) == GLFW.GLFW_TRUE)
 		{

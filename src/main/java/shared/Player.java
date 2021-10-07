@@ -10,6 +10,7 @@ public class Player
 	public boolean isHoldingRight;
 	public boolean isHoldingUp;
 	public boolean isHoldingDown;
+	public boolean isHoldingUse;
 	
 	public Player()
 	{
@@ -32,6 +33,7 @@ public class Player
 		this.isHoldingRight = false;
 		this.isHoldingUp = false;
 		this.isHoldingDown = false;
+		this.isHoldingUse = false;
 	}
 	
 	public Player(PacketUpdatePlayerPos packet)
@@ -42,5 +44,6 @@ public class Player
 		this.isHoldingRight = packet.isHoldingRight;
 		this.isHoldingUp = packet.isHoldingUp;
 		this.isHoldingDown = packet.isHoldingDown;
+		this.isHoldingUse = packet.isHoldingUse;
 	}
 }
