@@ -30,7 +30,7 @@ public class GameBoard {
         {
             for (int j = 0; j < this.gridSize; j ++)
             {
-            	simpleGameboard.objects[i][j].color = this.objects[i][j].color;
+            	simpleGameboard.objects[i][j] = this.objects[i][j].color;
             }
         }
         return simpleGameboard;

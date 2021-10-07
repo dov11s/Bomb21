@@ -30,15 +30,14 @@ public class Network extends Listener
 		try 
 		{
 			this.updateGameDataDelegate = updateGameDataDelegate;
-			this.server = new Server();
+			this.server = new Server(131072, 16384);
 			this.server.getKryo().register(PacketUpdatePlayerPos.class);
 			this.server.getKryo().register(PacketAddPlayer.class);
 			this.server.getKryo().register(PacketRemovePlayer.class);
 			this.server.getKryo().register(PacketUpdateGameBoard.class);
 			this.server.getKryo().register(SimplifiedGameBoard.class);
-			this.server.getKryo().register(SimplifiedGameObject.class);
-			this.server.getKryo().register(SimplifiedGameObject[].class);
-			this.server.getKryo().register(SimplifiedGameObject[][].class);
+			this.server.getKryo().register(String[].class);
+			this.server.getKryo().register(String[][].class);
 			this.server.getKryo().register(Vector2f.class);
 			this.server.bind(this.port, this.port);
 			this.server.addListener(this);

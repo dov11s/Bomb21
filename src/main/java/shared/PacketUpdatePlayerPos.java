@@ -8,7 +8,7 @@ public class PacketUpdatePlayerPos extends Packet
 	public Boolean isHoldingRight;
 	public Boolean isHoldingUp;
 	public Boolean isHoldingDown;
-	public Boolean isHoldingUse;
+//	public Boolean isHoldingUse;
 	
 	public PacketUpdatePlayerPos()
 	{

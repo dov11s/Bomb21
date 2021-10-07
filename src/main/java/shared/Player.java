@@ -44,6 +44,6 @@ public class Player
 		this.isHoldingRight = packet.isHoldingRight;
 		this.isHoldingUp = packet.isHoldingUp;
 		this.isHoldingDown = packet.isHoldingDown;
-		this.isHoldingUse = packet.isHoldingUse;
+//		this.isHoldingUse = packet.isHoldingUse;
 	}
 }

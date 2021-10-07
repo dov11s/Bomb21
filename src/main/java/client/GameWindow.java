@@ -134,9 +134,9 @@ public class GameWindow implements UpdateGameDataDelegate
 
 		for (int i = 0; i < board.gridSize; i++) {
 			for (int j = 0; j < board.gridSize; j++) {
-				int red = Integer.valueOf(board.objects[i][j].color.substring(1,3), 16);
-				int green = Integer.valueOf(board.objects[i][j].color.substring(3,5), 16);
-				int blue = Integer.valueOf(board.objects[i][j].color.substring(5,7), 16);
+				int red = Integer.valueOf(board.objects[i][j].substring(1,3), 16);
+				int green = Integer.valueOf(board.objects[i][j].substring(3,5), 16);
+				int blue = Integer.valueOf(board.objects[i][j].substring(5,7), 16);
 
 
 				GL11.glColor3f(red,green,blue);
@@ -228,22 +228,22 @@ public class GameWindow implements UpdateGameDataDelegate
 			
 		}
 
-		if(GLFW.glfwGetKey(this.window, GLFW.GLFW_KEY_E) == GLFW.GLFW_TRUE)
-		{
-			if (!this.mainPlayer.isHoldingUse)
-			{
-				this.network.sendPacketButtonPressUse();
-			}
-		}
-		else
-		{
-			if (this.mainPlayer.isHoldingUse)
-			{
-				this.network.sendPacketButtonReleaseUse();
-			}
-
-		}
-		
+//		if(GLFW.glfwGetKey(this.window, GLFW.GLFW_KEY_E) == GLFW.GLFW_TRUE)
+//		{
+//			if (!this.mainPlayer.isHoldingUse)
+//			{
+//				this.network.sendPacketButtonPressUse();
+//			}
+//		}
+//		else
+//		{
+//			if (this.mainPlayer.isHoldingUse)
+//			{
+//				this.network.sendPacketButtonReleaseUse();
+//			}
+//
+//		}
+//		
 		if (GLFW.glfwGetKey(window, GLFW.GLFW_KEY_ESCAPE) == GLFW.GLFW_TRUE)
 		{
 			GLFW.glfwSetWindowShouldClose(window, true);
