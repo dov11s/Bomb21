@@ -31,6 +31,7 @@ public class Network extends Listener
 		this.client.getKryo().register(PacketUpdatePlayerPos.class);
 		this.client.getKryo().register(PacketAddPlayer.class);
 		this.client.getKryo().register(PacketRemovePlayer.class);
+		this.client.getKryo().register(PacketUpdateGameBoard.class);
 		this.client.getKryo().register(Vector2f.class);
 		this.client.getKryo().register(GameBoard.class);
 		this.client.getKryo().register(GameObject.class);
@@ -76,8 +77,8 @@ public class Network extends Listener
 		}
 		else if (object instanceof PacketUpdateGameBoard)
 		{
-			PacketRemovePlayer packet = (PacketRemovePlayer) object;
-			updateGameDataDelegate.removePlayer(packet.id);
+			PacketUpdateGameBoard packet = (PacketUpdateGameBoard) object;
+			updateGameDataDelegate.updateBoard(packet.gameBoard);
 		}
 	}
 	

@@ -28,7 +28,7 @@ public class GameServer implements UpdateGameDataDelegate
 		}
 		
 		this.players = new HashMap<Integer, MPPlayer>();
-		
+		this.stage1factory = new Stage1Factory();
 		this.gameBoard = new GameBoard(stage1factory);
 		
 		this.thread = new GameCycleThread();

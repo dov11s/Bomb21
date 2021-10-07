@@ -29,6 +29,7 @@ public class Network extends Listener
 			this.server.getKryo().register(PacketUpdatePlayerPos.class);
 			this.server.getKryo().register(PacketAddPlayer.class);
 			this.server.getKryo().register(PacketRemovePlayer.class);
+			this.server.getKryo().register(PacketUpdateGameBoard.class);
 			this.server.getKryo().register(Vector2f.class);
 			this.server.getKryo().register(GameBoard.class);
 			this.server.getKryo().register(GameObject.class);
