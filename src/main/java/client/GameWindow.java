@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL11;
 
 import shared.Player;
 import shared.Vector2f;
+import shared.GameBoard;
 
 import org.lwjgl.opengl.GL;
 
@@ -116,6 +117,39 @@ public class GameWindow implements UpdateGameDataDelegate
 		}
 		GL11.glEnd();
 	}
+
+
+	private void renderObjects(GameBoard board){
+
+		int sizeX = SCREEN_LENGTH / board.gridSize;
+		int sizeY = SCREEN_WIDTH / board.gridSize;
+
+
+		for (int i = 0; i < board.gridSize; i++) {
+			for (int j = 0; j < board.gridSize; j++) {
+				int red = Integer.valueOf(board.objects[i][j].color.substring(1,3), 16);
+				int green = Integer.valueOf(board.objects[i][j].color.substring(3,5), 16);
+				int blue = Integer.valueOf(board.objects[i][j].color.substring(5,7), 16);
+
+
+				GL11.glColor3f(red,green,blue);
+				GL11.glBegin(GL11.GL_QUADS);
+
+					GL11.glVertex2f(i*sizeX, j*sizeY);
+					GL11.glVertex2f(i*sizeX + sizeX, j*sizeY);
+					GL11.glVertex2f(i*sizeX, j*sizeY + sizeY);
+					GL11.glVertex2f(i*sizeX + sizeX, j*sizeY + sizeY);
+
+
+				GL11.glEnd();
+			}
+		}
+
+
+
+	}
+
+
 	
 	private void readKeys()
 	{
