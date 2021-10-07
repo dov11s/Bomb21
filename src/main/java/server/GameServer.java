@@ -5,6 +5,7 @@ import java.util.Map;
 
 import shared.GameBoard;
 import shared.GameObject;
+import shared.Stage1Factory;
 import shared.PacketUpdatePlayerPos;
 
 public class GameServer implements UpdateGameDataDelegate
@@ -13,6 +14,7 @@ public class GameServer implements UpdateGameDataDelegate
 	protected volatile Map<Integer, MPPlayer> players;
 	protected volatile Network network;
 	private GameCycleThread thread;
+	private Stage1Factory stage1factory;
 	
 	public GameServer()
 	{
@@ -25,7 +27,7 @@ public class GameServer implements UpdateGameDataDelegate
 		
 		this.players = new HashMap<Integer, MPPlayer>();
 		
-		this.gameBoard = new GameBoard();
+		this.gameBoard = new GameBoard(stage1factory);
 		
 		this.thread = new GameCycleThread();
 		this.thread.start();
