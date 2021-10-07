@@ -105,19 +105,27 @@ public class GameWindow implements UpdateGameDataDelegate
 	{
 		//Render player
 		GL11.glColor3f(1,255,1);
-		GL11.glBegin(GL11.GL_TRIANGLES);
-		GL11.glVertex2f(this.mainPlayer.coordinate.x, mainPlayer.coordinate.y+8);
-		GL11.glVertex2f(this.mainPlayer.coordinate.x+8, mainPlayer.coordinate.y-8);
-		GL11.glVertex2f(this.mainPlayer.coordinate.x-8, mainPlayer.coordinate.y-8);
+//		GL11.glBegin(GL11.GL_TRIANGLES);
+//		GL11.glVertex2f(this.mainPlayer.coordinate.x, mainPlayer.coordinate.y+this.mainPlayer.size);
+//		GL11.glVertex2f(this.mainPlayer.coordinate.x+this.mainPlayer.size, mainPlayer.coordinate.y-this.mainPlayer.size);
+//		GL11.glVertex2f(this.mainPlayer.coordinate.x-this.mainPlayer.size, mainPlayer.coordinate.y-this.mainPlayer.size);
+//		GL11.glEnd();
+
+		GL11.glBegin(GL11.GL_QUADS);
+		GL11.glVertex2f(this.mainPlayer.coordinate.x, this.mainPlayer.coordinate.y);
+		GL11.glVertex2f( this.mainPlayer.coordinate.x + this.mainPlayer.size, this.mainPlayer.coordinate.y);
+		GL11.glVertex2f(this.mainPlayer.coordinate.x + this.mainPlayer.size, this.mainPlayer.coordinate.y + this.mainPlayer.size);
+		GL11.glVertex2f(this.mainPlayer.coordinate.x, this.mainPlayer.coordinate.y + this.mainPlayer.size);
 		GL11.glEnd();
-		
+
+
 		//Render other players
 		GL11.glColor3f(1, 1, 0);
 		GL11.glBegin(GL11.GL_TRIANGLES);
 		for(Player mpPlayer : players.values()){
-			GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y+8);
-			GL11.glVertex2f(mpPlayer.coordinate.x+8, mpPlayer.coordinate.y-8);
-			GL11.glVertex2f(mpPlayer.coordinate.x-8, mpPlayer.coordinate.y-8);
+			GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y+mpPlayer.size);
+			GL11.glVertex2f(mpPlayer.coordinate.x+mpPlayer.size, mpPlayer.coordinate.y-mpPlayer.size);
+			GL11.glVertex2f(mpPlayer.coordinate.x-mpPlayer.size, mpPlayer.coordinate.y-mpPlayer.size);
 		}
 		GL11.glEnd();
 	}
@@ -145,16 +153,10 @@ public class GameWindow implements UpdateGameDataDelegate
 				GL11.glBegin(GL11.GL_QUADS);
 
 					GL11.glColor3f(red,green,blue);
+
 					GL11.glVertex2f(i*sizeX, j*sizeY);
-
-					//GL11.glColor3f(redd,green,blue);
 					GL11.glVertex2f(i*sizeX + sizeX-2, j*sizeY);
-
-					//GL11.glColor3f(red,green,blue);
 					GL11.glVertex2f(i*sizeX + sizeX-2, j*sizeY + sizeY-2);
-
-					//GL11.glColor3f(red,green,blue);
-
 					GL11.glVertex2f(i*sizeX, j*sizeY + sizeY-2);
 
 				GL11.glEnd();

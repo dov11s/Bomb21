@@ -17,7 +17,7 @@ public class Player
 		this.coordinate = new Vector2f();
 		this.coordinate.x = 400;
 		this.coordinate.y = 400;
-		this.size = 15;
+		this.size = 40;
 		this.isHoldingLeft = false;
 		this.isHoldingRight = false;
 		this.isHoldingUp = false;
