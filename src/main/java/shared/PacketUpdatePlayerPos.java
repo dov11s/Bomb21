@@ -8,6 +8,7 @@ public class PacketUpdatePlayerPos extends Packet
 	public Boolean isHoldingRight;
 	public Boolean isHoldingUp;
 	public Boolean isHoldingDown;
+	public int size;
 //	public Boolean isHoldingUse;
 	
 	public PacketUpdatePlayerPos()
@@ -15,7 +16,7 @@ public class PacketUpdatePlayerPos extends Packet
 		this.coordinate = new Vector2f();
 	}
 	
-	public PacketUpdatePlayerPos(Vector2f coordinate)
+	public PacketUpdatePlayerPos(Vector2f coordinate, int size)
 	{
 		this.coordinate = coordinate;
 		this.isHoldingLeft = false;
@@ -32,5 +33,6 @@ public class PacketUpdatePlayerPos extends Packet
 		this.isHoldingRight = player.isHoldingRight;
 		this.isHoldingUp = player.isHoldingUp;
 		this.isHoldingDown = player.isHoldingDown;
+		this.size = player.size;
 	}
 }

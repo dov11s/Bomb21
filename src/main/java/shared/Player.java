@@ -15,8 +15,8 @@ public class Player
 	public Player()
 	{
 		this.coordinate = new Vector2f();
-		this.coordinate.x = 256;
-		this.coordinate.y = 256;
+		this.coordinate.x = 400;
+		this.coordinate.y = 400;
 		this.size = 15;
 		this.isHoldingLeft = false;
 		this.isHoldingRight = false;
@@ -29,6 +29,7 @@ public class Player
 	{
 		this.id = id;
 		this.coordinate = coordinate;
+		this.size = 15;
 		this.isHoldingLeft = false;
 		this.isHoldingRight = false;
 		this.isHoldingUp = false;
@@ -44,6 +45,7 @@ public class Player
 		this.isHoldingRight = packet.isHoldingRight;
 		this.isHoldingUp = packet.isHoldingUp;
 		this.isHoldingDown = packet.isHoldingDown;
+		this.size = packet.size;
 //		this.isHoldingUse = packet.isHoldingUse;
 	}
 }

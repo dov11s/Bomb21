@@ -95,8 +95,9 @@ public class GameWindow implements UpdateGameDataDelegate
 	{			
 		GLFW.glfwPollEvents();
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-		renderPlayers();
 		renderObjects(board);
+		renderPlayers();
+
 		GLFW.glfwSwapBuffers(window);
 	}
 	
