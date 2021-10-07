@@ -6,6 +6,7 @@ import java.util.Map;
 import shared.GameBoard;
 import shared.GameObject;
 import shared.Stage1Factory;
+import shared.Vector2f;
 import shared.PacketUpdatePlayerPos;
 
 public class GameServer implements UpdateGameDataDelegate
@@ -115,41 +116,139 @@ public class GameServer implements UpdateGameDataDelegate
         private void update()
         {
         	updatePlayers();
-        	updateObjects();
+        	gameBoard.runTick();
         }
         
         private void updatePlayers()
         {
     		for(MPPlayer p : players.values())
     		{
-    			
-    			if (p.isHoldingLeft)
-    			{
-    				p.coordinate.x -= p.speed; 
-    			}
-    			
-    			if (p.isHoldingRight)
-    			{
-    				p.coordinate.x += p.speed; 
-    			}
-    			
-    			if (p.isHoldingUp)
-    			{
-    				p.coordinate.y += p.speed; 
-    			}
-    			
-    			if (p.isHoldingDown)
-    			{
-    				p.coordinate.y -= p.speed; 
-    			}
-    			
-    			network.sendPlayerInfo(p, true);
+   
+    			p.coordinate = checkCollision(p);
+    			Vector2f coordsAfterMove =  new Vector2f(p.coordinate.x, p.coordinate.y);
     		}
         }
         
-        private void updateObjects()
+        private Vector2f checkCollision(MPPlayer p)
         {
         	
+        	Vector2f coordsAfterMove =  new Vector2f(p.coordinate.x, p.coordinate.y);
+        	
+			if (p.isHoldingLeft)
+			{
+				coordsAfterMove.x -= p.speed; 
+			}
+			
+			if (p.isHoldingRight)
+			{
+				
+				coordsAfterMove.x += p.speed; 
+			}
+			
+			if (p.isHoldingUp)
+			{
+				coordsAfterMove.y += p.speed; 
+			}
+			
+			if (p.isHoldingDown)
+			{
+				coordsAfterMove.y -= p.speed; 
+			}
+			
+			boolean collidingLeft = ((int)coordsAfterMove.x / gameBoard.gridSize) != ((int)p.coordinate.x / gameBoard.gridSize);
+			boolean collidingRight = (((int)coordsAfterMove.x + p.size) / gameBoard.gridSize) != (((int)p.coordinate.x + p.size) / gameBoard.gridSize);
+			boolean collidingUp = (((int)coordsAfterMove.y + p.size) / gameBoard.gridSize) != (((int)p.coordinate.y + p.size) / gameBoard.gridSize);
+			boolean collidingDown = ((int)coordsAfterMove.x / gameBoard.gridSize) != ((int)p.coordinate.x / gameBoard.gridSize);
+			
+			boolean isColliding = collidingLeft || collidingRight || collidingUp || collidingDown;
+			 
+			boolean moveX = true;
+			boolean moveY = true;
+			
+			//Some smoothing when going around edges would be nice
+			if (isColliding)
+			{
+				int x, x1;
+				int y, y1;
+				
+				if (collidingLeft)
+				{
+					x = ((int)coordsAfterMove.x) / gameBoard.gridSize;
+					y = (int)coordsAfterMove.y / gameBoard.gridSize;
+					y1 = ((int)coordsAfterMove.y + p.size) / gameBoard.gridSize;
+					
+					if (y == y1)
+					{
+						moveX = gameBoard.objects[x][y].isWalkable;
+						gameBoard.objects[x][y].onStep(p);
+					}
+					else
+					{
+						moveX = gameBoard.objects[x][y].isWalkable && gameBoard.objects[x][y1].isWalkable;
+						gameBoard.objects[x][y].onStep(p);
+						gameBoard.objects[x][y1].onStep(p);
+					}
+				}
+				else if (collidingRight)
+				{
+					x = ((int)coordsAfterMove.x + p.size) / gameBoard.gridSize; 
+					y = (int)coordsAfterMove.y / gameBoard.gridSize;
+					y1 = ((int)coordsAfterMove.y + p.size) / gameBoard.gridSize;
+					
+					if (y == y1)
+					{
+						moveX = gameBoard.objects[x][y].isWalkable;
+						gameBoard.objects[x][y].onStep(p);
+					}
+					else
+					{
+						moveX = gameBoard.objects[x][y].isWalkable && gameBoard.objects[x][y1].isWalkable;
+						gameBoard.objects[x][y].onStep(p);
+						gameBoard.objects[x][y1].onStep(p);
+					}
+				}
+				else if (collidingUp)
+				{
+					y = ((int)coordsAfterMove.y + p.size) / gameBoard.gridSize; 
+					x = (int)coordsAfterMove.x / gameBoard.gridSize;
+					x1 = ((int)coordsAfterMove.x + p.size) / gameBoard.gridSize;
+					
+					if (x == x1)
+					{
+						moveY = gameBoard.objects[x][y].isWalkable;
+						gameBoard.objects[x][y].onStep(p);
+					}
+					else
+					{
+						moveY = gameBoard.objects[x][y].isWalkable && gameBoard.objects[x1][y].isWalkable;
+						gameBoard.objects[x][y].onStep(p);
+						gameBoard.objects[x1][y].onStep(p);
+					}
+				}
+				else if (collidingDown)
+				{
+					y = ((int)coordsAfterMove.x) / gameBoard.gridSize;
+					x = (int)coordsAfterMove.y / gameBoard.gridSize;
+					x1 = ((int)coordsAfterMove.y + p.size) / gameBoard.gridSize;
+					
+					if (x == x1)
+					{
+						moveY = gameBoard.objects[x][y].isWalkable;
+						gameBoard.objects[x][y].onStep(p);
+					}
+					else
+					{
+						moveY = gameBoard.objects[x][y].isWalkable && gameBoard.objects[x1][y].isWalkable;
+						gameBoard.objects[x][y].onStep(p);
+						gameBoard.objects[x1][y].onStep(p);
+					}
+				}
+			}
+			
+			coordsAfterMove.x = moveX ? coordsAfterMove.x : p.coordinate.x;
+			coordsAfterMove.y = moveY ? coordsAfterMove.y : p.coordinate.y;
+			return coordsAfterMove;
+				
         }
         
     }
