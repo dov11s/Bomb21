@@ -16,6 +16,7 @@ public class GameServer implements UpdateGameDataDelegate
 	protected volatile Network network;
 	private GameCycleThread thread;
 	private Stage1Factory stage1factory;
+	private boolean updateBoard = false;
 	
 	public GameServer()
 	{
@@ -66,6 +67,7 @@ public class GameServer implements UpdateGameDataDelegate
 	public void addPlayer(MPPlayer player)
 	{
 		this.players.put(player.c.getID(), player);
+		this.network.sendGameBoard(gameBoard, player);
 		
 	}
 
@@ -123,9 +125,8 @@ public class GameServer implements UpdateGameDataDelegate
         {
     		for(MPPlayer p : players.values())
     		{
-   
     			p.coordinate = checkCollision(p);
-    			Vector2f coordsAfterMove =  new Vector2f(p.coordinate.x, p.coordinate.y);
+    			network.sendPlayerInfo(p, true);
     		}
         }
         
@@ -247,6 +248,7 @@ public class GameServer implements UpdateGameDataDelegate
 			
 			coordsAfterMove.x = moveX ? coordsAfterMove.x : p.coordinate.x;
 			coordsAfterMove.y = moveY ? coordsAfterMove.y : p.coordinate.y;
+			
 			return coordsAfterMove;
 				
         }

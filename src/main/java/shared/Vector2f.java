@@ -12,4 +12,9 @@ public class Vector2f
 		this.x = x;
 		this.y = y;
 	}
+	
+	public boolean isEqual(Vector2f v)
+	{
+		return (v.x == this.x) && (v.y == this.y);
+	}
 }

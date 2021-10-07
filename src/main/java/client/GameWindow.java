@@ -18,6 +18,7 @@ public class GameWindow implements UpdateGameDataDelegate
 	private long window;
 	final private int SCREEN_LENGTH = 640;
 	final private int SCREEN_WIDTH = 480;
+	private GameBoard board;
 	private Network network;
 	private Player mainPlayer;
 	private Map<Integer,Player> players;
@@ -94,6 +95,7 @@ public class GameWindow implements UpdateGameDataDelegate
 		GLFW.glfwPollEvents();
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		renderPlayers();
+		renderObjects(board);
 		GLFW.glfwSwapBuffers(window);
 	}
 	
@@ -119,7 +121,8 @@ public class GameWindow implements UpdateGameDataDelegate
 	}
 
 
-	private void renderObjects(GameBoard board){
+	private void renderObjects(GameBoard board)
+	{
 
 		int sizeX = SCREEN_LENGTH / board.gridSize;
 		int sizeY = SCREEN_WIDTH / board.gridSize;
@@ -266,6 +269,13 @@ public class GameWindow implements UpdateGameDataDelegate
 	public void removePlayer(int id) 
 	{
 		players.remove(id);
+	}
+
+	@Override
+	public void updateBoard(GameBoard gameboard)
+	{
+		this.board = gameboard;
+		
 	}
 
 }

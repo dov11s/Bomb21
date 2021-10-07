@@ -7,13 +7,17 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
 import shared.PacketUpdatePlayerPos;
+import shared.GameBoard;
+import shared.GameObject;
 import shared.PacketAddPlayer;
 import shared.PacketRemovePlayer;
+import shared.PacketUpdateGameBoard;
 import shared.Player;
 import shared.Vector2f;
 
 
-public class Network extends Listener {
+public class Network extends Listener 
+{
 
 	UpdateGameDataDelegate updateGameDataDelegate;
 	Client client;
@@ -28,6 +32,8 @@ public class Network extends Listener {
 		this.client.getKryo().register(PacketAddPlayer.class);
 		this.client.getKryo().register(PacketRemovePlayer.class);
 		this.client.getKryo().register(Vector2f.class);
+		this.client.getKryo().register(GameBoard.class);
+		this.client.getKryo().register(GameObject.class);
 		this.client.addListener(this);
 	
 		this.client.start();
@@ -67,6 +73,11 @@ public class Network extends Listener {
 				updateGameDataDelegate.updatePlayer(player);
 			}
 			
+		}
+		else if (object instanceof PacketUpdateGameBoard)
+		{
+			PacketRemovePlayer packet = (PacketRemovePlayer) object;
+			updateGameDataDelegate.removePlayer(packet.id);
 		}
 	}
 	
@@ -124,5 +135,15 @@ public class Network extends Listener {
 		PacketUpdatePlayerPos packet = new 	PacketUpdatePlayerPos();
 		packet.isHoldingDown = false;
 		this.client.sendUDP(packet);
+	}
+
+	public void sendPacketButtonPressUse() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void sendPacketButtonReleaseUse() {
+		// TODO Auto-generated method stub
+		
 	}
 }

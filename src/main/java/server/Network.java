@@ -1,5 +1,7 @@
 package server;
 
+import org.lwjgl.system.CallbackI.P;
+
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
@@ -9,6 +11,7 @@ import shared.GameBoard;
 import shared.GameObject;
 import shared.PacketAddPlayer;
 import shared.PacketRemovePlayer;
+import shared.PacketUpdateGameBoard;
 import shared.Vector2f;
 
 public class Network extends Listener
@@ -65,6 +68,20 @@ public class Network extends Listener
 		packet.accepted = isAccepted;
 		this.server.sendToAllUDP(packet);
 		
+	}
+	
+	public void sendGameBoard(GameBoard gameBoard, MPPlayer player)
+	{
+		if (player == null)
+		{
+			PacketUpdateGameBoard packet = new PacketUpdateGameBoard(gameBoard);
+			this.server.sendToAllUDP(packet);
+		}
+		else
+		{
+			PacketUpdateGameBoard packet = new PacketUpdateGameBoard(gameBoard);
+			this.server.sendToUDP(player.c.getID(), packet);
+		}
 	}
 	
 	public void received(Connection connection, Object object)
