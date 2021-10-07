@@ -14,7 +14,12 @@ public class GameBoard {
     {
         this.Factory = factory;
         this.objects = new GameObject[gridSize][gridSize];
-        this.objects[5][5] = Factory.createWall("AAAAAA",1, 0);
+        for(int x = 0; x<gridSize; x++){
+            for(int y = 0; y<gridSize; y++){
+                this.objects[x][y] = this.Factory.createGround("#348C31", 1, 0);
+            }
+        }
+        this.objects[5][5] = Factory.createWall("#DBD3BF",1, 0);
     }
     public void runTick()
     {

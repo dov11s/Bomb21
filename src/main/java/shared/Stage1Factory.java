@@ -21,4 +21,10 @@ public class Stage1Factory extends AbstractFactory{
     public GameObject createPowerUp(String color, float alpha, int timer) {
         return new PowerUp(color, alpha, timer);
     }
+
+    @Override
+    public GameObject createGround(String color, float alpha, int timer) {
+        return new Ground(color, alpha);
+    }
+
 }
