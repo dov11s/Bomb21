@@ -7,12 +7,14 @@ public class GameBoard {
     public final int size = 1000;
     public final int gridSize = 20;
     public GameObject[][] objects;
+    private AbstractFactory Factory;
 
 
-    public GameBoard()
+    public GameBoard(AbstractFactory factory)
     {
+        this.Factory = factory;
         this.objects = new GameObject[gridSize][gridSize];
-        this.objects[5][5] = new Wall("AAAAAA",1);
+        this.objects[5][5] = Factory.createWall("AAAAAA",1, 0);
     }
     public void runTick()
     {
