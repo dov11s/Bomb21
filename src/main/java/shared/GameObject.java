@@ -4,6 +4,7 @@ public abstract class GameObject {
     public boolean isWalkable;
     public boolean isDestroyable;
 
+
     public String color;
     public float alpha;
 
