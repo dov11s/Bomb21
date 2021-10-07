@@ -87,7 +87,6 @@ public class GameWindow implements UpdateGameDataDelegate
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, SCREEN_LENGTH, 0, SCREEN_WIDTH, -1, 1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
-		GL11.glPolygonMode(GL11.GL_FRONT, GL11.GL_FILL);
 		return true;
 	}
 
@@ -133,25 +132,33 @@ public class GameWindow implements UpdateGameDataDelegate
 		int sizeY = SCREEN_WIDTH / board.gridSize;
 
 
-//		for (int i = 0; i < board.gridSize; i++) {
-//			for (int j = 0; j < board.gridSize; j++) {
-//				int red = Integer.valueOf(board.objects[i][j].substring(1,3), 16);
-//				int green = Integer.valueOf(board.objects[i][j].substring(3,5), 16);
-//				int blue = Integer.valueOf(board.objects[i][j].substring(5,7), 16);
-//
-//
-//				GL11.glColor3f(red,green,blue);
-//				GL11.glBegin(GL11.GL_QUADS);
-//
-//					GL11.glVertex2f(i*sizeX, j*sizeY);
-//					GL11.glVertex2f(i*sizeX + sizeX, j*sizeY);
-//					GL11.glVertex2f(i*sizeX, j*sizeY + sizeY);
-//					GL11.glVertex2f(i*sizeX + sizeX, j*sizeY + sizeY);
-//
-//
-//				GL11.glEnd();
-//			}
-//		}
+		for (int i = 0; i < board.gridSize; i++) {
+			for (int j = 0; j < board.gridSize; j++) {
+				float red = (float)Integer.valueOf(board.objects[i][j].substring(1,3), 16)/255;
+				float green = (float)Integer.valueOf(board.objects[i][j].substring(3,5), 16)/255;
+				float blue = (float)Integer.valueOf(board.objects[i][j].substring(5,7), 16)/255;
+
+
+
+
+				GL11.glBegin(GL11.GL_QUADS);
+
+					GL11.glColor3f(red,green,blue);
+					GL11.glVertex2f(i*sizeX, j*sizeY);
+
+					//GL11.glColor3f(redd,green,blue);
+					GL11.glVertex2f(i*sizeX + sizeX-2, j*sizeY);
+
+					//GL11.glColor3f(red,green,blue);
+					GL11.glVertex2f(i*sizeX + sizeX-2, j*sizeY + sizeY-2);
+
+					//GL11.glColor3f(red,green,blue);
+
+					GL11.glVertex2f(i*sizeX, j*sizeY + sizeY-2);
+
+				GL11.glEnd();
+			}
+		}
 
 
 
