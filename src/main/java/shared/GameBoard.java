@@ -6,7 +6,7 @@ public class GameBoard {
 
     public final int sizeX = 20;
     public final int sizeY = 20;
-    GameObject[][] objects;
+    public GameObject[][] objects;
 
 
     public GameBoard()
