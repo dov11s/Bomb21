@@ -117,7 +117,7 @@ public class GameWindow implements UpdateGameDataDelegate
 	private void renderPlayers()
 	{
 		//Render player
-		GL11.glColor3f(1,255,1);
+		GL11.glColor3f(0f,(float)(255/255),(float)(127/255));
 //		GL11.glBegin(GL11.GL_TRIANGLES);
 //		GL11.glVertex2f(this.mainPlayer.coordinate.x, mainPlayer.coordinate.y+this.mainPlayer.size);
 //		GL11.glVertex2f(this.mainPlayer.coordinate.x+this.mainPlayer.size, mainPlayer.coordinate.y-this.mainPlayer.size);
@@ -133,12 +133,21 @@ public class GameWindow implements UpdateGameDataDelegate
 
 
 		//Render other players
-		GL11.glColor3f(1, 1, 0);
-		GL11.glBegin(GL11.GL_TRIANGLES);
+		//GL11.glColor3f(1, 1, 0);
+
+		GL11.glColor3f(0.98f,0.5f,0.447f);
+		//GL11.glBegin(GL11.GL_TRIANGLES);
+		GL11.glBegin(GL11.GL_QUADS);
 		for(Player mpPlayer : players.values()){
-			GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y+mpPlayer.size);
-			GL11.glVertex2f(mpPlayer.coordinate.x+mpPlayer.size, mpPlayer.coordinate.y-mpPlayer.size);
-			GL11.glVertex2f(mpPlayer.coordinate.x-mpPlayer.size, mpPlayer.coordinate.y-mpPlayer.size);
+
+			GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y);
+			GL11.glVertex2f(mpPlayer.coordinate.x + mpPlayer.size, mpPlayer.coordinate.y);
+			GL11.glVertex2f(mpPlayer.coordinate.x + mpPlayer.size, mpPlayer.coordinate.y + mpPlayer.size);
+			GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y + mpPlayer.size);
+
+//			GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y+mpPlayer.size);
+//			GL11.glVertex2f(mpPlayer.coordinate.x+mpPlayer.size, mpPlayer.coordinate.y-mpPlayer.size);
+//			GL11.glVertex2f(mpPlayer.coordinate.x-mpPlayer.size, mpPlayer.coordinate.y-mpPlayer.size);
 		}
 		GL11.glEnd();
 	}
