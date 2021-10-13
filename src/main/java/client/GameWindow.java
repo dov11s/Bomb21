@@ -165,9 +165,9 @@ public class GameWindow implements UpdateGameDataDelegate
 
 		for (int i = 0; i < board.gridSize; i++) {
 			for (int j = 0; j < board.gridSize; j++) {
-				float red = (float)Integer.valueOf(board.objects[i][j].substring(1,3), 16)/255;
-				float green = (float)Integer.valueOf(board.objects[i][j].substring(3,5), 16)/255;
-				float blue = (float)Integer.valueOf(board.objects[i][j].substring(5,7), 16)/255;
+				float red = (float)Integer.valueOf(board.objects[i][j].color.substring(1,3), 16)/255;
+				float green = (float)Integer.valueOf(board.objects[i][j].color.substring(3,5), 16)/255;
+				float blue = (float)Integer.valueOf(board.objects[i][j].color.substring(5,7), 16)/255;
 
 
 

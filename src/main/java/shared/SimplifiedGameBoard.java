@@ -2,19 +2,19 @@ package shared;
 
 public class SimplifiedGameBoard
 {
-	public String[][] objects;
+	public SimplifiedGameObject[][] objects;
 	public int gridSize;
 	public int size;
 	
 	public SimplifiedGameBoard()
 	{
-		this.objects = new String[0][0];
+		this.objects = new SimplifiedGameObject[0][0];
 	}
 	
 	public SimplifiedGameBoard(int size, int gridSize)
 	{
+		this.objects = new SimplifiedGameObject[gridSize][gridSize];
 		this.size = size;
 		this.gridSize = gridSize;
-		this.objects = new String[gridSize][gridSize];
 	}
 }

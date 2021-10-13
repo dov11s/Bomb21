@@ -12,6 +12,7 @@ import server.Ground;
 import server.Stage1Factory;
 import server.Wall;
 import shared.PacketUpdatePlayerPos;
+import shared.ObjectType;
 import shared.PacketAddPlayer;
 import shared.PacketRemovePlayer;
 import shared.PacketUpdateGameBoard;
@@ -38,8 +39,10 @@ public class Network extends Listener
 		this.client.getKryo().register(PacketRemovePlayer.class);
 		this.client.getKryo().register(PacketUpdateGameBoard.class);
 		this.client.getKryo().register(SimplifiedGameBoard.class);
-		this.client.getKryo().register(String[].class);
-		this.client.getKryo().register(String[][].class);
+		this.client.getKryo().register(ObjectType.class);	
+		this.client.getKryo().register(SimplifiedGameObject.class);
+		this.client.getKryo().register(SimplifiedGameObject[].class);
+		this.client.getKryo().register(SimplifiedGameObject[][].class);
 		this.client.getKryo().register(Vector2f.class);
 		this.client.addListener(this);
 	

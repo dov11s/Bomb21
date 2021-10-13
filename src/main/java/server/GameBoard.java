@@ -2,7 +2,9 @@ package server;
 
 import java.util.ArrayList;
 
+import shared.ObjectType;
 import shared.SimplifiedGameBoard;
+import shared.SimplifiedGameObject;
 
 public class GameBoard {
 
@@ -41,7 +43,7 @@ public class GameBoard {
         {
             for (int j = 0; j < this.gridSize; j ++)
             {
-            	simpleGameboard.objects[i][j] = this.objects[i][j].color;
+            	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.GROUND);
             }
         }
         return simpleGameboard;

@@ -3,5 +3,8 @@ package shared;
 public enum ObjectType
 {
 	GROUND,
-	WALL
+	WALL,
+	TRAP,
+	POWERUP,
+	BOMB
 }
