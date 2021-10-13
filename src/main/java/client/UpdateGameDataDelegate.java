@@ -1,7 +1,7 @@
 package client;
 
-import shared.SimplifiedGameBoard;
 import shared.Player;
+import shared.SimplifiedGameBoard;
 
 public interface UpdateGameDataDelegate
 {
