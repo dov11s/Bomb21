@@ -19,13 +19,11 @@ public class Network extends Listener
 {
 	private Server server;
 	private final int port = 27960;
-	UpdateGameDataDelegate updateGameDataDelegate;
 	
-	public boolean initKryoServer(UpdateGameDataDelegate updateGameDataDelegate)
+	public boolean initKryoServer()
 	{
 		try 
 		{
-			this.updateGameDataDelegate = updateGameDataDelegate;
 			this.server = new Server(131072, 16384);
 			this.server.getKryo().register(PacketUpdatePlayerPos.class);
 			this.server.getKryo().register(PacketAddPlayer.class);
@@ -63,7 +61,7 @@ public class Network extends Listener
 		PacketAddPlayer packet = new PacketAddPlayer();
 		packet.id = c.getID();
 		this.server.sendToAllExceptTCP(c.getID(), packet);
-		this.updateGameDataDelegate.addPlayer(player);
+		GameServer.getInstance().addPlayer(player);
 		System.out.println("Connection received.");
 	}
 	
@@ -95,7 +93,7 @@ public class Network extends Listener
 		if(object instanceof PacketUpdatePlayerPos)
 		{
 			PacketUpdatePlayerPos packet = (PacketUpdatePlayerPos) object;
-			this.updateGameDataDelegate.updatePlayer(connection.getID(), packet);
+			GameServer.getInstance().updatePlayer(connection.getID(), packet);
 			System.out.println("Received coordinate packet");
 		}
 	}
@@ -105,7 +103,7 @@ public class Network extends Listener
 		PacketRemovePlayer packet = new PacketRemovePlayer();
 		packet.id = c.getID();
 		this.server.sendToAllExceptTCP(c.getID(), packet);
-		this.updateGameDataDelegate.removePlayer(c.getID());
+		GameServer.getInstance().removePlayer(c.getID());
 		System.out.println("Connection dropped.");
 	}
 }

@@ -6,16 +6,18 @@ import java.util.Map;
 import shared.Vector2f;
 import shared.PacketUpdatePlayerPos;
 
-public class GameServer implements UpdateGameDataDelegate
+class GameServer
 {
-	protected GameBoard gameBoard;
+	private static GameServer gameServer = null;
+
+	protected volatile GameBoard gameBoard;
 	protected volatile Map<Integer, MPPlayer> players;
 	protected volatile Network network;
 	private GameCycleThread thread;
 	private Stage1Factory stage1factory;
 	private boolean updateBoard = false;
 	
-	public GameServer()
+	private GameServer()
 	{
 		//Init Connection
 		if (!initConnection())
@@ -32,11 +34,20 @@ public class GameServer implements UpdateGameDataDelegate
 		this.thread.start();
 	}
 	
+	public static GameServer getInstance()
+	{
+		if (gameServer == null)
+		{
+			gameServer = new GameServer();
+		}
+		return gameServer;
+	}
+	
 	private boolean initConnection()
 	{
 		this.network = new Network();
 		
-		if (!this.network.initKryoServer(this))
+		if (!this.network.initKryoServer())
 		{
 			return false;
 		}
@@ -44,7 +55,6 @@ public class GameServer implements UpdateGameDataDelegate
 		return true;
 	}
 
-	@Override
 	public void updatePlayer(int id, PacketUpdatePlayerPos playerPacket) 
 	{
 		MPPlayer player = players.get(id);
@@ -59,8 +69,6 @@ public class GameServer implements UpdateGameDataDelegate
 		}
 	}
 
-
-	@Override
 	public void addPlayer(MPPlayer player)
 	{
 		this.players.put(player.c.getID(), player);
@@ -68,8 +76,6 @@ public class GameServer implements UpdateGameDataDelegate
 		
 	}
 
-
-	@Override
 	public void removePlayer(int id) 
 	{
 		players.remove(id);
