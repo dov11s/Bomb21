@@ -1,36 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="244821fa-9b64-45f0-8111-5b85f9018224" name="Default Changelist" comment="">
+    <list default="true" id="2212b387-cd80-4167-9009-28578dd54429" name="Changes" comment="Use button for Player">
+      <change afterPath="$PROJECT_DIR$/src/main/java/server/BombObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/magic draw/Pn_13_30_03_Bomb2021.mdzip" beforeDir="false" afterPath="$PROJECT_DIR$/magic draw/Pn_13_30_03_Bomb2021.mdzip" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/magic draw/Pn_13_30_03_Bomb2021.mdzip.bak" beforeDir="false" afterPath="$PROJECT_DIR$/magic draw/Pn_13_30_03_Bomb2021.mdzip.bak" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/maven/Projektas/Projektas/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/maven/Projektas/Projektas/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/AbstractFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/AbstractFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Ground.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Ground.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Stage1Factory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Stage1Factory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Wall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Client/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Client/Network.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/shared/Vector2f.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/shared/Player.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/server/ServerProgram.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/server/Network.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/server/MPPlayer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/server/GameServer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/shared/PacketAddPlayer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/shared/Packet.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/shared/PacketRemovePlayer.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="ProjectId" id="1zN3MikwFA6uf313o0I4RgwEThv" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
   </component>
+  <component name="RunManager" selected="Application.ClientProgram">
+    <configuration name="ClientProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="client.ClientProgram" />
+      <module name="Projektas" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="client.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="server.ServerProgram" />
+      <module name="Projektas" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="server.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ClientProgram" />
+        <item itemvalue="Application.ServerProgram" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="244821fa-9b64-45f0-8111-5b85f9018224" name="Default Changelist" comment="" />
+      <changelist id="2212b387-cd80-4167-9009-28578dd54429" name="Changes" comment="Use button for Player" />
       <created>1633974674739</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -42,70 +109,16 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1633974699671">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog/1920.0.1536.832/0.0.1920.1040@0.0.1920.1040" timestamp="1633974699671" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-1" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-1/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-10" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-10/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-11" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-11/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-12" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-12/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-13" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-13/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-14" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-14/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-15" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-15/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-2" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-2/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-3" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-3/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-4" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-4/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-5" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-5/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-6" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-6/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-7" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-7/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-8" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-8/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
-    <state x="92" y="92" width="1736" height="856" key="dock-window-9" timestamp="1633974995229">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="dock-window-9/1920.0.1536.832/0.0.1920.1040@1920.0.1536.832" timestamp="1633974995229" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

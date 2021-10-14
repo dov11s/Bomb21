@@ -6,6 +6,7 @@ public class Ground extends GameObject{
 
     public Ground(String color, float alpha){
         super(color, alpha);
+        this.isWalkable = true;
     }
 
     @Override

@@ -12,7 +12,7 @@ public class Wall extends GameObject{
     public void onDamage()
     {
         if(this.isDestroyable)
-            System.out.println("Wall has been destroyed");
+            this.gameobjectdelegate.removeObject(this);
     }
     
     public void onTick()

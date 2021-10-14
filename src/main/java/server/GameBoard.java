@@ -21,18 +21,18 @@ public class GameBoard {
         for(int x = 0; x<gridSize; x++){
             for(int y = 0; y<gridSize; y++){
                 if(x == 0 || x == gridSize-1 || y == 0 || y == gridSize -1)
-                    this.objects[x][y] = this.factory.createWall("#DBD3BF", 1, 0);
+                    this.objects[x][y] = this.factory.createWall();
                 else
-                    this.objects[x][y] = this.factory.createGround("#348C31", 1, 0);
+                    this.objects[x][y] = this.factory.createGround();
             }
         }
-        this.objects[5][4] = this.factory.createWall("#DBD3BF",1, 0);
-        this.objects[5][6] = this.factory.createWall("#DBD3BF",1, 0);
-        this.objects[6][5] = this.factory.createWall("#DBD3BF",1, 0);
+        this.objects[5][4] = this.factory.createWall();
+        this.objects[5][6] = this.factory.createWall();
+        this.objects[6][5] = this.factory.createWall();
 
-        this.objects[15][16] = this.factory.createWall("#DBD3BF",1, 0);
-        this.objects[15][14] = this.factory.createWall("#DBD3BF",1, 0);
-        this.objects[14][15] = this.factory.createWall("#DBD3BF",1, 0);
+        this.objects[15][16] = this.factory.createWall();
+        this.objects[15][14] = this.factory.createWall();
+        this.objects[14][15] = this.factory.createWall();
     }
     
     public SimplifiedGameBoard getSimpleGameBoard()
