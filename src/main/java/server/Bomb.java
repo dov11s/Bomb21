@@ -23,7 +23,7 @@ public class Bomb extends GameObject {
             observer.explode(this);
     }
 
-    public void onStep(Player player){
+    public void onStep(PlayerInfo player){
         //cannot be stepped on?
     }
 }

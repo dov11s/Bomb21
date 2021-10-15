@@ -152,19 +152,19 @@ class GameServer
 			
 			if (p.isHoldingLeft)
 			{
-				coordsAfterMove.x -= p.speed; 
+				coordsAfterMove.x -= p.playerStats.getSpeed(); 
 			}
 			
 			if (p.isHoldingRight)
 			{
 				
-				coordsAfterMove.x += p.speed; 
+				coordsAfterMove.x += p.playerStats.getSpeed(); 
 			}
 			
 			boolean collidingLeft = ((int)coordsAfterMove.x / cellSize - padding) < ((int)p.coordinate.x / cellSize);
-			boolean collidingRight = (((int)coordsAfterMove.x + p.size + padding) / cellSize) > (((int)p.coordinate.x + p.size) /cellSize);
+			boolean collidingRight = (((int)coordsAfterMove.x + p.playerStats.getSize() + padding) / cellSize) > (((int)p.coordinate.x + p.playerStats.getSize()) /cellSize);
 			boolean isCollidingX = collidingLeft || collidingRight;
-			moveX = !(coordsAfterMove.x <= 0 || coordsAfterMove.x >= gameBoard.size - p.size);
+			moveX = !(coordsAfterMove.x <= 0 || coordsAfterMove.x >= gameBoard.size - p.playerStats.getSize());
 			//Some smoothing when going around edges would be nice
 			if (isCollidingX && moveX)
 			{
@@ -173,14 +173,14 @@ class GameServer
 				{
 					x = (int) ((coordsAfterMove.x) / cellSize);
 					y = (int) (p.coordinate.y / cellSize);
-					y1 = (int) ((p.coordinate.y + p.size) / cellSize);
+					y1 = (int) ((p.coordinate.y + p.playerStats.getSize()) / cellSize);
 					
 				}
 				if (collidingRight)
 				{
-					x = (int) ((coordsAfterMove.x + p.size) / cellSize); 
+					x = (int) ((coordsAfterMove.x + p.playerStats.getSize()) / cellSize); 
 					y = (int) (p.coordinate.y / cellSize);
-					y1 = (int) ((p.coordinate.y + p.size) / cellSize);
+					y1 = (int) ((p.coordinate.y + p.playerStats.getSize()) / cellSize);
 					
 				}
 				
@@ -200,18 +200,18 @@ class GameServer
 			
 			if (p.isHoldingUp)
 			{
-				coordsAfterMove.y += p.speed; 
+				coordsAfterMove.y += p.playerStats.getSpeed(); 
 			}
 			
 			if (p.isHoldingDown)
 			{
-				coordsAfterMove.y -= p.speed; 
+				coordsAfterMove.y -= p.playerStats.getSpeed(); 
 			}
 			
-			boolean collidingUp = (((int)coordsAfterMove.y + p.size - padding) / cellSize) > (((int)p.coordinate.y + p.size) / cellSize);
+			boolean collidingUp = (((int)coordsAfterMove.y + p.playerStats.getSize() - padding) / cellSize) > (((int)p.coordinate.y + p.playerStats.getSize()) / cellSize);
 			boolean collidingDown = ((int)coordsAfterMove.y / cellSize + padding) < ((int)p.coordinate.y / cellSize);
 			boolean isCollidingY = collidingUp || collidingDown;
-			moveY = !(coordsAfterMove.y <= 0 || coordsAfterMove.y >= gameBoard.size - p.size);
+			moveY = !(coordsAfterMove.y <= 0 || coordsAfterMove.y >= gameBoard.size - p.playerStats.getSize());
 			
 			//Some smoothing when going around edges would be nice
 			if (isCollidingY && moveY)
@@ -220,16 +220,16 @@ class GameServer
 				
 				if (collidingUp)
 				{
-					y = (int) ((coordsAfterMove.y + p.size) / cellSize); 
+					y = (int) ((coordsAfterMove.y + p.playerStats.getSize()) / cellSize); 
 					x = (int) (p.coordinate.x / cellSize);
-					x1 = (int) ((p.coordinate.x + p.size) / cellSize);
+					x1 = (int) ((p.coordinate.x + p.playerStats.getSize()) / cellSize);
 					
 				}
 				if (collidingDown)
 				{
 					y = (int) ((coordsAfterMove.y) / cellSize);
 					x = (int) (p.coordinate.x / cellSize);
-					x1 = (int) ((p.coordinate.x + p.size) / cellSize);
+					x1 = (int) ((p.coordinate.x + p.playerStats.getSize()) / cellSize);
 				}
 				
 				if (x == x1)

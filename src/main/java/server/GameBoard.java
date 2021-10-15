@@ -40,7 +40,7 @@ public class GameBoard {
         this.objects[14][15] = this.factory.createWall(true);
     }
 
-    public void SpawnBomb(Player player)
+    public void SpawnBomb(PlayerInfo player)
     {
         int x = Math.round(player.coordinate.x/(size/gridSize));
         int y = Math.round(player.coordinate.y/(size/gridSize));

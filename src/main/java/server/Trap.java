@@ -15,7 +15,7 @@ public class Trap extends GameObject{
 
     }
 
-    public void onStep(Player player){
+    public void onStep(PlayerInfo player){
         //initiate trap
     }
 }

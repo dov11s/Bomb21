@@ -18,7 +18,7 @@ public class Ground extends GameObject{
     }
 
     @Override
-    public void onStep(Player player) {
+    public void onStep(PlayerInfo player) {
 
     }
 }

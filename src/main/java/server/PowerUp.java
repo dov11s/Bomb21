@@ -19,7 +19,7 @@ public class PowerUp extends GameObject{
             this.gameobjectdelegate.removeObject(this);
     }
 
-    public void onStep(Player player){
+    public void onStep(PlayerInfo player){
         if(this.isWalkable)
             System.out.println("You gain powerup!");
     }

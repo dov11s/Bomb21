@@ -1,6 +1,6 @@
 package shared;
 
-import server.Player;
+import server.PlayerInfo;
 
 public class PacketUpdatePlayerPos extends Packet
 {
@@ -28,7 +28,7 @@ public class PacketUpdatePlayerPos extends Packet
 		this.isHoldingUse = false;
 	}
 	
-	public PacketUpdatePlayerPos(int id, Player player)
+	public PacketUpdatePlayerPos(int id, PlayerInfo player)
 	{
 		this.id = id;
 		this.coordinate = player.coordinate;
@@ -37,6 +37,6 @@ public class PacketUpdatePlayerPos extends Packet
 		this.isHoldingUp = player.isHoldingUp;
 		this.isHoldingDown = player.isHoldingDown;
 		this.isHoldingUse = player.isHoldingUse;
-		this.size = player.size;
+		this.size = player.playerStats.getSize();
 	}
 }
