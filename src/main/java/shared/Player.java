@@ -11,6 +11,7 @@ public class Player
 	public boolean isHoldingUp;
 	public boolean isHoldingDown;
 	public boolean isHoldingUse;
+	public boolean placedBomb = true;
 	
 	public Player()
 	{
@@ -46,6 +47,6 @@ public class Player
 		this.isHoldingUp = packet.isHoldingUp;
 		this.isHoldingDown = packet.isHoldingDown;
 		this.size = packet.size;
-//		this.isHoldingUse = packet.isHoldingUse;
+		this.isHoldingUse = packet.isHoldingUse;
 	}
 }

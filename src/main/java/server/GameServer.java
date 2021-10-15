@@ -64,6 +64,7 @@ class GameServer
 			player.isHoldingDown = playerPacket.isHoldingDown != null ? playerPacket.isHoldingDown : player.isHoldingDown;
 			player.isHoldingLeft = playerPacket.isHoldingLeft != null ? playerPacket.isHoldingLeft : player.isHoldingLeft;
 			player.isHoldingRight = playerPacket.isHoldingRight != null ? playerPacket.isHoldingRight : player.isHoldingRight;
+			player.isHoldingUse = playerPacket.isHoldingUse != null ? playerPacket.isHoldingUse : player.isHoldingUse;
 			
 			players.put(player.id, player);
 		}
@@ -129,6 +130,11 @@ class GameServer
     		for(MPPlayer p : players.values())
     		{
     			p.coordinate = checkCollision(p);
+				if (p.isHoldingUse)
+				{
+					gameBoard.SpawnBomb(p);
+				}
+				network.sendGameBoard(gameBoard, p);
     			network.sendPlayerInfo(p, true);
     		}
         }

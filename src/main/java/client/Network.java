@@ -148,12 +148,15 @@ public class Network extends Listener
 	}
 
 	public void sendPacketButtonPressUse() {
-		// TODO Auto-generated method stub
-		
+		PacketUpdatePlayerPos packet = new 	PacketUpdatePlayerPos();
+		packet.isHoldingUse = true;
+		this.client.sendUDP(packet);
 	}
 
 	public void sendPacketButtonReleaseUse() {
-		// TODO Auto-generated method stub
+		PacketUpdatePlayerPos packet = new 	PacketUpdatePlayerPos();
+		packet.isHoldingUse = false;
+		this.client.sendUDP(packet);
 		
 	}
 }

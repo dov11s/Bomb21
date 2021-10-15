@@ -4,17 +4,41 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2212b387-cd80-4167-9009-28578dd54429" name="Changes" comment="Use button for Player">
-      <change afterPath="$PROJECT_DIR$/src/main/java/server/BombObserver.java" afterDir="false" />
+    <list default="true" id="2212b387-cd80-4167-9009-28578dd54429" name="Changes" comment="Bomb Observer (Not tied to bomb atm)&#10;Factories store color scheme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/magic draw/Pn_13_30_03_Bomb2021.mdzip" beforeDir="false" afterPath="$PROJECT_DIR$/magic draw/Pn_13_30_03_Bomb2021.mdzip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/magic draw/Pn_13_30_03_Bomb2021.mdzip.bak" beforeDir="false" afterPath="$PROJECT_DIR$/magic draw/Pn_13_30_03_Bomb2021.mdzip.bak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/GameWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Network.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/AbstractFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/AbstractFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Bomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/BombObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/BombObserver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Ground.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Ground.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/GameServer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/Stage1Factory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Stage1Factory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/server/Wall.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Wall.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shared/PacketUpdatePlayerPos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shared/PacketUpdatePlayerPos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/shared/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shared/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Client/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Client/Network.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/client/GameWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/client/GameWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/AbstractFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/AbstractFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/Bomb.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/Bomb.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/GameBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/GameObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/GameServer$GameCycleThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/GameServer$GameCycleThread.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/GameServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/GameServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/Ground.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/Ground.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/Network.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/PowerUp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/PowerUp.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/ServerProgram.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/ServerProgram.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/Stage1Factory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/Stage1Factory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/Trap.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/Trap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/Wall.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/Wall.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/shared/ObjectType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shared/ObjectType.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/shared/PacketUpdateGameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shared/PacketUpdateGameBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/shared/PacketUpdatePlayerPos.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shared/PacketUpdatePlayerPos.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/shared/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shared/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/shared/SimplifiedGameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shared/SimplifiedGameBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/shared/SimplifiedGameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/shared/SimplifiedGameObject.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +82,7 @@
     <property name="aspect.path.notification.shown" value="true" />
   </component>
   <component name="RunManager" selected="Application.ClientProgram">
-    <configuration name="ClientProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="ClientProgram" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="client.ClientProgram" />
       <module name="Projektas" />
       <extension name="coverage">
@@ -104,6 +128,14 @@
       <updated>1633974674739</updated>
       <workItem from="1633974686992" duration="6066000" />
     </task>
+    <task id="LOCAL-00001" summary="Bomb Observer (Not tied to bomb atm)&#10;Factories store color scheme">
+      <created>1634220793788</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1634220793788</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,5 +152,32 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Bomb Observer (Not tied to bomb atm)&#10;Factories store color scheme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bomb Observer (Not tied to bomb atm)&#10;Factories store color scheme" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint type="java-field">
+          <url>file://$PROJECT_DIR$/src/main/java/server/GameBoard.java</url>
+          <line>10</line>
+          <properties field="objects" class="server.GameBoard" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/server/GameBoard.java</url>
+          <line>48</line>
+          <log-expression expression="this.objects" language="JAVA" />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Projektas$ClientProgram.ic" NAME="ClientProgram Coverage Results" MODIFIED="1634247026456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>client.*</FILTER>
+    </SUITE>
   </component>
 </project>

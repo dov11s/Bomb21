@@ -1,5 +1,6 @@
 package server;
 
+
 import java.util.Hashtable;
 
 public class Stage1Factory extends AbstractFactory{
@@ -15,22 +16,20 @@ public class Stage1Factory extends AbstractFactory{
         this.colors.put("Trap", "#373D20");
     }
 
-
-
     @Override
     public GameObject createTrap() {
         return new Trap(this.colors.get("Trap"), 1);
     }
 
     @Override
-    public GameObject createWall()
+    public GameObject createWall(boolean destroyable)
     {
-        return new Wall(this.colors.get("Wall"), 1);
+        return new Wall(this.colors.get("Wall"), 1, destroyable);
     }
 
     @Override
-    public GameObject createBomb() {
-        return new Bomb(colors.get("Bomb"), 1, 5);
+    public GameObject createBomb(int ownerid) {
+        return new Bomb(colors.get("Bomb"), 1, 90, ownerid, this.bombObserver);
     }
 
     @Override

@@ -5,6 +5,7 @@ import shared.Player;
 public abstract class GameObject {
     public boolean isWalkable;
     public boolean isDestroyable;
+    public boolean isDead;
 
     GameObjectDelegate gameobjectdelegate;
 

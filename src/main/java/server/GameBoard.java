@@ -2,15 +2,14 @@ package server;
 
 import java.util.ArrayList;
 
-import shared.ObjectType;
-import shared.SimplifiedGameBoard;
-import shared.SimplifiedGameObject;
+import shared.*;
 
 public class GameBoard {
 
     public final int size = 1000;
     public final int gridSize = 20;
     public GameObject[][] objects;
+    private BombObserver bombObserver;
     private AbstractFactory factory;
 
 
@@ -21,18 +20,37 @@ public class GameBoard {
         for(int x = 0; x<gridSize; x++){
             for(int y = 0; y<gridSize; y++){
                 if(x == 0 || x == gridSize-1 || y == 0 || y == gridSize -1)
-                    this.objects[x][y] = this.factory.createWall();
+                    this.objects[x][y] = this.factory.createWall(false);
                 else
                     this.objects[x][y] = this.factory.createGround();
             }
         }
-        this.objects[5][4] = this.factory.createWall();
-        this.objects[5][6] = this.factory.createWall();
-        this.objects[6][5] = this.factory.createWall();
 
-        this.objects[15][16] = this.factory.createWall();
-        this.objects[15][14] = this.factory.createWall();
-        this.objects[14][15] = this.factory.createWall();
+        bombObserver = new BombObserver(this);
+        this.factory.SetBombObserver(bombObserver);
+        this.objects[5][4] = this.factory.createWall(true);
+        this.objects[5][6] = this.factory.createWall(true);
+        this.objects[6][5] = this.factory.createWall(true);
+
+        for(int x = 1; x < 19; x++)
+            this.objects[x][11] = this.factory.createWall(true);
+
+        this.objects[15][16] = this.factory.createWall(true);
+        this.objects[15][14] = this.factory.createWall(true);
+        this.objects[14][15] = this.factory.createWall(true);
+    }
+
+    public void SpawnBomb(Player player)
+    {
+        int x = Math.round(player.coordinate.x/(size/gridSize));
+        int y = Math.round(player.coordinate.y/(size/gridSize));
+        this.objects[x][y] = this.factory.createBomb(player.id);
+
+    }
+
+    public void ClearTarget(int x, int y){
+        this.objects[x][y] = this.factory.createGround();
+        System.out.println("Removing bomb from location " + x + " " + y);
     }
     
     public SimplifiedGameBoard getSimpleGameBoard()

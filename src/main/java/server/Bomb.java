@@ -5,10 +5,15 @@ import shared.Player;
 public class Bomb extends GameObject {
 
     private int Timer;
+    private int OwnerId;
+    private BombObserver observer;
 
-    public Bomb(String color, float alpha, int timer){
+    public Bomb(String color, float alpha, int timer, int ownerid, BombObserver observer){
         super(color, alpha);
         this.Timer = timer;
+        this.OwnerId = ownerid;
+        this.observer = observer;
+        this.isWalkable = true;
     }
 
     public void onDamage(){
@@ -17,7 +22,7 @@ public class Bomb extends GameObject {
     public void onTick(){
         this.Timer--;
         if(this.Timer <= 0)
-            this.gameobjectdelegate.removeObject(this);
+            observer.explode(this);
     }
 
     public void onStep(Player player){

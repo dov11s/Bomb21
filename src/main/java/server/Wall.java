@@ -4,15 +4,16 @@ import shared.Player;
 
 public class Wall extends GameObject{
 
-    public Wall(String color, float alpha){
-        super(color, alpha);
 
+    public Wall(String color, float alpha, boolean destroyable){
+        super(color, alpha);
+        this.isDestroyable = destroyable;
     }
 
     public void onDamage()
     {
         if(this.isDestroyable)
-            this.gameobjectdelegate.removeObject(this);
+            isDead = true;
     }
     
     public void onTick()
