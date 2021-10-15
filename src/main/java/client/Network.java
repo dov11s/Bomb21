@@ -6,13 +6,7 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
-import server.GameBoard;
-import server.GameObject;
-import server.Ground;
-import server.Stage1Factory;
-import server.Wall;
 import shared.PacketUpdatePlayerPos;
-import shared.Player;
 import shared.ObjectType;
 import shared.PacketAddPlayer;
 import shared.PacketRemovePlayer;
@@ -64,7 +58,7 @@ public class Network extends Listener
 		if(object instanceof PacketAddPlayer)
 		{
 			PacketAddPlayer packet = (PacketAddPlayer) object;
-			Player newPlayer = new Player();
+			SimplifiedPlayer newPlayer = new SimplifiedPlayer();
 			updateGameDataDelegate.addPlayer(packet.id, newPlayer);
 			
 		}
@@ -79,7 +73,7 @@ public class Network extends Listener
 			PacketUpdatePlayerPos packet = (PacketUpdatePlayerPos) object;
 			if (packet.accepted)
 			{
-				Player player = new Player(packet);
+				SimplifiedPlayer player = new SimplifiedPlayer(packet);
 				updateGameDataDelegate.updatePlayer(player);
 			}
 			

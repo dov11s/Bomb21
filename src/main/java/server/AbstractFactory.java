@@ -1,7 +1,5 @@
 package server;
 
-import shared.Player;
-
 public abstract class AbstractFactory {
     protected BombObserver bombObserver;
     public abstract GameObject createTrap();

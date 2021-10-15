@@ -1,4 +1,6 @@
-package shared;
+package server;
+
+import shared.Vector2f;
 
 public class Player 
 {
@@ -36,17 +38,5 @@ public class Player
 		this.isHoldingUp = false;
 		this.isHoldingDown = false;
 		this.isHoldingUse = false;
-	}
-	
-	public Player(PacketUpdatePlayerPos packet)
-	{
-		this.id = packet.id;
-		this.coordinate = packet.coordinate;
-		this.isHoldingLeft = packet.isHoldingLeft;
-		this.isHoldingRight = packet.isHoldingRight;
-		this.isHoldingUp = packet.isHoldingUp;
-		this.isHoldingDown = packet.isHoldingDown;
-		this.size = packet.size;
-		this.isHoldingUse = packet.isHoldingUse;
 	}
 }

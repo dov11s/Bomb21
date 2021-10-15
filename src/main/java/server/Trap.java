@@ -1,7 +1,5 @@
 package server;
 
-import shared.Player;
-
 public class Trap extends GameObject{
 
 

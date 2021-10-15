@@ -5,8 +5,6 @@ import java.util.Map;
 import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
-import server.GameBoard;
-import shared.Player;
 import shared.SimplifiedGameBoard;
 import shared.Vector2f;
 
@@ -21,8 +19,8 @@ public class GameWindow implements UpdateGameDataDelegate
 	final private int SCREEN_WIDTH = 1000;
 	private SimplifiedGameBoard board;
 	private Network network;
-	private Player mainPlayer;
-	private Map<Integer,Player> players;
+	private SimplifiedPlayer mainPlayer;
+	private Map<Integer,SimplifiedPlayer> players;
 	
 	public GameWindow()
 	{
@@ -41,8 +39,8 @@ public class GameWindow implements UpdateGameDataDelegate
 		}
 		
 		
-		this.mainPlayer = new Player(this.network.client.getID(), new Vector2f(256,256));
-		this.players = new HashMap<Integer,Player>();
+		this.mainPlayer = new SimplifiedPlayer(this.network.client.getID());
+		this.players = new HashMap<Integer,SimplifiedPlayer>();
 		runGame();
 	}
 	
@@ -138,7 +136,7 @@ public class GameWindow implements UpdateGameDataDelegate
 		GL11.glColor3f(0.98f,0.5f,0.447f);
 		//GL11.glBegin(GL11.GL_TRIANGLES);
 		GL11.glBegin(GL11.GL_QUADS);
-		for(Player mpPlayer : players.values()){
+		for(SimplifiedPlayer mpPlayer : players.values()){
 
 			GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y);
 			GL11.glVertex2f(mpPlayer.coordinate.x + mpPlayer.size, mpPlayer.coordinate.y);
@@ -284,7 +282,7 @@ public class GameWindow implements UpdateGameDataDelegate
 	}
 	
 	@Override
-	public void updatePlayer(Player player)
+	public void updatePlayer(SimplifiedPlayer player)
 	{
 		if (this.mainPlayer.id == player.id)
 		{
@@ -297,7 +295,7 @@ public class GameWindow implements UpdateGameDataDelegate
 		
 	}
 	@Override
-	public void addPlayer(int id, Player player)
+	public void addPlayer(int id, SimplifiedPlayer player)
 	{
 		players.put(id, player);
 	}

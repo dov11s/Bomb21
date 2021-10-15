@@ -1,5 +1,7 @@
 package shared;
 
+import server.Player;
+
 public class PacketUpdatePlayerPos extends Packet
 {
 

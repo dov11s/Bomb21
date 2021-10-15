@@ -1,7 +1,5 @@
 package server;
 
-import shared.Player;
-
 public class Bomb extends GameObject {
 
     private int Timer;

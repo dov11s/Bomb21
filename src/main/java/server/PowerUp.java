@@ -1,7 +1,5 @@
 package server;
 
-import shared.Player;
-
 public class PowerUp extends GameObject{
 
     private int Timer;

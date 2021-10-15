@@ -1,7 +1,5 @@
 package server;
 
-import shared.Player;
-
 public class Ground extends GameObject{
 
     public Ground(String color, float alpha){

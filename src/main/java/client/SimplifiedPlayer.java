@@ -1,0 +1,40 @@
+package client;
+
+import shared.PacketUpdatePlayerPos;
+import shared.Vector2f;
+
+public class SimplifiedPlayer 
+{
+	public int id;
+	public int size;
+	public Vector2f coordinate;
+	public boolean isHoldingLeft;
+	public boolean isHoldingRight;
+	public boolean isHoldingUp;
+	public boolean isHoldingDown;
+	public boolean isHoldingUse;
+	
+	public SimplifiedPlayer() {};
+	public SimplifiedPlayer(int id) 
+	{
+		this.id = id;
+		this.coordinate = new Vector2f(256,256);
+		this.isHoldingLeft = false;
+		this.isHoldingRight = false;
+		this.isHoldingUp = false;
+		this.isHoldingDown = false;
+		this.isHoldingUse = false;
+	};
+	
+	public SimplifiedPlayer(PacketUpdatePlayerPos packet)
+	{
+		this.id = packet.id;
+		this.coordinate = packet.coordinate;
+		this.isHoldingLeft = packet.isHoldingLeft;
+		this.isHoldingRight = packet.isHoldingRight;
+		this.isHoldingUp = packet.isHoldingUp;
+		this.isHoldingDown = packet.isHoldingDown;
+		this.size = packet.size;
+		this.isHoldingUse = packet.isHoldingUse;
+	}
+}
