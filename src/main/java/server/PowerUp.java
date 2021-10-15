@@ -1,7 +1,7 @@
 package server;
 
-public class PowerUp extends GameObject{
-
+public class PowerUp extends GameObject
+{
     private int Timer;
 
     public PowerUp(String color, float alpha, int timer){

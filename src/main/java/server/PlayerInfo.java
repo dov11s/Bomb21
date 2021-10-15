@@ -13,6 +13,7 @@ public class PlayerInfo
 	public boolean isHoldingDown;
 	public boolean isHoldingUse;
 	public boolean placedBomb = true;
+	public UsableSkill usableSkill;
 	
 	public PlayerInfo()
 	{
@@ -24,6 +25,7 @@ public class PlayerInfo
 		this.isHoldingRight = false;
 		this.isHoldingUp = false;
 		this.isHoldingDown = false;
+		this.usableSkill = new UsableSkill(this.id);
 		//tets
 		this.playerStats = new PlayerSlowed(new ConcretePlayer());
 		//this.playerStats = new ConcretePlayer();
@@ -41,5 +43,10 @@ public class PlayerInfo
 		//Test
 		this.playerStats = new PlayerSlowed(new ConcretePlayer());
 //		this.playerStats = new ConcretePlayer();
+	}
+	
+	public void tryUsingSpell()
+	{
+		usableSkill.usableSkill.useSkill();
 	}
 }
