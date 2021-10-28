@@ -6,6 +6,7 @@ import org.lwjgl.glfw.GLFW;
 import org.lwjgl.opengl.GL11;
 
 import shared.SimplifiedGameBoard;
+import shared.SimplifiedPlayer;
 import shared.Vector2f;
 
 import org.lwjgl.opengl.GL;

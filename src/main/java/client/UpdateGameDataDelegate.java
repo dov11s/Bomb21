@@ -2,6 +2,7 @@ package client;
 
 import server.PlayerInfo;
 import shared.SimplifiedGameBoard;
+import shared.SimplifiedPlayer;
 
 public interface UpdateGameDataDelegate
 {

@@ -13,6 +13,7 @@ import shared.PacketRemovePlayer;
 import shared.PacketUpdateGameBoard;
 import shared.SimplifiedGameBoard;
 import shared.SimplifiedGameObject;
+import shared.SimplifiedPlayer;
 import shared.Vector2f;
 
 

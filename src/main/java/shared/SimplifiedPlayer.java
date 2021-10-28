@@ -1,7 +1,4 @@
-package client;
-
-import shared.PacketUpdatePlayerPos;
-import shared.Vector2f;
+package shared;
 
 public class SimplifiedPlayer 
 {
