@@ -2,7 +2,9 @@ package server;
 
 public interface SkillAlgorithm 
 {
-	void useSkill();
+	int getCooldown();
+	void useSkill(PlayerInfo p);
+	void onTick(PlayerInfo p);
 	String getName();
 }
 
