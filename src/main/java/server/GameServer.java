@@ -79,6 +79,7 @@ class GameServer
 
 	public void removePlayer(int id) 
 	{
+		
 		players.remove(id);
 	}
 	

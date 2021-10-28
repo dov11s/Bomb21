@@ -11,6 +11,7 @@ public class SimplifiedPlayer
 	public boolean isHoldingDown;
 	public boolean isHoldingUse;
 	public boolean isHoldingSkill;
+	public float speed;
 	public int skillCooldown;
 	public String skillName;
 	

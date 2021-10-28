@@ -95,10 +95,15 @@ public class GameWindow implements UpdateGameDataDelegate
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		renderObjects(board);
 		renderPlayers();
-
+		renderText();
 		GLFW.glfwSwapBuffers(window);
 	}
 
+	private void renderText() 
+	{
+		Text.drawString("Spell " + this.mainPlayer.skillName + "     Cooldown " + (int)(this.mainPlayer.skillCooldown / 60), 5, 2, 40, 3);
+	}
+	
 	//bad design
 	private void waitFrame()
 	{
@@ -139,14 +144,17 @@ public class GameWindow implements UpdateGameDataDelegate
 		GL11.glBegin(GL11.GL_QUADS);
 		for(SimplifiedPlayer mpPlayer : players.values()){
 
-			GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y);
-			GL11.glVertex2f(mpPlayer.coordinate.x + mpPlayer.size, mpPlayer.coordinate.y);
-			GL11.glVertex2f(mpPlayer.coordinate.x + mpPlayer.size, mpPlayer.coordinate.y + mpPlayer.size);
-			GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y + mpPlayer.size);
-
-//			GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y+mpPlayer.size);
-//			GL11.glVertex2f(mpPlayer.coordinate.x+mpPlayer.size, mpPlayer.coordinate.y-mpPlayer.size);
-//			GL11.glVertex2f(mpPlayer.coordinate.x-mpPlayer.size, mpPlayer.coordinate.y-mpPlayer.size);
+			if (mpPlayer.coordinate != null)
+			{
+				GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y);
+				GL11.glVertex2f(mpPlayer.coordinate.x + mpPlayer.size, mpPlayer.coordinate.y);
+				GL11.glVertex2f(mpPlayer.coordinate.x + mpPlayer.size, mpPlayer.coordinate.y + mpPlayer.size);
+				GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y + mpPlayer.size);
+	
+	//			GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y+mpPlayer.size);
+	//			GL11.glVertex2f(mpPlayer.coordinate.x+mpPlayer.size, mpPlayer.coordinate.y-mpPlayer.size);
+	//			GL11.glVertex2f(mpPlayer.coordinate.x-mpPlayer.size, mpPlayer.coordinate.y-mpPlayer.size);
+			}
 		}
 		GL11.glEnd();
 	}
