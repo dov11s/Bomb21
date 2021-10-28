@@ -154,4 +154,19 @@ public class Network extends Listener
 		this.client.sendUDP(packet);
 		
 	}
+	
+	public void sendPacketButtonPressSkill() 
+	{
+		PacketUpdatePlayerPos packet = new 	PacketUpdatePlayerPos();
+		packet.isHoldingSkill = true;
+		this.client.sendUDP(packet);
+	}
+	
+	public void sendPacketButtonReleaseSkill() {
+		PacketUpdatePlayerPos packet = new 	PacketUpdatePlayerPos();
+		packet.isHoldingSkill = false;
+		this.client.sendUDP(packet);
+		
+	}
+	
 }

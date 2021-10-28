@@ -10,6 +10,9 @@ public class SimplifiedPlayer
 	public boolean isHoldingUp;
 	public boolean isHoldingDown;
 	public boolean isHoldingUse;
+	public boolean isHoldingSkill;
+	public int skillCooldown;
+	public String skillName;
 	
 	public SimplifiedPlayer() {};
 	public SimplifiedPlayer(int id) 
@@ -21,6 +24,9 @@ public class SimplifiedPlayer
 		this.isHoldingUp = false;
 		this.isHoldingDown = false;
 		this.isHoldingUse = false;
+		this.isHoldingUse = false;
+		this.skillName = "none";
+		this.skillCooldown = 0;
 	};
 	
 	public SimplifiedPlayer(PacketUpdatePlayerPos packet)
@@ -33,5 +39,9 @@ public class SimplifiedPlayer
 		this.isHoldingDown = packet.isHoldingDown;
 		this.size = packet.size;
 		this.isHoldingUse = packet.isHoldingUse;
+		this.isHoldingSkill = packet.isHoldingSkill;
+		this.skillName = packet.skillName;
+		this.skillCooldown = packet.skillCooldown;
+	
 	}
 }

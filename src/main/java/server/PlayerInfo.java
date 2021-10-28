@@ -6,12 +6,12 @@ public class PlayerInfo
 {
 	public int id;
 	public Vector2f coordinate;
-	public PlayerStats playerStats;
 	public boolean isHoldingLeft;
 	public boolean isHoldingRight;
 	public boolean isHoldingUp;
 	public boolean isHoldingDown;
 	public boolean isHoldingUse;
+	public boolean isHoldingSkill;
 	public boolean placedBomb = true;
 	public int health;
 	public float speed;
@@ -22,7 +22,6 @@ public class PlayerInfo
 	
 	public PlayerInfo()
 	{
-		this.playerStats = new ConcretePlayer();
 		this.coordinate = new Vector2f();
 		this.coordinate.x = 400;
 		this.coordinate.y = 400;
@@ -30,7 +29,7 @@ public class PlayerInfo
 		this.isHoldingRight = false;
 		this.isHoldingUp = false;
 		this.isHoldingDown = false;
-		this.skillAlgorithm = new DashSkill();
+		this.skillAlgorithm = new JumpSkill();
 		this.size = 40;
 		this.speed = 2.5f;
 		this.health = 3;
