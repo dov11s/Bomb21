@@ -16,9 +16,9 @@ public abstract class TrapDecorator implements TrapEffect
 	}
 
 	@Override
-	public void onTick(PlayerInfo p) 
+	public void onTick() 
 	{
-		this.onTick(p);		
+		this.onTick();		
 	}
 
 }

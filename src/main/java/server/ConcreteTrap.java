@@ -11,7 +11,7 @@ public class ConcreteTrap implements TrapEffect
 	}
 
 	@Override
-	public void onTick(PlayerInfo p) 
+	public void onTick() 
 	{
 		// TODO Auto-generated method stub
 		

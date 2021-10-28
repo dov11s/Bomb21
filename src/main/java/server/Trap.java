@@ -3,8 +3,12 @@ package server;
 public class Trap extends GameObject{
 
 
-    public Trap(String color, float alpha){
+	private TrapEffect trapeffect;
+	
+    public Trap(String color, float alpha)
+    {
         super(color, alpha);
+        this.trapeffect = new ConcreteTrap();
     }
 
     public void onDamage(){
