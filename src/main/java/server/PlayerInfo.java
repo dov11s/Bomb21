@@ -29,7 +29,7 @@ public class PlayerInfo
 		this.isHoldingRight = false;
 		this.isHoldingUp = false;
 		this.isHoldingDown = false;
-		this.skillAlgorithm = new SlowAllPlayersSkill();
+		this.skillAlgorithm = new JumpSkill();
 		this.size = 40;
 		this.speed = 2.5f;
 		this.health = 3;
