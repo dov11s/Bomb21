@@ -20,6 +20,10 @@ public class Trap extends GameObject{
     public void onTick()
     {
     	this.trapeffect.onTick();
+    	if (this.trapeffect.isDone())
+    	{
+    		isDead = true;
+    	}
     }
 
     public void onStep(PlayerInfo player)
@@ -27,6 +31,7 @@ public class Trap extends GameObject{
     	if (!isStepped) 
     	{
     		this.trapeffect.activateTrap(player);
+    		isStepped = true;
     	}
     }
     

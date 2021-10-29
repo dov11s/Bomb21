@@ -2,7 +2,7 @@ package server;
 
 public class ConcreteTrap implements TrapEffect
 {
-	PlayerInfo p;
+	private PlayerInfo p;
 	boolean isDone = false;
 	private final int timer = 1 * 60; //second
 	private int currentTimer = -1;

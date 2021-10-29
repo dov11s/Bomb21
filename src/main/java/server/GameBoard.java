@@ -37,6 +37,9 @@ public class GameBoard {
         this.objects[3][1] = this.factory.createPowerUp();
         this.objects[5][1] = this.factory.createPowerUp();
         this.objects[7][1] = this.factory.createPowerUp();
+        
+        this.objects[17][3] = this.factory.createTrap();
+        this.objects[15][3] = this.factory.createTrap();
 
         for(int x = 1; x < 19; x++)
             this.objects[x][11] = this.factory.createWall(true);

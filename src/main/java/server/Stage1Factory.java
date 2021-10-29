@@ -19,7 +19,7 @@ public class Stage1Factory extends AbstractFactory{
     @Override
     public GameObject createTrap() 
     {
-        return new Trap(this.colors.get("Trap"), 1, new ConcreteTrap());
+        return new Trap(this.colors.get("Trap"), 1, new SlowTrap (new TeleportTrap (new ConcreteTrap())));
     }
 
     @Override
