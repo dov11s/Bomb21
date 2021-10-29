@@ -12,13 +12,14 @@ public class Stage1Factory extends AbstractFactory{
         this.colors.put("Wall", "#DBD3BF");
         this.colors.put("Ground", "#348C31");
         this.colors.put("Bomb", "#6A2E35");
-        this.colors.put("PowerUp", "#B6D094");
+        this.colors.put("PowerUp", "#BAD094");
         this.colors.put("Trap", "#373D20");
     }
 
     @Override
-    public GameObject createTrap() {
-        return new Trap(this.colors.get("Trap"), 1);
+    public GameObject createTrap() 
+    {
+        return new Trap(this.colors.get("Trap"), 1, new ConcreteTrap());
     }
 
     @Override

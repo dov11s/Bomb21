@@ -31,6 +31,12 @@ public class GameBoard {
         this.objects[5][4] = this.factory.createWall(true);
         this.objects[5][6] = this.factory.createWall(true);
         this.objects[6][5] = this.factory.createWall(true);
+        
+        //Powerup
+        this.objects[1][1] = this.factory.createPowerUp();
+        this.objects[3][1] = this.factory.createPowerUp();
+        this.objects[5][1] = this.factory.createPowerUp();
+        this.objects[7][1] = this.factory.createPowerUp();
 
         for(int x = 1; x < 19; x++)
             this.objects[x][11] = this.factory.createWall(true);
@@ -69,11 +75,13 @@ public class GameBoard {
     
     public void runTick()
     {
-        for (GameObject[] u: objects) 
+        for(int x = 0; x < this.gridSize; x++)
         {
-            for (GameObject object: u)
+            for (int y = 0; y < this.gridSize; y++)
             {
-            	object.onTick();
+            	if(this.objects[x][y].isDead) this.ClearTarget(x, y);
+            	
+            	objects[x][y].onTick();
             }
         }
     }

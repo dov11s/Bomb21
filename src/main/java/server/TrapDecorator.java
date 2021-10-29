@@ -18,7 +18,13 @@ public abstract class TrapDecorator implements TrapEffect
 	@Override
 	public void onTick() 
 	{
-		this.onTick();		
+		this.trapEffect.onTick();		
+	}
+	
+	@Override
+	public boolean isDone()
+	{
+		return this.trapEffect.isDone();
 	}
 
 }

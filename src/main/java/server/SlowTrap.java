@@ -3,6 +3,7 @@ package server;
 public class SlowTrap extends TrapDecorator
 {
 
+	boolean isDone = false;
 	public SlowTrap(TrapEffect trapEffect) 
 	{
 		super(trapEffect);
@@ -16,5 +17,10 @@ public class SlowTrap extends TrapDecorator
 	public void onTick() 
 	{
 		super.onTick();	
+	}
+
+	public boolean isDone() 
+	{
+		return super.isDone();
 	}
 }

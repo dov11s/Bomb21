@@ -15,6 +15,7 @@ public class PlayerInfo
 	public boolean placedBomb = true;
 	public int health;
 	public float speed;
+	public float baseSpeed;
 	public int size;
 	public int bombCount;
 
@@ -29,9 +30,10 @@ public class PlayerInfo
 		this.isHoldingRight = false;
 		this.isHoldingUp = false;
 		this.isHoldingDown = false;
-		this.skillAlgorithm = new JumpSkill();
+		this.skillAlgorithm = new DashSkill();
 		this.size = 40;
 		this.speed = 2.5f;
+		this.baseSpeed = 2.5f;
 		this.health = 3;
 		this.bombCount = 2;
 		//this.playerStats = new ConcretePlayer();
@@ -48,6 +50,7 @@ public class PlayerInfo
 		this.isHoldingUse = false;
 		this.size = 40;
 		this.speed = 2.5f;
+		this.baseSpeed = 2.5f;
 		this.health = 3;
 		this.bombCount = 2;
 		//Test

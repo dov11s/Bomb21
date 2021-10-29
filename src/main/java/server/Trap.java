@@ -4,22 +4,40 @@ public class Trap extends GameObject{
 
 
 	private TrapEffect trapeffect;
+	private boolean isStepped = false;
 	
-    public Trap(String color, float alpha)
+	public Trap(String color, float alpha, TrapEffect trapeffect)
     {
         super(color, alpha);
-        this.trapeffect = new ConcreteTrap();
+        this.trapeffect = trapeffect;
     }
 
-    public void onDamage(){
+    public void onDamage()
+    {
         if(this.isDestroyable)
-            System.out.println("Trap has been destroyed!");
+        	isDead = true;
     }
-    public void onTick(){
+    public void onTick()
+    {
+    	this.trapeffect.onTick();
+    }
 
+    public void onStep(PlayerInfo player)
+    {
+    	if (!isStepped) 
+    	{
+    		this.trapeffect.activateTrap(player);
+    	}
     }
+    
+    public TrapEffect getTrapeffect() 
+    {
+		return trapeffect;
+	}
 
-    public void onStep(PlayerInfo player){
-        //initiate trap
-    }
+	public void setTrapeffect(TrapEffect trapeffect) 
+	{
+		this.trapeffect = trapeffect;
+	}
+
 }

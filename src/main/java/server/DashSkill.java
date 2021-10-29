@@ -8,7 +8,7 @@ public class DashSkill implements SkillAlgorithm
 	private final int cooldown = 10 * 60; //10 seconds
 	private final String name = "Dash";
 	private int currentCooldown = 0;
-	private final int timer = 1 * 15; //0.25 second
+	private final int timer = 1 * 30; //0.25 second
 	private int currentTimer = 0;
 	private SimplifiedPlayer simplified; //For direction
 	private float previousSpeed = 0;
