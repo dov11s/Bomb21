@@ -102,6 +102,7 @@ public class GameWindow implements UpdateGameDataDelegate
 	private void renderText() 
 	{
 		Text.drawString("Spell " + this.mainPlayer.skillName + "     Cooldown " + (int)(this.mainPlayer.skillCooldown / 60), 5, 2, 40, 3);
+		Text.drawString("Health " + this.mainPlayer.health, 75, 2, 40, 3);
 	}
 	
 	//bad design

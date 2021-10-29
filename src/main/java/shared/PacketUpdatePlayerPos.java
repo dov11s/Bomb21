@@ -15,6 +15,7 @@ public class PacketUpdatePlayerPos extends Packet
 	public Boolean isHoldingSkill;
 	public int skillCooldown;
 	public String skillName;
+	public int health;
 	
 	public PacketUpdatePlayerPos()
 	{
@@ -45,5 +46,6 @@ public class PacketUpdatePlayerPos extends Packet
 		this.isHoldingSkill = player.isHoldingSkill;
 		this.skillName = player.getName();
 		this.skillCooldown = player.getCooldown();
+		this.health = player.health;
 	}
 }

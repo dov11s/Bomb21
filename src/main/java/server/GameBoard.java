@@ -38,9 +38,31 @@ public class GameBoard {
         this.objects[5][1] = this.factory.createPowerUp();
         this.objects[7][1] = this.factory.createPowerUp();
         
+        
+        //TODO wrong but ok for now
         this.objects[17][3] = this.factory.createTrap();
+       
         this.objects[15][3] = this.factory.createTrap();
+        Trap modified = (Trap) this.objects[15][3]; 
+        modified.setTrapeffect(new DamageTrap (new ConcreteTrap()));
+        this.objects[15][3] = modified;
+        
+        this.objects[13][3] = this.factory.createTrap();
+        Trap modified1 = (Trap) this.objects[13][3]; 
+        modified1.setTrapeffect(new TeleportTrap (new ConcreteTrap()));
+        this.objects[13][3] = modified1;
 
+        this.objects[11][3] = this.factory.createTrap();
+        Trap modified2 = (Trap) this.objects[11][3]; 
+        modified2.setTrapeffect(new SlowTrap (new ConcreteTrap()));
+        this.objects[11][3] = modified2;
+
+        this.objects[9][3] = this.factory.createTrap();
+        Trap modified3 = (Trap) this.objects[9][3]; 
+        modified3.setTrapeffect( new DamageTrap (new TeleportTrap (new SlowTrap (new ConcreteTrap()))));
+        this.objects[9][3] = modified3;
+
+        
         for(int x = 1; x < 19; x++)
             this.objects[x][11] = this.factory.createWall(true);
 

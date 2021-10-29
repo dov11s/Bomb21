@@ -12,6 +12,7 @@ public class SimplifiedPlayer
 	public boolean isHoldingUse;
 	public boolean isHoldingSkill;
 	public float speed;
+	public int health;
 	public int skillCooldown;
 	public String skillName;
 	
@@ -26,6 +27,7 @@ public class SimplifiedPlayer
 		this.isHoldingDown = false;
 		this.isHoldingUse = false;
 		this.isHoldingUse = false;
+		this.health = 3;
 		this.skillName = "none";
 		this.skillCooldown = 0;
 	};
@@ -43,6 +45,7 @@ public class SimplifiedPlayer
 		this.isHoldingSkill = packet.isHoldingSkill;
 		this.skillName = packet.skillName;
 		this.skillCooldown = packet.skillCooldown;
+		this.health = packet.health;
 	
 	}
 }
