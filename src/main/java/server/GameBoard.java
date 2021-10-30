@@ -38,6 +38,7 @@ public class GameBoard {
         this.objects[5][1] = this.factory.createPowerUp();
         this.objects[7][1] = this.factory.createPowerUp();
         
+        //test
         
         //TODO wrong but ok for now
         this.objects[17][3] = this.factory.createTrap();
