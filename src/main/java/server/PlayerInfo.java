@@ -12,6 +12,8 @@ public class PlayerInfo
 	public boolean isHoldingDown;
 	public boolean isHoldingUse;
 	public boolean isHoldingSkill;
+	public boolean isHoldingPause;
+	public boolean isHoldingUnPause;
 	public boolean placedBomb = true;
 	public int health;
 	public float speed;
@@ -30,6 +32,8 @@ public class PlayerInfo
 		this.isHoldingRight = false;
 		this.isHoldingUp = false;
 		this.isHoldingDown = false;
+		this.isHoldingPause = false;
+		this.isHoldingUnPause = false;
 		this.skillAlgorithm = new DashSkill();
 		this.size = 40;
 		this.speed = 2.5f;
@@ -48,6 +52,8 @@ public class PlayerInfo
 		this.isHoldingUp = false;
 		this.isHoldingDown = false;
 		this.isHoldingUse = false;
+		this.isHoldingPause = false;
+		this.isHoldingUnPause = false;
 		this.size = 40;
 		this.speed = 2.5f;
 		this.baseSpeed = 2.5f;

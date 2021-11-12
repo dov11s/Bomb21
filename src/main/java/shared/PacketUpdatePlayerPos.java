@@ -13,6 +13,8 @@ public class PacketUpdatePlayerPos extends Packet
 	public int size;
 	public Boolean isHoldingUse;
 	public Boolean isHoldingSkill;
+	public boolean isHoldingPause;
+	public boolean isHoldingUnPause;
 	public int skillCooldown;
 	public String skillName;
 	public int health;
@@ -31,6 +33,8 @@ public class PacketUpdatePlayerPos extends Packet
 		this.isHoldingDown = false;
 		this.isHoldingUse = false;
 		this.isHoldingSkill = false;
+		this.isHoldingPause = false;
+		this.isHoldingUnPause = false;
 	}
 	
 	public PacketUpdatePlayerPos(int id, PlayerInfo player)
@@ -44,6 +48,8 @@ public class PacketUpdatePlayerPos extends Packet
 		this.isHoldingUse = player.isHoldingUse;
 		this.size = player.size;
 		this.isHoldingSkill = player.isHoldingSkill;
+		this.isHoldingPause = player.isHoldingPause;
+		this.isHoldingUnPause = player.isHoldingUnPause;
 		this.skillName = player.getName();
 		this.skillCooldown = player.getCooldown();
 		this.health = player.health;
