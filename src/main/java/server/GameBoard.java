@@ -5,7 +5,7 @@ import java.util.Random;
 
 import shared.*;
 
-public class GameBoard {
+public class GameBoard implements Cloneable{
 
     public final int size = 1000;
     public final int gridSize = 20;
@@ -86,7 +86,23 @@ public class GameBoard {
 
     }
 
+    public void paleistiKopija(){
+        GameBoard copy = copyDeep();
 
+
+    }
+
+
+
+    public GameBoard copyDeep(){
+
+        try {
+            return (GameBoard)this.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
     public void SpawnBomb(PlayerInfo player)
     {

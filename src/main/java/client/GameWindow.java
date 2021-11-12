@@ -211,13 +211,6 @@ public class GameWindow implements UpdateGameDataDelegate
 		//https://www.glfw.org/docs/3.3/input_guide.html
 
 
-		if(GLFW.glfwGetKey(this.window, GLFW.GLFW_KEY_P) == GLFW.GLFW_TRUE)
-		{
-			SimplifiedGameBoard copyDeep = board.copyDeep();
-
-
-		}
-
 
 
 		if(GLFW.glfwGetKey(this.window, GLFW.GLFW_KEY_W) == GLFW.GLFW_TRUE)
