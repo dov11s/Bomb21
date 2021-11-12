@@ -1,16 +1,20 @@
 package server;
 
-public class Bomb extends GameObject {
+import java.util.List;
+import java.util.Stack;
+
+public class Bomb extends GameObject implements BombObservable{
 
     private int Timer;
     private int OwnerId;
-    private BombObserver observer;
+    private int ExplosionRadius = 3;
+    private List<BombObserver> observers = new Stack<BombObserver>();
 
     public Bomb(String color, float alpha, int timer, int ownerid, BombObserver observer){
         super(color, alpha);
         this.Timer = timer;
         this.OwnerId = ownerid;
-        this.observer = observer;
+        this.add(observer);
         this.isWalkable = true;
     }
 
@@ -20,10 +24,34 @@ public class Bomb extends GameObject {
     public void onTick(){
         this.Timer--;
         if(this.Timer <= 0)
-            observer.explode(this);
+            notifyObservers();
     }
 
     public void onStep(PlayerInfo player){
         //cannot be stepped on?
+    }
+
+    public void add(BombObserver observer)
+    {
+        this.observers.add(observer);
+    }
+
+    public void remove(BombObserver observer)
+    {
+        this.observers.remove(observer);
+    }
+
+    public void notifyObservers()
+    {
+        for (BombObserver observer:
+             observers) {
+            observer.explode(this);
+
+        }
+    }
+
+    public int explosionRadius() {
+        if (this.Timer <= 0) return this.ExplosionRadius;
+        else return 0;
     }
 }
