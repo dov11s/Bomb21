@@ -1,6 +1,6 @@
 package shared;
 
-public class SimplifiedGameBoard
+public class SimplifiedGameBoard implements Cloneable
 {
 	public SimplifiedGameObject[][] objects;
 	public int gridSize;
@@ -17,4 +17,15 @@ public class SimplifiedGameBoard
 		this.size = size;
 		this.gridSize = gridSize;
 	}
+
+	public SimplifiedGameBoard copyDeep(){
+
+		try {
+			return (SimplifiedGameBoard)this.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

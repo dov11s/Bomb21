@@ -22,9 +22,12 @@ public class GameWindow implements UpdateGameDataDelegate
 	private Network network;
 	private SimplifiedPlayer mainPlayer;
 	private Map<Integer,SimplifiedPlayer> players;
-	
+
+
+
 	public GameWindow()
 	{
+
 		//Init Window
 		if (!initWindow()) 
 		{
@@ -44,6 +47,8 @@ public class GameWindow implements UpdateGameDataDelegate
 		this.players = new HashMap<Integer,SimplifiedPlayer>();
 		runGame();
 	}
+
+
 	
 	private boolean initConnection()
 	{		
@@ -204,6 +209,16 @@ public class GameWindow implements UpdateGameDataDelegate
 		
 		//TODO should read from events instead of polling
 		//https://www.glfw.org/docs/3.3/input_guide.html
+
+
+		if(GLFW.glfwGetKey(this.window, GLFW.GLFW_KEY_P) == GLFW.GLFW_TRUE)
+		{
+			SimplifiedGameBoard copyDeep = board.copyDeep();
+
+
+		}
+
+
 
 		if(GLFW.glfwGetKey(this.window, GLFW.GLFW_KEY_W) == GLFW.GLFW_TRUE)
 		{

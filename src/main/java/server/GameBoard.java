@@ -14,6 +14,7 @@ public class GameBoard {
     private AbstractFactory factory;
 
     private int currentTick = 0;
+    private int powerUpCounter = 0;
     private int timeToCreatePowerUp = 10;
 
     private IStageBuilder stage1builder;
@@ -85,6 +86,8 @@ public class GameBoard {
 
     }
 
+
+
     public void SpawnBomb(PlayerInfo player)
     {
         int x = Math.round(player.coordinate.x/(size/gridSize));
@@ -115,6 +118,8 @@ public class GameBoard {
     private  void spawnPowerUp(){
         Random rand = new Random();
 
+        if(powerUpCounter > 4)
+            return;
 
         while(true){
             int x = rand.nextInt((19 - 0) + 1) + 0;
@@ -123,6 +128,7 @@ public class GameBoard {
 
             if(this.objects[x][y] instanceof Ground){
                 this.objects[x][y] = this.factory.createPowerUp();
+                powerUpCounter+=1;
                 break;
             }
 
@@ -149,8 +155,22 @@ public class GameBoard {
         {
             for (int y = 0; y < this.gridSize; y++)
             {
-            	if(this.objects[x][y].isDead) this.ClearTarget(x, y);
-            	
+            	if(this.objects[x][y].isDead) {
+
+
+
+                    if(this.objects[x][y] instanceof PowerUp)
+                    {
+                        System.out.println("Sunaikinau powerUpa");
+                        powerUpCounter-=1;
+                    }
+
+                    this.ClearTarget(x, y);
+
+
+
+                }
+
             	objects[x][y].onTick();
             }
         }
