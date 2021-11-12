@@ -16,7 +16,7 @@ public class SimplifiedPlayer
 	public int skillCooldown;
 	public String skillName;
 	
-	public SimplifiedPlayer() {};
+	public SimplifiedPlayer() {}
 	public SimplifiedPlayer(int id) 
 	{
 		this.id = id;
@@ -26,11 +26,10 @@ public class SimplifiedPlayer
 		this.isHoldingUp = false;
 		this.isHoldingDown = false;
 		this.isHoldingUse = false;
-		this.isHoldingUse = false;
 		this.health = 3;
 		this.skillName = "none";
 		this.skillCooldown = 0;
-	};
+	}
 	
 	public SimplifiedPlayer(PacketUpdatePlayerPos packet)
 	{
