@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="2212b387-cd80-4167-9009-28578dd54429" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/GameWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/shared/SimplifiedGameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/shared/SimplifiedGameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magic draw/Pn_13_30_03_Bomb2021.mdzip" beforeDir="false" afterPath="$PROJECT_DIR$/magic draw/Pn_13_30_03_Bomb2021.mdzip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magic draw/Pn_13_30_03_Bomb2021.mdzip.bak" beforeDir="false" afterPath="$PROJECT_DIR$/magic draw/Pn_13_30_03_Bomb2021.mdzip.bak" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
