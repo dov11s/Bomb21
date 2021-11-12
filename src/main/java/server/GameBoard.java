@@ -1,6 +1,7 @@
 package server;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import shared.*;
 
@@ -11,6 +12,9 @@ public class GameBoard {
     public GameObject[][] objects;
     private BombObserver bombObserver;
     private AbstractFactory factory;
+
+    private int currentTick = 0;
+    private int timeToCreatePowerUp = 10;
 
 
     public GameBoard(AbstractFactory factory)
@@ -33,11 +37,18 @@ public class GameBoard {
         this.objects[6][5] = this.factory.createWall(true);
         
         //Powerup
+
+
         this.objects[1][1] = this.factory.createPowerUp();
         this.objects[3][1] = this.factory.createPowerUp();
         this.objects[5][1] = this.factory.createPowerUp();
         this.objects[7][1] = this.factory.createPowerUp();
-        
+
+
+
+
+
+
         //test
         
         //TODO wrong but ok for now
@@ -98,9 +109,40 @@ public class GameBoard {
         }
         return simpleGameboard;
     }
-    
+
+    private  void spawnPowerUp(){
+        Random rand = new Random();
+
+
+        while(true){
+            int x = rand.nextInt((19 - 0) + 1) + 0;
+            int y = rand.nextInt((19 - 0) + 1) + 0;
+
+
+            if(this.objects[x][y] instanceof Ground){
+                this.objects[x][y] = this.factory.createPowerUp();
+                break;
+            }
+
+        }
+
+
+
+
+
+
+
+
+    }
+
+
     public void runTick()
     {
+        currentTick +=1;
+
+        if(currentTick % (60 * timeToCreatePowerUp)== 0) // kas 10s sukurti nauja powerUp
+            spawnPowerUp();
+
         for(int x = 0; x < this.gridSize; x++)
         {
             for (int y = 0; y < this.gridSize; y++)

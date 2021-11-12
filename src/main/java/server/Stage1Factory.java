@@ -2,6 +2,7 @@ package server;
 
 
 import java.util.Hashtable;
+import java.util.Random;
 
 public class Stage1Factory extends AbstractFactory{
 
@@ -35,7 +36,17 @@ public class Stage1Factory extends AbstractFactory{
 
     @Override
     public GameObject createPowerUp() {
-        return new PowerUp(colors.get("PowerUp"), 1, 5);
+
+        PowUpFactory powFactory = new PowUpFactory();
+        PowUp powUp = null;
+
+        Random rand = new Random();
+        int randomNum = rand.nextInt((4 - 1) + 1) + 1;
+
+        powUp = powFactory.makePowUp(randomNum);
+
+
+        return new PowerUp(powUp, 1, 5);
     }
 
     @Override

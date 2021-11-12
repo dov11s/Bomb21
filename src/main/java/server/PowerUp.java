@@ -1,12 +1,21 @@
 package server;
+import java.util.Random;
 
 public class PowerUp extends GameObject
 {
     private int Timer;
-    public PowerUp(String color, float alpha, int timer){
-        super(color, alpha);
+	private PowUp powUp;
+
+    public PowerUp(PowUp powUp, float alpha, int timer){
+
+
+        super(powUp.getColor(), alpha);
+		this.powUp = powUp;
         this.Timer = timer;
         this.isWalkable = true;
+
+
+
     }
 
     public void onDamage(){
@@ -19,28 +28,36 @@ public class PowerUp extends GameObject
 //        	isDead = true;
     }
 
+
+
+
+
+
+
+
     public void onStep(PlayerInfo player){
         if(this.isWalkable)
         {
         	if (!isDead)
         	{
-	        	GameServer gameServer = GameServer.getInstance();
-	        	if (gameServer.players.get(player.id).getSkillAlgorithm() instanceof DashSkill)
-	        	{
-	            	gameServer.players.get(player.id).setSkillAlgorithm(new TeleportSkill());
-	        	}
-	        	else if (gameServer.players.get(player.id).getSkillAlgorithm() instanceof TeleportSkill)
-	        	{
-	            	gameServer.players.get(player.id).setSkillAlgorithm(new JumpSkill());
-	        	}
-	        	else if (gameServer.players.get(player.id).getSkillAlgorithm() instanceof JumpSkill)
-	        	{
-	            	gameServer.players.get(player.id).setSkillAlgorithm(new SlowAllPlayersSkill());
-	        	}
-	        	else if (gameServer.players.get(player.id).getSkillAlgorithm() instanceof SlowAllPlayersSkill)
-	        	{
-	            	gameServer.players.get(player.id).setSkillAlgorithm(new DashSkill());
-	        	}
+				GameServer gameServer = GameServer.getInstance();
+
+
+				if(powUp.getName().equals("Jump"))
+					gameServer.players.get(player.id).setSkillAlgorithm(new JumpSkill());
+
+				else if(powUp.getName().equals("Dash"))
+					gameServer.players.get(player.id).setSkillAlgorithm(new DashSkill());
+
+				else if(powUp.getName().equals("Slow"))
+					gameServer.players.get(player.id).setSkillAlgorithm(new SlowAllPlayersSkill());
+
+				else if(powUp.getName().equals("Teleport"))
+					gameServer.players.get(player.id).setSkillAlgorithm(new TeleportSkill());
+
+
+
+
 	        	isDead = true;
         	}
         }
