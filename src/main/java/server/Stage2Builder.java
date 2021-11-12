@@ -40,15 +40,26 @@ public class Stage2Builder implements IStageBuilder{
 
         System.out.println("Koks dydis Pries: " + walls.size());
 
-        walls.add(new Coordinates(5, 4));
-        walls.add(new Coordinates(5, 6));
-        walls.add(new Coordinates(6, 5));
 
-        walls.add(new Coordinates(15, 16));
-        walls.add(new Coordinates(15, 14));
-        walls.add(new Coordinates(14, 15));
 
-       
+
+        for(int i = 7; i<11; i++){
+            walls.add(new Coordinates(i, 9));
+            walls.add(new Coordinates(i, 13));
+            walls.add(new Coordinates(i, 17));
+        }
+
+        for(int i =10; i<17; i++){
+            if(i != 13){
+                walls.add(new Coordinates(6, i));
+                walls.add(new Coordinates(11, i));
+            }
+        }
+
+
+
+
+
 
         System.out.println("Koks dydis Po: " + walls.size());
 

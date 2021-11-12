@@ -6,7 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="2212b387-cd80-4167-9009-28578dd54429" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/server/BombObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/BombObserver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Stage2Builder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Stage2Builder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Stage3Builder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Stage3Builder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/GameBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/GameBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/Stage2Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/Stage2Builder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/Stage3Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/Stage3Builder.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,17 +32,17 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/shared/Vector2f.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/server/ServerProgram.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/server/GameObjectDelegate.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/server/Network.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/server/MPPlayer.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/server/GameServer.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/shared/PacketAddPlayer.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/shared/Packet.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/server/BombObserver.java" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/shared/PacketRemovePlayer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/pom.xml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/server/SkillAlgorithm.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/server/Network.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/server/ServerProgram.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/shared/PacketRemovePlayer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/server/MPPlayer.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/shared/Packet.java" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/server/GameObjectDelegate.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectId" id="1zN3MikwFA6uf313o0I4RgwEThv" />
   <component name="ProjectLevelVcsManager">
