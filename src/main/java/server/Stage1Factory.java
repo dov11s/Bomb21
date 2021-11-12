@@ -10,7 +10,8 @@ public class Stage1Factory extends AbstractFactory{
 
     public Stage1Factory(){
         this.colors = new Hashtable<>();
-        this.colors.put("Wall", "#DBD3BF");
+        this.colors.put("Wall", "#2e2203");
+        this.colors.put("DesWall", "#8c8674");
         this.colors.put("Ground", "#348C31");
         this.colors.put("Bomb", "#6A2E35");
         this.colors.put("PowerUp", "#BAD094");
@@ -26,7 +27,12 @@ public class Stage1Factory extends AbstractFactory{
     @Override
     public GameObject createWall(boolean destroyable)
     {
-        return new Wall(this.colors.get("Wall"), 1, destroyable);
+        String wallType = "Wall";
+
+        if(destroyable)
+            wallType = "DesWall";
+
+        return new Wall(this.colors.get(wallType), 1, destroyable);
     }
 
     @Override

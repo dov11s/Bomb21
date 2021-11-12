@@ -16,34 +16,39 @@ public class GameBoard {
     private int currentTick = 0;
     private int timeToCreatePowerUp = 10;
 
+    private IStageBuilder stage1builder;
 
     public GameBoard(AbstractFactory factory)
     {
         this.factory = factory;
         this.objects = new GameObject[gridSize][gridSize];
-        for(int x = 0; x<gridSize; x++){
-            for(int y = 0; y<gridSize; y++){
-                if(x == 0 || x == gridSize-1 || y == 0 || y == gridSize -1)
-                    this.objects[x][y] = this.factory.createWall(false);
-                else
-                    this.objects[x][y] = this.factory.createGround();
-            }
+        this.stage1builder = new Stage1Builder(gridSize);
+
+        StageDirector stageDirector = new StageDirector(stage1builder);
+
+        stageDirector.makeStage();
+
+        Stage stage1 = stageDirector.getStage();
+
+        for(Coordinates kor: stage1.getGrounds())
+            this.objects[kor.getX()][kor.getY()] = this.factory.createGround();
+
+        int kiekis = 76;
+        boolean sunaikinama = false;
+
+        for(Coordinates kor: stage1.getWalls()){
+
+            this.objects[kor.getX()][kor.getY()] = this.factory.createWall(sunaikinama);
+            kiekis-=1;
+            if(kiekis == 0) sunaikinama = true;
         }
 
+
+
         bombObserver = new BombObserver(this);
+
+
         this.factory.SetBombObserver(bombObserver);
-        this.objects[5][4] = this.factory.createWall(true);
-        this.objects[5][6] = this.factory.createWall(true);
-        this.objects[6][5] = this.factory.createWall(true);
-        
-        //Powerup
-
-
-        this.objects[1][1] = this.factory.createPowerUp();
-        this.objects[3][1] = this.factory.createPowerUp();
-        this.objects[5][1] = this.factory.createPowerUp();
-        this.objects[7][1] = this.factory.createPowerUp();
-
 
 
 
@@ -74,13 +79,6 @@ public class GameBoard {
         modified3.setTrapeffect( new DamageTrap (new TeleportTrap (new SlowTrap (new ConcreteTrap()))));
         this.objects[9][3] = modified3;
 
-        
-        for(int x = 1; x < 19; x++)
-            this.objects[x][11] = this.factory.createWall(true);
-
-        this.objects[15][16] = this.factory.createWall(true);
-        this.objects[15][14] = this.factory.createWall(true);
-        this.objects[14][15] = this.factory.createWall(true);
     }
 
     public void SpawnBomb(PlayerInfo player)
