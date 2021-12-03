@@ -93,6 +93,27 @@ public class GameBoard implements Cloneable{
     }
 
 
+    public void addObject(int x, int y, String type){
+
+        switch (type){
+            case "wall":
+                this.objects[x][y] = this.factory.createWall(false);
+                break;
+            case "desWall":
+                this.objects[x][y] = this.factory.createWall(true);
+                break;
+            case "trap":
+                this.objects[x][y] = this.factory.createTrap();
+                Trap modified3 = (Trap) this.objects[x][y];
+                modified3.setTrapeffect( new DamageTrap  (new SlowTrap (new ConcreteTrap())));
+                this.objects[x][y] = modified3;
+                break;
+        }
+
+
+    }
+
+
 
     public GameBoard copyDeep(){
 
@@ -111,6 +132,25 @@ public class GameBoard implements Cloneable{
         this.objects[x][y] = this.factory.createBomb(player.id);
 
     }
+
+    public void spawnWall()
+    {
+        System.out.println("Turim ikelti siena ");
+        this.objects[2][2] = this.factory.createWall(false);
+
+    }
+
+    public void addWall(int x, int y)
+    {
+        System.out.println("Turim ikelti siena ");
+        this.objects[x][y] = this.factory.createWall(false);
+
+    }
+
+
+
+
+
 
     public void ClearTarget(int x, int y){
         this.objects[x][y] = this.factory.createGround();

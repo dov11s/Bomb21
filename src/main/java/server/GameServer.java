@@ -1,4 +1,8 @@
 package server;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,10 +19,25 @@ class GameServer
 	protected volatile Network network;
 	private GameCycleThread thread;
 	private Stage1Factory stage1factory;
+
+	private Chain chain1;
+	private Chain chain2;
+	private Chain chain3;
+	private Chain chain4;
+
+
+
 	private boolean updateBoard = false;
+	int counter;
 	
 	private GameServer()
 	{
+
+		counter = 0;
+
+
+
+
 		//Init Connection
 		if (!initConnection())
 		{
@@ -32,6 +51,15 @@ class GameServer
 		
 		this.thread = new GameCycleThread();
 		this.thread.start();
+
+		chain1 = new GenerateWalls();
+		chain3 = new GenerateDesWall();
+		chain2 = new GenerateTrap();
+
+		chain1.setNextChain(chain2);
+		chain2.setNextChain(chain3);
+
+
 	}
 	
 	public static GameServer getInstance()
@@ -88,6 +116,8 @@ class GameServer
     {
     	volatile boolean isGameRunning = true;
     	private final int gameSpeed = 16; //The lower the number the faster the game is
+
+
     	
     	public GameCycleThread()
     	{
@@ -122,9 +152,73 @@ class GameServer
         
         private void update()
         {
+
+
+
+
+
+
         	updatePlayers();
         	gameBoard.runTick();
+
+
+			counter++;
+
+			surenkamTeksta();
+
+
+
+
+
+
+
+
+
         }
+
+
+		private void surenkamTeksta(){
+			InputStreamReader fileInputStream=new InputStreamReader(System.in);
+			BufferedReader bufferedReader=new BufferedReader(fileInputStream);
+
+			String tekstas = "nieko nenuskaityta";
+
+			try {
+				if (bufferedReader.ready()){
+					tekstas = bufferedReader.readLine();
+
+					System.out.println("irasytas tekstas " + tekstas);
+
+					String[] sarasas = tekstas.split(" ");
+
+
+					if(sarasas.length > 3){
+
+						ConversionContext task = new ConversionContext(tekstas);
+
+						String whatToPlace = task.getWhat();
+						String whereToPlace = task.getWhere();
+						int howManyToPlace = task.getQuantity();
+
+
+						Task newTask = new Task(howManyToPlace, whatToPlace, whereToPlace, gameBoard);
+
+						gameBoard = chain1.result(newTask);
+
+						System.out.println(whatToPlace + " How many: " + howManyToPlace);
+
+					}
+
+
+				}
+
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		}
+
         
         private void updatePlayers()
         {
