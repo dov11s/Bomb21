@@ -1,6 +1,6 @@
 package server;
 
-public class GenerateTrap implements Chain{
+public class GenerateTrap implements Chain {
     private Chain nextInChain;
 
     @Override

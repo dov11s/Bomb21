@@ -106,8 +106,31 @@ public class GameWindow implements UpdateGameDataDelegate
 
 	private void renderText() 
 	{
-		Text.drawString("Spell " + this.mainPlayer.skillName + "     Cooldown " + (int)(this.mainPlayer.skillCooldown / 60), 5, 2, 40, 3);
-		Text.drawString("Health " + this.mainPlayer.health, 75, 2, 40, 3);
+		Text.drawString("Spell " + this.mainPlayer.skillName + "  Cooldown " + (int)(this.mainPlayer.skillCooldown / 60), 5, 2, 50, 2);
+		Text.drawString("Health " + this.mainPlayer.health, 60, 2, 50, 2);
+
+		int size = 40;
+
+
+		for(SimplifiedPlayer mpPlayer : players.values()) {
+
+			if(this.mainPlayer.id != mpPlayer.id){
+
+				if (mpPlayer.coordinate != null)
+				{
+					float x = mpPlayer.coordinate.x*4/size;
+					float y = mpPlayer.coordinate.y*4/size;
+
+					Text.drawString("enemy",x- 8/10 ,y-1 , size, 2);
+				}
+
+
+
+			}
+
+		}
+
+
 	}
 	
 	//bad design

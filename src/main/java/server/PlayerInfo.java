@@ -2,6 +2,8 @@ package server;
 
 import shared.Vector2f;
 
+import java.util.Random;
+
 public class PlayerInfo 
 {
 	public int id;
@@ -25,9 +27,20 @@ public class PlayerInfo
 	
 	public PlayerInfo()
 	{
+
+		Random r = new Random();
+		int low = 100;
+		int high = 800;
+
+
+
+		int x = r.nextInt(high-low) + low;
+		int y = r.nextInt(high-low) + low;
+
+
 		this.coordinate = new Vector2f();
-		this.coordinate.x = 400;
-		this.coordinate.y = 400;
+		this.coordinate.x = x;
+		this.coordinate.y = y;
 		this.isHoldingLeft = false;
 		this.isHoldingRight = false;
 		this.isHoldingUp = false;

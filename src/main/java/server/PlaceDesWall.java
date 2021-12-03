@@ -8,7 +8,7 @@ public class PlaceDesWall extends Expression{
 
         Random r = new Random();
         int low = 1;
-        int high = 20;
+        int high = 19;
 
 
         for (int i = 0; i<quantity; i++){

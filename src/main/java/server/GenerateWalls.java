@@ -1,6 +1,6 @@
 package server;
 
-public class GenerateWalls implements Chain{
+public class GenerateWalls implements Chain {
 
 
     private Chain nextInChain;

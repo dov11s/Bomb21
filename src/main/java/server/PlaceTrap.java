@@ -8,7 +8,7 @@ public class PlaceTrap extends Expression{
 
         Random r = new Random();
         int low = 1;
-        int high = 20;
+        int high = 19;
 
 
 

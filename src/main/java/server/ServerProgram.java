@@ -27,20 +27,5 @@ public class ServerProgram
 
 
 
-
-
-
-//		try{
-//			String name = System.console().readLine();
-//			System.out.println("You entered string " + name);
-//		}catch (Exception e){
-//
-//			System.out.println("Klaida " + e);
-//		}
-
-
-
-
-
 	}
 }

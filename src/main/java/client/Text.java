@@ -10,7 +10,7 @@ public class Text {
       GL11.glLineWidth(width);
       GL11.glBegin(GL11.GL_LINES);
       GL11.glEnable(GL11.GL_LINE_WIDTH);
-      GL11.glColor3f(0.98f,0.5f,0.447f);
+      GL11.glColor3f(0.99f,0.99f,0.99f);
       boolean space = false;
       int charNum = 1, spaceNum = 0;
       for (char c : s.toLowerCase().toCharArray()) {
@@ -26,18 +26,25 @@ public class Text {
               charNum = 0;
               break;
           case 'a':
-            GL11.glVertex2f(scale * (startX - 0.5f), scale * y);
-            GL11.glVertex2f(scale * (startX - 0.5f), scale * (y + -1));
-            GL11.glVertex2f(scale * (startX - 0.5f), scale * (y + -1));
-            GL11.glVertex2f(scale * startX, scale * (y + -1));
-            GL11.glVertex2f(scale * startX, scale * (y + -1));
-            GL11.glVertex2f(scale * startX, scale * y);
-            GL11.glVertex2f(scale * startX, scale * y);
-            GL11.glVertex2f(scale * (startX - 0.5f), scale * y);
-            GL11.glVertex2f(scale * startX, scale * y);
-            GL11.glVertex2f(scale * startX, scale * (y + 0.5f));
-            GL11.glVertex2f(scale * startX, scale * (y + 0.5f));
-            GL11.glVertex2f(scale * (startX - 0.5f), scale * (y + 0.5f));
+
+              GL11.glVertex2f(scale * (startX - 0.4f), scale * (y-1.1f));
+              GL11.glVertex2f(scale * (startX - 0.4f), scale * (y));
+
+
+              GL11.glVertex2f(scale * (startX + 0.4f), scale * (y-1.1f));
+              GL11.glVertex2f(scale * (startX + 0.4f), scale * (y));
+
+
+              GL11.glVertex2f(scale * (startX - 0.4f), scale * (y));
+              GL11.glVertex2f(scale * (startX + 0.4f), scale * (y));
+
+
+              GL11.glVertex2f(scale * (startX - 0.4f), scale * (y-0.75f));
+              GL11.glVertex2f(scale * (startX + 0.4f), scale * (y-0.75f));
+
+
+
+
               break;
           case 'b':
               GL11.glVertex2f(scale * (startX - 0.5f), scale * (y + 0.8f));

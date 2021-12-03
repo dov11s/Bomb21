@@ -1,6 +1,6 @@
 package server;
 
-public class GenerateDesWall implements Chain{
+public class GenerateDesWall implements Chain {
     private Chain nextInChain;
 
     @Override
