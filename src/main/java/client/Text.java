@@ -27,6 +27,7 @@ public class Text {
               break;
           case 'a':
 
+
               GL11.glVertex2f(scale * (startX - 0.4f), scale * (y-1.1f));
               GL11.glVertex2f(scale * (startX - 0.4f), scale * (y));
 
@@ -40,6 +41,14 @@ public class Text {
 
 
               GL11.glVertex2f(scale * (startX - 0.4f), scale * (y-0.75f));
+              GL11.glVertex2f(scale * (startX + 0.4f), scale * (y-0.75f));
+
+
+              break;
+
+          case '/':
+
+              GL11.glVertex2f(scale * (startX), scale * (y));
               GL11.glVertex2f(scale * (startX + 0.4f), scale * (y-0.75f));
 
 

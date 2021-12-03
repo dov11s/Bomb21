@@ -51,7 +51,7 @@ public class PlayerInfo
 		this.size = 40;
 		this.speed = 2.5f;
 		this.baseSpeed = 2.5f;
-		this.health = 3;
+		this.health = 1;
 		this.bombCount = 2;
 		//this.playerStats = new ConcretePlayer();
 	}

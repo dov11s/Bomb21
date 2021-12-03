@@ -112,6 +112,12 @@ public class GameWindow implements UpdateGameDataDelegate
 		int size = 40;
 
 
+
+		if(this.mainPlayer.health < 1){
+
+			Text.drawString("GG", 2, 6, 100, 20);
+		}
+
 		for(SimplifiedPlayer mpPlayer : players.values()) {
 
 			if(this.mainPlayer.id != mpPlayer.id){
