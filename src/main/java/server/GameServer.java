@@ -55,8 +55,6 @@ class GameServer
 		}
 		
 		this.players = new HashMap<Integer, MPPlayer>();
-		this.stage1factory = new Stage1Factory();
-//		this.gameBoard = new GameBoard(stage1factory);
 
 		ChangeLevel(2);
 		
@@ -95,6 +93,7 @@ class GameServer
 				this.gameBoard = new GameBoard(factory, builder);
 				break;
 		}
+		respawnAllPlayers();
 
 
 
@@ -121,6 +120,41 @@ class GameServer
 		return true;
 	}
 
+	public void respawnAllPlayers()
+	
+	{
+		for(MPPlayer p : players.values())
+		{
+			this.respawnPlayer(p);
+		}
+		
+	}
+	
+	public void respawnPlayer(PlayerInfo p)
+	{
+		GameServer gameserver = GameServer.getInstance();
+		boolean teleported = false;
+		int maxRetry = 60;
+		int retry = 0;
+		while (!teleported && retry < maxRetry)
+		{
+			int randomCoordX = getRandomNumber (0, gameserver.gameBoard.gridSize);
+			int randomCoordY = getRandomNumber (0, gameserver.gameBoard.gridSize);
+			if (gameserver.gameBoard.objects[randomCoordX][randomCoordY] instanceof Ground)
+			{
+				p.coordinate.x = randomCoordX * (gameserver.gameBoard.size / gameserver.gameBoard.gridSize);
+				p.coordinate.y = randomCoordY * (gameserver.gameBoard.size / gameserver.gameBoard.gridSize);
+				teleported = true;
+			}
+			retry ++;
+		} 
+	}
+	
+	private int getRandomNumber(int min, int max) 
+	{
+	    return (int) ((Math.random() * (max - min)) + min);
+	}
+	
 	public void updatePlayer(int id, PacketUpdatePlayerPos playerPacket) 
 	{
 		MPPlayer player = players.get(id);
@@ -139,6 +173,7 @@ class GameServer
 	public void addPlayer(MPPlayer player)
 	{
 		this.players.put(player.c.getID(), player);
+		this.respawnPlayer(player);
 		this.network.sendGameBoard(gameBoard, player);
 		
 	}
