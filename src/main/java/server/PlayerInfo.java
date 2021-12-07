@@ -55,6 +55,14 @@ public class PlayerInfo
 		this.bombCount = 2;
 		//this.playerStats = new ConcretePlayer();
 	}
+
+
+	public  void ChangePlayerLocation(int x, int y){
+
+		this.coordinate.x = x;
+		this.coordinate.y = y;
+
+	}
 	
 	public PlayerInfo(int id, Vector2f coordinate)
 	{

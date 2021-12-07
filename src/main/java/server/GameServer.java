@@ -14,8 +14,16 @@ import shared.PacketUpdatePlayerPos;
 class GameServer
 {
 	private static GameServer gameServer = null;
+//
+//	        this.stage1builder = new Stage1Builder(gridSize);
+//        this.stage2builder = new Stage2Builder(gridSize);
+//        this.stage3builder = new Stage3Builder(gridSize);
+//
+
 
 	protected volatile GameBoard gameBoard;
+
+
 	protected volatile Map<Integer, MPPlayer> players;
 	protected volatile Network network;
 	private GameCycleThread thread;
@@ -48,7 +56,9 @@ class GameServer
 		
 		this.players = new HashMap<Integer, MPPlayer>();
 		this.stage1factory = new Stage1Factory();
-		this.gameBoard = new GameBoard(stage1factory);
+//		this.gameBoard = new GameBoard(stage1factory);
+
+		ChangeLevel(2);
 		
 		this.thread = new GameCycleThread();
 		this.thread.start();
@@ -59,6 +69,33 @@ class GameServer
 
 		chain1.setNextChain(chain2);
 		chain2.setNextChain(chain3);
+
+
+	}
+
+
+	public void ChangeLevel(int level){
+		IStageBuilder builder;
+		AbstractFactory factory;
+		switch (level){
+			case 1:
+			default:
+				builder = new Stage1Builder(20);
+				factory = new Stage1Factory();
+				this.gameBoard = new GameBoard(factory, builder);
+				break;
+			case 2:
+				builder = new Stage2Builder(20);
+				factory = new Stage1Factory();
+				this.gameBoard = new GameBoard(factory, builder);
+				break;
+			case 3:
+				builder = new Stage3Builder(20);
+				factory = new Stage1Factory();
+				this.gameBoard = new GameBoard(factory, builder);
+				break;
+		}
+
 
 
 	}
@@ -181,13 +218,25 @@ class GameServer
 
 			String tekstas = "nieko nenuskaityta";
 
+
 			try {
 				if (bufferedReader.ready()){
 					tekstas = bufferedReader.readLine();
 
 					System.out.println("irasytas tekstas " + tekstas);
 
+
+
+
+
+
+					ChangeLevel(Integer.parseInt(tekstas));
+
 					String[] sarasas = tekstas.split(" ");
+
+
+
+
 
 
 					if(sarasas.length > 3){

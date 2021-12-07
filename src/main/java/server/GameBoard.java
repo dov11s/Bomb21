@@ -21,15 +21,13 @@ public class GameBoard implements Cloneable{
     private IStageBuilder stage2builder;
     private IStageBuilder stage3builder;
 
-    public GameBoard(AbstractFactory factory)
+    public GameBoard(AbstractFactory factory, IStageBuilder builder)
     {
         this.factory = factory;
         this.objects = new GameObject[gridSize][gridSize];
-        this.stage1builder = new Stage1Builder(gridSize);
-        this.stage2builder = new Stage2Builder(gridSize);
-        this.stage3builder = new Stage3Builder(gridSize);
 
-        StageDirector stageDirector = new StageDirector(stage3builder);
+
+        StageDirector stageDirector = new StageDirector(builder);
 
         stageDirector.makeStage();
 
