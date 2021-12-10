@@ -29,6 +29,9 @@ class GameServer
 	private GameCycleThread thread;
 	private Stage1Factory stage1factory;
 
+	private int gameLevel;
+	private int counter;
+
 	private Chain chain1;
 	private Chain chain2;
 	private Chain chain3;
@@ -37,15 +40,11 @@ class GameServer
 
 
 	private boolean updateBoard = false;
-	int counter;
+
 	
 	private GameServer()
 	{
-
 		counter = 0;
-
-
-
 
 		//Init Connection
 		if (!initConnection())
@@ -53,11 +52,13 @@ class GameServer
 			System.err.println("ERROR Connecting to host");
 			return;
 		}
-		
+
+		gameLevel = 1;
+
 		this.players = new HashMap<Integer, MPPlayer>();
 
-		ChangeLevel(2);
-		
+		setGameLevel();
+
 		this.thread = new GameCycleThread();
 		this.thread.start();
 
@@ -71,8 +72,35 @@ class GameServer
 
 	}
 
+	public void setGameLevel(){
+
+		if(gameLevel == 3)
+			gameLevel = 1;
+		else
+			gameLevel++;
+
+
+		for(MPPlayer p : players.values())
+		{
+			if(p.coordinate != null){
+				System.out.println("Atstatau gyvyvbes");
+				p.health = p.baseHealth;
+				p.speed = p.baseSpeed;
+
+			}
+		}
+
+
+
+		ChangeLevel(gameLevel);
+
+	}
+
 
 	public void ChangeLevel(int level){
+
+		gameLevel = level;
+
 		IStageBuilder builder;
 		AbstractFactory factory;
 		switch (level){
@@ -93,6 +121,7 @@ class GameServer
 				this.gameBoard = new GameBoard(factory, builder);
 				break;
 		}
+
 		respawnAllPlayers();
 
 
@@ -121,11 +150,14 @@ class GameServer
 	}
 
 	public void respawnAllPlayers()
-	
 	{
 		for(MPPlayer p : players.values())
 		{
-			this.respawnPlayer(p);
+			if(p.coordinate != null){
+				this.respawnPlayer(p);
+			}
+
+
 		}
 		
 	}
@@ -226,18 +258,15 @@ class GameServer
         private void update()
         {
 
+			counter++;
 
 
         	updatePlayers();
         	gameBoard.runTick();
-
-
-			counter++;
-
 			surenkamTeksta();
 
 
-
+			CheckIfPlayerDead();
 
 
 
@@ -245,6 +274,25 @@ class GameServer
 
 
         }
+
+		private void CheckIfPlayerDead(){
+			for(MPPlayer p : players.values())
+			{
+				if(p.coordinate != null){
+					if(p.health == 0){
+						System.out.println("Mires");
+						setGameLevel();
+						break;
+					}
+				}
+
+			}
+
+		}
+
+
+
+
 
 
 		private void surenkamTeksta(){
@@ -256,26 +304,22 @@ class GameServer
 
 			try {
 				if (bufferedReader.ready()){
+
 					tekstas = bufferedReader.readLine();
+
+
 
 					System.out.println("irasytas tekstas " + tekstas);
 
 
 
+					String tekstasLower = tekstas.toLowerCase();
 
 
-
-					ChangeLevel(Integer.parseInt(tekstas));
-
-					String[] sarasas = tekstas.split(" ");
-
-
-
-
+					String[] sarasas = tekstasLower.split(" ");
 
 
 					if(sarasas.length > 3){
-
 						ConversionContext task = new ConversionContext(tekstas);
 
 						String whatToPlace = task.getWhat();
@@ -288,8 +332,34 @@ class GameServer
 						gameBoard = chain1.result(newTask);
 
 						System.out.println(whatToPlace + " How many: " + howManyToPlace);
+					} else if(sarasas.length > 1){
 
+						if(sarasas[0].equals("change") && sarasas[1].equals("level")){
+							int lygis;
+							try {
+								lygis = Integer.parseInt(sarasas[2]);
+
+								if(lygis > 0 && lygis < 4){
+									ChangeLevel(lygis);
+
+								}else {
+									System.out.println("Toks lygis neegzistuoja: " + lygis);
+								}
+
+							} catch (NumberFormatException e) {
+								System.out.println("Toks lygis neegzistuoja: " + sarasas[2]);
+							}
+						}
+						else {
+							System.out.println("Unknown command " + tekstas);
+						}
+
+
+					} else
+					{
+						System.out.println("Unknown command " + tekstas);
 					}
+
 
 
 				}
@@ -299,6 +369,14 @@ class GameServer
 				e.printStackTrace();
 			}
 
+
+
+
+
+
+
+
+
 		}
 
         
@@ -306,23 +384,37 @@ class GameServer
         {
     		for(MPPlayer p : players.values())
     		{
-    			
+
+
+
+
     			if (p.isHoldingSkill)
     			{
     				p.tryUsingSpell();
     			}
     			
     			p.onTick();
+				p.reduceTimer();
     			
 				if (p.isHoldingUse)
 				{
-					gameBoard.SpawnBomb(p);
+
+					if(p.bombTimer < 0){
+						gameBoard.SpawnBomb(p);
+
+						p.setBombTimer(2);
+					}
+
 				}
 				
 				p.coordinate = checkCollision(p);
 				
 				network.sendGameBoard(gameBoard, p);
     			network.sendPlayerInfo(p, true);
+
+
+
+
     		}
         }
         

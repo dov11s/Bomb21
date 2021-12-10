@@ -18,10 +18,12 @@ public class PlayerInfo
 	public boolean isHoldingUnPause;
 	public boolean placedBomb = true;
 	public int health;
+	public int baseHealth;
 	public float speed;
 	public float baseSpeed;
 	public int size;
 	public int bombCount;
+	public int bombTimer;
 
 	private SkillAlgorithm skillAlgorithm;
 	
@@ -32,12 +34,14 @@ public class PlayerInfo
 		int low = 100;
 		int high = 800;
 
+		setBombTimer(1);
+
 
 
 		int x = r.nextInt(high-low) + low;
 		int y = r.nextInt(high-low) + low;
 
-
+		this.baseHealth = 2;
 		this.coordinate = new Vector2f();
 		this.coordinate.x = x;
 		this.coordinate.y = y;
@@ -51,9 +55,18 @@ public class PlayerInfo
 		this.size = 40;
 		this.speed = 2.5f;
 		this.baseSpeed = 2.5f;
-		this.health = 1;
+		this.health = 2;
 		this.bombCount = 2;
 		//this.playerStats = new ConcretePlayer();
+	}
+
+	public void setBombTimer(int time){
+		bombTimer = 60*time;
+	}
+
+
+	public void reduceTimer(){
+		bombTimer--;
 	}
 
 

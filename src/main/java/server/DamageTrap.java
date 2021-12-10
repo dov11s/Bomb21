@@ -19,6 +19,9 @@ public class DamageTrap extends TrapDecorator
 	{
 		GameServer gameserver = GameServer.getInstance();
 		gameserver.players.get(p.id).health --;
+
+
+
 		isDone = true;
 	}
 	
