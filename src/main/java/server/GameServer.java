@@ -53,7 +53,7 @@ class GameServer
 			return;
 		}
 
-		gameLevel = 1;
+		gameLevel = 2;
 
 		this.players = new HashMap<Integer, MPPlayer>();
 
@@ -108,17 +108,17 @@ class GameServer
 			default:
 				builder = new Stage1Builder(20);
 				factory = new Stage1Factory();
-				this.gameBoard = new GameBoard(factory, builder);
+				this.gameBoard = new GameBoard(factory, builder, 1);
 				break;
 			case 2:
 				builder = new Stage2Builder(20);
 				factory = new Stage1Factory();
-				this.gameBoard = new GameBoard(factory, builder);
+				this.gameBoard = new GameBoard(factory, builder, 2);
 				break;
 			case 3:
 				builder = new Stage3Builder(20);
 				factory = new Stage1Factory();
-				this.gameBoard = new GameBoard(factory, builder);
+				this.gameBoard = new GameBoard(factory, builder, 3);
 				break;
 		}
 
@@ -279,7 +279,7 @@ class GameServer
 			for(MPPlayer p : players.values())
 			{
 				if(p.coordinate != null){
-					if(p.health == 0){
+					if(p.health < 1){
 						System.out.println("Mires");
 						setGameLevel();
 						break;
