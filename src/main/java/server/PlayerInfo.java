@@ -25,10 +25,14 @@ public class PlayerInfo
 	public int bombCount;
 	public int bombTimer;
 
+	public int deathCounter;
+
 	private SkillAlgorithm skillAlgorithm;
 	
 	public PlayerInfo()
 	{
+
+		deathCounter = 0;
 
 		Random r = new Random();
 		int low = 100;

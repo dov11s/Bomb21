@@ -15,7 +15,7 @@ class GameServer
 {
 	private static GameServer gameServer = null;
 //
-//	        this.stage1builder = new Stage1Builder(gridSize);
+//	      this.stage1builder = new Stage1Builder(gridSize);
 //        this.stage2builder = new Stage2Builder(gridSize);
 //        this.stage3builder = new Stage3Builder(gridSize);
 //
@@ -280,6 +280,7 @@ class GameServer
 			{
 				if(p.coordinate != null){
 					if(p.health < 1){
+						p.deathCounter +=1;
 						System.out.println("Mires");
 						setGameLevel();
 						break;
