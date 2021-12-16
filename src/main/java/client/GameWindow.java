@@ -1,5 +1,6 @@
 package client;
 
+import java.nio.ByteBuffer;
 import java.util.HashMap;
 import java.util.Map;
 import org.lwjgl.glfw.GLFW;
@@ -8,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 import shared.SimplifiedGameBoard;
 import shared.SimplifiedPlayer;
 import shared.Vector2f;
+import shared.ObjectType;
 
 import org.lwjgl.opengl.GL;
 
@@ -22,9 +24,17 @@ public class GameWindow implements UpdateGameDataDelegate
 	private Network network;
 	private SimplifiedPlayer mainPlayer;
 	private Map<Integer,SimplifiedPlayer> players;
+	
+	//Textures
+	private Sprite drawer;
+	private Sprite				bombSprite;
+	private Sprite				wallSprite;
+	private Sprite				groundSprite;
+	private Sprite				powerupSprite;
+	private Sprite				trapSprite;
 
-
-
+	private TextureLoader	textureLoader;
+	
 	public GameWindow()
 	{
 
@@ -61,7 +71,7 @@ public class GameWindow implements UpdateGameDataDelegate
 
 		return true;
 	}
-	
+
 	private void runGame()
 	{
 		while (GLFW.glfwWindowShouldClose(window) != true)
@@ -86,19 +96,37 @@ public class GameWindow implements UpdateGameDataDelegate
 		GL.createCapabilities();
 		
 		//Init GL
+		// enable textures since we're going to use these for our sprites
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+		// disable the OpenGL depth test since we're rendering 2D graphics
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, SCREEN_LENGTH, 0, SCREEN_WIDTH, -1, 1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		textureLoader = new TextureLoader();
+		initTextures();
 		return true;
 	}
 
+	private void initTextures()
 	
+	{
+		this.bombSprite = getSprite("Tnt.png");
+		this.wallSprite = getSprite("Cobble.png");
+		this.groundSprite = getSprite("Grass.png");
+		this.powerupSprite = getSprite("Powerup.png");
+		this.trapSprite = getSprite("Trap.png");
+	}
 	private void updateScreen()
 	{			
 		GLFW.glfwPollEvents();
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		renderObjects(board);
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		renderPlayers();
 		renderText();
 		GLFW.glfwSwapBuffers(window);
@@ -210,20 +238,28 @@ public class GameWindow implements UpdateGameDataDelegate
 				float red = (float)Integer.valueOf(board.objects[i][j].color.substring(1,3), 16)/255;
 				float green = (float)Integer.valueOf(board.objects[i][j].color.substring(3,5), 16)/255;
 				float blue = (float)Integer.valueOf(board.objects[i][j].color.substring(5,7), 16)/255;
-
-
-
-
-				GL11.glBegin(GL11.GL_QUADS);
-
-					GL11.glColor3f(red,green,blue);
-
-					GL11.glVertex2f(i*sizeX, j*sizeY);
-					GL11.glVertex2f(i*sizeX + sizeX-2, j*sizeY);
-					GL11.glVertex2f(i*sizeX + sizeX-2, j*sizeY + sizeY-2);
-					GL11.glVertex2f(i*sizeX, j*sizeY + sizeY-2);
-
-				GL11.glEnd();
+				switch(board.objects[i][j].type)
+				{
+					case GROUND:
+						drawer = groundSprite;
+					break;
+					case WALL:
+						drawer = wallSprite;
+					break;
+					case TRAP:
+						drawer = trapSprite;
+					break;
+					case POWERUP:
+						drawer = powerupSprite;
+					break;
+					case BOMB:
+						drawer = bombSprite;
+					break;
+				}
+				//GL11.glBindTexture(GL11.GL_TEXTURE_2D,0);
+				drawer.setHeight(sizeY);
+				drawer.setWidth(sizeX);
+				drawer.draw(i*sizeX, j*sizeY, red, green, blue);
 			}
 		}
 
@@ -231,8 +267,6 @@ public class GameWindow implements UpdateGameDataDelegate
 
 	}
 
-
-	
 	private void readKeys()
 	{
 		
@@ -373,6 +407,11 @@ public class GameWindow implements UpdateGameDataDelegate
 	{
 		this.board = gameboard;
 		
+	}
+	
+	public Sprite getSprite(String ref)
+	{
+		return new Sprite(textureLoader, ref);
 	}
 
 }

@@ -169,7 +169,30 @@ public class GameBoard implements Cloneable{
         {
             for (int j = 0; j < this.gridSize; j ++)
             {
-            	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.GROUND);
+            	if (this.objects[i][j] instanceof Ground)
+            	{
+                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.GROUND);	
+            	}
+            	else if (this.objects[i][j] instanceof Wall)
+            	{
+                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.WALL);	
+            	}
+            	else if (this.objects[i][j] instanceof Trap)
+            	{
+                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.TRAP);	
+            	}
+            	else if (this.objects[i][j] instanceof PowerUp)
+            	{
+                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.POWERUP);	
+            	}
+            	else if (this.objects[i][j] instanceof Bomb)
+            	{
+                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.BOMB);	
+            	}
+            	else
+            	{
+                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.GROUND);	
+            	}
             }
         }
         return simpleGameboard;
