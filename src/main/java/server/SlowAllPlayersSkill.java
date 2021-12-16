@@ -12,7 +12,7 @@ public class SlowAllPlayersSkill implements SkillAlgorithm
 	private final int cooldown = 10 * 60; //10 seconds
 	private final String name = "Slow";
 	private int currentCooldown = 0;
-	private final int timer = 4 * 60; //4 seconds
+	private final int timer = 2 * 60; //4 seconds
 	private int currentTimer = 0;
 	protected volatile Map<Integer, SimplifiedPlayer> simplifiedPlayers;
 	@Override

@@ -6,7 +6,7 @@ public class SlowTrap extends TrapDecorator
 	boolean isDone = false;
 	boolean started = false;
 	private PlayerInfo p;
-	private final int timer = 2 * 60; //4 seconds
+	private final int timer = 2 * 60; //2 seconds
 	private int currentTimer = -1;
 	public SlowTrap(TrapEffect trapEffect) 
 	{

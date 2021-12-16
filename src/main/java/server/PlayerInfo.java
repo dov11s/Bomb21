@@ -57,8 +57,8 @@ public class PlayerInfo
 		this.isHoldingUnPause = false;
 		this.skillAlgorithm = new DashSkill();
 		this.size = 40;
-		this.speed = 2.5f;
-		this.baseSpeed = 2.5f;
+		this.speed = 5f;
+		this.baseSpeed = 5f;
 		this.health = 2;
 		this.bombCount = 2;
 		//this.playerStats = new ConcretePlayer();

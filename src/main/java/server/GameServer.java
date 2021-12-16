@@ -392,39 +392,34 @@ class GameServer
         
         private void updatePlayers()
         {
+        	int k = 0;
     		for(MPPlayer p : players.values())
     		{
-
-
-
-
-    			if (p.isHoldingSkill)
+    			if (k!= 0) 
     			{
-    				p.tryUsingSpell();
-    			}
-    			
-    			p.onTick();
-				p.reduceTimer();
-    			
-				if (p.isHoldingUse)
-				{
-
-					if(p.bombTimer < 0){
-						gameBoard.SpawnBomb(p);
-
-						p.setBombTimer(2);
+	    			if (p.isHoldingSkill)
+	    			{
+	    				p.tryUsingSpell();
+	    			}
+	    			
+	    			p.onTick();
+					p.reduceTimer();
+	    			
+					if (p.isHoldingUse)
+					{
+	
+						if(p.bombTimer < 0){
+							gameBoard.SpawnBomb(p);
+	
+							p.setBombTimer(2);
+						}
+	
 					}
-
-				}
-				
-				p.coordinate = checkCollision(p);
-				
-				network.sendGameBoard(gameBoard, p);
-    			network.sendPlayerInfo(p, true);
-
-
-
-
+					p.coordinate = checkCollision(p);
+					network.sendGameBoard(gameBoard, p);
+	    			network.sendPlayerInfo(p, true);
+    			}
+    			k++;
     		}
         }
         
