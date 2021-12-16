@@ -76,9 +76,21 @@ public class GameWindow implements UpdateGameDataDelegate
 	{
 		while (GLFW.glfwWindowShouldClose(window) != true)
 		{
-			readKeys();
-			updateScreen();
-			waitFrame();
+			  long lastTime = System.nanoTime();
+			  //240 times a second
+			    final double ns = 1000000000.0 / 15.0;
+			    double delta = 0;
+			    while(true){
+			        long now = System.nanoTime();
+			        delta += (now - lastTime) / ns;
+			        lastTime = now;
+			        while(delta >= 1){
+			            delta--;
+						readKeys();
+						updateScreen();
+			            }
+			        } 
+
 		}
 	}
 	
@@ -170,16 +182,17 @@ public class GameWindow implements UpdateGameDataDelegate
 	//bad design
 	private void waitFrame()
 	{
-		try 
-		{
-			//around 120 tiems a second
-			Thread.sleep(8L);
-		} 
-		catch (InterruptedException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		  long lastTime = System.nanoTime();
+		    final double ns = 1000000000.0 / 60.0;
+		    double delta = 0;
+		    while(true){
+		        long now = System.nanoTime();
+		        delta += (now - lastTime) / ns;
+		        lastTime = now;
+		        while(delta >= 1){
+		            delta--;
+		            }
+		        } 
 	}
 	private void renderPlayers()
 	{

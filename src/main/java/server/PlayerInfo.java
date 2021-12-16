@@ -65,7 +65,7 @@ public class PlayerInfo
 	}
 
 	public void setBombTimer(int time){
-		bombTimer = 60*time;
+		bombTimer = 30*time;
 	}
 
 

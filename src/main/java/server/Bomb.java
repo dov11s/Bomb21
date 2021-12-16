@@ -7,7 +7,7 @@ public class Bomb extends GameObject implements BombObservable{
 
     private int Timer;
     private int OwnerId;
-    private int ExplosionRadius = 2;
+    private int ExplosionRadius = 3;
     private List<BombObserver> observers = new Stack<BombObserver>();
 
     public Bomb(String color, float alpha, int timer, int ownerid, BombObserver observer){

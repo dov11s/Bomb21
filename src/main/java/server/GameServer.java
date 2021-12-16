@@ -4,9 +4,11 @@ package server;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import shared.Vector2f;
 import shared.PacketUpdatePlayerPos;
@@ -31,7 +33,7 @@ class GameServer
 
 	private int gameLevel;
 	private int counter;
-
+	private boolean readyForNextFrame;
 	private Chain chain1;
 	private Chain chain2;
 	private Chain chain3;
@@ -69,7 +71,7 @@ class GameServer
 		chain1 = new GenerateWalls();
 		chain3 = new GenerateDesWall();
 		chain2 = new GenerateTrap();
-
+		readyForNextFrame = true;
 		chain1.setNextChain(chain2);
 		chain2.setNextChain(chain3);
 
@@ -240,20 +242,18 @@ class GameServer
     	
         public void run()
         {
-        	while (this.isGameRunning)
-        	{    	
-        		try 
-        		{
-        			//Probably should use Timer instead
-        			Thread.sleep(gameSpeed);
-    				this.update();
-    			} 
-        		catch (InterruptedException e)
-        		{
-    				e.printStackTrace();
-    				this.stopGame();
-    			}
-        	}
+            long lastTime = System.nanoTime();
+            final double ns = 1000000000.0 / 60.0;
+            double delta = 0;
+            while(true){
+                long now = System.nanoTime();
+                delta += (now - lastTime) / ns;
+                lastTime = now;
+                while(delta >= 1){
+    				update();
+                    delta--;
+                    }
+                }
         }
         
         public void stopGame()
