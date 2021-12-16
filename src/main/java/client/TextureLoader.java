@@ -101,6 +101,7 @@ public class TextureLoader {
                                             DataBuffer.TYPE_BYTE);
     }
 
+ 
     /**
      * Create a new texture ID
      *
@@ -281,7 +282,7 @@ public class TextureLoader {
         // we are now using good oldfashioned ImageIcon to load
         // images and the paint it on top of a new BufferedImage
         Image img = new ImageIcon(url).getImage();
-        BufferedImage bufferedImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_RGB);
+        BufferedImage bufferedImage = new BufferedImage(img.getWidth(null), img.getHeight(null), BufferedImage.TYPE_INT_ARGB);
         Graphics g = bufferedImage.getGraphics();
         g.drawImage(img, 0, 0, null);
         g.dispose();

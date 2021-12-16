@@ -32,6 +32,7 @@ public class GameWindow implements UpdateGameDataDelegate
 	private Sprite				groundSprite;
 	private Sprite				powerupSprite;
 	private Sprite				trapSprite;
+	private Sprite				fireSprite;
 
 	private TextureLoader	textureLoader;
 	
@@ -99,9 +100,10 @@ public class GameWindow implements UpdateGameDataDelegate
 		// enable textures since we're going to use these for our sprites
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glDepthFunc(GL11.GL_ALWAYS);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		// disable the OpenGL depth test since we're rendering 2D graphics
-		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, SCREEN_LENGTH, 0, SCREEN_WIDTH, -1, 1);
@@ -119,6 +121,7 @@ public class GameWindow implements UpdateGameDataDelegate
 		this.groundSprite = getSprite("Grass.png");
 		this.powerupSprite = getSprite("Powerup.png");
 		this.trapSprite = getSprite("Trap.png");
+		this.fireSprite = getSprite("Fire.png");
 	}
 	private void updateScreen()
 	{			
@@ -225,6 +228,8 @@ public class GameWindow implements UpdateGameDataDelegate
 
 	private void renderObjects(SimplifiedGameBoard board)
 	{
+		GL11.glEnable(GL11.GL_BLEND);
+		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		if (board == null)
 		{
 			return;
@@ -260,6 +265,15 @@ public class GameWindow implements UpdateGameDataDelegate
 				drawer.setHeight(sizeY);
 				drawer.setWidth(sizeX);
 				drawer.draw(i*sizeX, j*sizeY, red, green, blue);
+				GL11.glDisable(GL11.GL_BLEND);
+				if (board.objects[i][j].explodeAnimation == true)
+				{
+					GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+					drawer = fireSprite;
+					drawer.setHeight(sizeY);
+					drawer.setWidth(sizeX);
+					drawer.draw(i*sizeX, j*sizeY, 1, 1, 1);
+				}
 			}
 		}
 

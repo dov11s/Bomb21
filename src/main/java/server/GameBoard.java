@@ -156,8 +156,12 @@ public class GameBoard implements Cloneable{
 
 
 
-    public void ClearTarget(int x, int y){
+    public void ClearTarget(int x, int y, boolean fire){
         this.objects[x][y] = this.factory.createGround();
+        if (fire)
+        {
+        	this.objects[x][y].explodeAnimation = 30;
+        }
         System.out.println("Removing bomb from location " + x + " " + y);
     }
     
@@ -171,27 +175,27 @@ public class GameBoard implements Cloneable{
             {
             	if (this.objects[i][j] instanceof Ground)
             	{
-                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.GROUND);	
+                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.GROUND, this.objects[i][j].explodeAnimation > 0);	
             	}
             	else if (this.objects[i][j] instanceof Wall)
             	{
-                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.WALL);	
+                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.WALL, this.objects[i][j].explodeAnimation > 0);	
             	}
             	else if (this.objects[i][j] instanceof Trap)
             	{
-                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.TRAP);	
+                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.TRAP, this.objects[i][j].explodeAnimation > 0);	
             	}
             	else if (this.objects[i][j] instanceof PowerUp)
             	{
-                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.POWERUP);	
+                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.POWERUP, this.objects[i][j].explodeAnimation > 0);	
             	}
             	else if (this.objects[i][j] instanceof Bomb)
             	{
-                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.BOMB);	
+                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.BOMB, this.objects[i][j].explodeAnimation > 0);	
             	}
             	else
             	{
-                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.GROUND);	
+                	simpleGameboard.objects[i][j] =  new SimplifiedGameObject(this.objects[i][j].color, ObjectType.GROUND, this.objects[i][j].explodeAnimation > 0);	
             	}
             }
         }
@@ -320,12 +324,12 @@ public class GameBoard implements Cloneable{
                         powerUpCounter-=1;
                     }
 
-                    this.ClearTarget(x, y);
+                    this.ClearTarget(x, y, false);
 
 
 
                 }
-
+            	if (objects[x][y].explodeAnimation > 0) objects[x][y].explodeAnimation --;
             	objects[x][y].onTick();
             }
         }

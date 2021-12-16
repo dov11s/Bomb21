@@ -4,6 +4,7 @@ public abstract class GameObject {
     public boolean isWalkable;
     public boolean isDestroyable;
     public boolean isDead;
+    public int explodeAnimation = 0;
     
     GameObjectDelegate gameobjectdelegate;
 

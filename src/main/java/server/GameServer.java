@@ -149,12 +149,28 @@ class GameServer
 		ChangeLevel(gameLevel);
 
 	}
+	public void stopPlayers()
+	{
+		for(MPPlayer p : players.values())
+		{
+			if(p.coordinate != null){
+				p.isHoldingDown = false;
+				p.isHoldingUp = false;
+				p.isHoldingLeft = false;
+				p.isHoldingRight = false;
+				p.isHoldingSkill = false;
+				p.isHoldingUse = false;
+			}
 
+
+		}	
+	}
 
 	public void ChangeLevel(int level){
 
 		levelChangeCounter = 60 * 2;
 
+		stopPlayers();
 		gameLevel = level;
 
 		IStageBuilder builder;
