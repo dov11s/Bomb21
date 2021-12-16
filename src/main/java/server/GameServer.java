@@ -164,10 +164,8 @@ class GameServer
 			{
 				if(p.coordinate != null){
 					if(p.health > 0){
-						p.deathCounter +=1;
-						System.out.println("Mires");
 						//setGameLevel();
-						return p.getName();
+						return String.valueOf(p.c.getID());
 					}
 				}
 			}
@@ -189,7 +187,6 @@ class GameServer
 	
 	
 	public void setGameLevel(){
-
 
 
 
@@ -258,8 +255,8 @@ class GameServer
 				this.gameBoard = new GameBoard(factory, builder, 3);
 				break;
 		}
-
 		respawnAllPlayers();
+		refreshMapForAllPlayers();
 
 
 
@@ -346,7 +343,16 @@ class GameServer
 		this.network.sendGameBoard(gameBoard, player);
 		
 	}
-
+	
+	public void refreshMapForAllPlayers()
+	{
+		for(MPPlayer p : players.values())
+		{
+			network.sendPlayerInfo(p, true);
+			this.network.sendGameBoard(gameBoard, p);
+		}
+	}
+	
 	public void removePlayer(int id) 
 	{
 		

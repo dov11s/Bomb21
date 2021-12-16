@@ -7,10 +7,9 @@ import shared.Vector2f;
 
 public class StateEndingGame extends GameState
 {
-	private final int gameTime = 5;
 	private int timer = 0;
 	private boolean playersDead = false;
-	private int row = 0;
+	private int row = 1;
 	private int column = 1;
 	private int row2 = 1;
 	private int column2 = 1;
@@ -20,7 +19,7 @@ public class StateEndingGame extends GameState
 	{
 		GameServer gameServer = GameServer.getInstance();
 		this.isReadyForNextStage = false;
-		if (timer > gameTime * 60 || playersDead)
+		if (playersDead)
 		{
 			this.isReadyForNextStage = true;
 			this.timer = 0;
@@ -33,13 +32,14 @@ public class StateEndingGame extends GameState
 		}
 		else
 		{
+			timer ++;
 			if (gameServer.checkIfPlayerDead())
 			{
 				this.playersDead = true;
+				gameServer.enableMovement = false;
 			}
 			gameServer.enableMovement = true;
 			placeDeadlyBricks();			
-			this.timer ++;
 		}
 		
 	}
@@ -47,30 +47,30 @@ public class StateEndingGame extends GameState
 	private void placeDeadlyBricks()
 	{
 		GameServer gameServer = GameServer.getInstance();
-		if (timer % 30 == 0)
+		if (timer % 15 == 0)
 		{
-			if (row < gameServer.gameBoard.gridSize)
+			if (row < gameServer.gameBoard.gridSize - 2 - center)
 			{
 				gameServer.gameBoard.addObject(row, column, "wall");
 				this.damagePlayers(new Vector2f(row, column));
 				row ++;
 			}
-			else if(column < gameServer.gameBoard.gridSize)
+			else if(column < gameServer.gameBoard.gridSize - 1 - center)
 			{
 				gameServer.gameBoard.addObject(row, column, "wall");
 				this.damagePlayers(new Vector2f(row, column));
 				column ++;
 			}
-			else if (row2 < gameServer.gameBoard.gridSize)
+			else if (row2 < gameServer.gameBoard.gridSize - 2 - center)
 			{
-				gameServer.gameBoard.addObject(gameServer.gameBoard.gridSize - row2 - 1, column, "wall");
-				this.damagePlayers(new Vector2f(gameServer.gameBoard.gridSize - row2 - 1, column));
+				gameServer.gameBoard.addObject(gameServer.gameBoard.gridSize - row2 - 2, column - 1, "wall");
+				this.damagePlayers(new Vector2f(gameServer.gameBoard.gridSize - row2 - 2, column - 1));
 				row2 ++;
 			}
-			else if(column2 < gameServer.gameBoard.gridSize)
+			else if(column2 < gameServer.gameBoard.gridSize - 4 - center)
 			{
-				gameServer.gameBoard.addObject(gameServer.gameBoard.gridSize - row2 - 1, gameServer.gameBoard.gridSize - column2 - 1, "wall");
-				this.damagePlayers(new Vector2f(gameServer.gameBoard.gridSize - row2 - 1, gameServer.gameBoard.gridSize - column2 - 1));
+				gameServer.gameBoard.addObject(gameServer.gameBoard.gridSize - row2 -1, gameServer.gameBoard.gridSize - column2 - 2, "wall");
+				this.damagePlayers(new Vector2f(gameServer.gameBoard.gridSize - row2 -1, gameServer.gameBoard.gridSize - column2 - 2));
 				column2 ++;
 			}
 			else

@@ -15,9 +15,10 @@ public class StateWaitForPlayers extends GameState
 			{
 				this.timer = 300;
 			}
-			gameServer.network.sendString("Game is starting in.. " + this.timer / 60);
+			gameServer.network.sendString("Game is starting in.. " + (this.timer / 60 + 1));
 			if (timer == 0)
 			{
+				gameServer.network.sendString(null);
 				this.isReadyForNextStage = true;
 				this.timer = -1;
 			}

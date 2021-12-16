@@ -138,7 +138,7 @@ public class GameWindow implements UpdateGameDataDelegate
 	private void renderText() 
 	{
 		Text.drawString("Spell " + this.mainPlayer.skillName + "  Cooldown " + (int)(this.mainPlayer.skillCooldown / 60), 5, 2, 50, 2);
-		Text.drawString("Health " + this.mainPlayer.health, 60, 2, 50, 2);
+		Text.drawString("Player" + this.mainPlayer.id + " Health " + this.mainPlayer.health, 40, 2, 50, 2);
 
 		int size = 40;
 
@@ -170,7 +170,7 @@ public class GameWindow implements UpdateGameDataDelegate
 		
 		if (this.displayString != null)
 		{
-			Text.drawString(this.displayString, 10, 40, 70, 3);
+			Text.drawString(this.displayString, 10, 40, 55, 4);
 		}
 
 

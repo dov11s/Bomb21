@@ -2,7 +2,7 @@ package server;
 
 public class StatePlayGame extends GameState
 {
-	private final int gameTime = 5;
+	private final int gameTime = 60; // 1 minute
 	private int timer = 0;
 	private boolean playersDead = false;
 	
@@ -22,6 +22,7 @@ public class StatePlayGame extends GameState
 			if (gameServer.checkIfPlayerDead())
 			{
 				this.playersDead = true;
+				gameServer.enableMovement = false;
 			}
 			gameServer.enableMovement = true;
 			this.timer ++;
