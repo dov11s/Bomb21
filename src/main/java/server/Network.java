@@ -12,6 +12,7 @@ import shared.SimplifiedGameObject;
 import shared.ObjectType;
 import shared.PacketAddPlayer;
 import shared.PacketRemovePlayer;
+import shared.PacketSendString;
 import shared.PacketUpdateGameBoard;
 import shared.Vector2f;
 
@@ -35,6 +36,7 @@ public class Network extends Listener
 			this.server.getKryo().register(SimplifiedGameObject[].class);
 			this.server.getKryo().register(SimplifiedGameObject[][].class);
 			this.server.getKryo().register(Vector2f.class);
+			this.server.getKryo().register(PacketSendString.class);
 			this.server.bind(this.port, this.port);
 			this.server.addListener(this);
 			this.server.start();
@@ -86,6 +88,12 @@ public class Network extends Listener
 			PacketUpdateGameBoard packet = new PacketUpdateGameBoard(simpleGameboard);
 			this.server.sendToUDP(player.c.getID(), packet);
 		}
+	}
+	
+	public void sendString(String text)
+	{
+		PacketSendString packet = new PacketSendString(text);
+		this.server.sendToAllUDP(packet);
 	}
 	
 	public void received(Connection connection, Object object)

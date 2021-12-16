@@ -9,4 +9,5 @@ public interface UpdateGameDataDelegate
 	public void addPlayer(int id, SimplifiedPlayer player);
 	public void removePlayer(int id);
 	public void updateBoard(SimplifiedGameBoard gameboard);
+	public void updateDisplayString(String text);
 }

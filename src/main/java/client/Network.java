@@ -10,6 +10,7 @@ import shared.PacketUpdatePlayerPos;
 import shared.ObjectType;
 import shared.PacketAddPlayer;
 import shared.PacketRemovePlayer;
+import shared.PacketSendString;
 import shared.PacketUpdateGameBoard;
 import shared.SimplifiedGameBoard;
 import shared.SimplifiedGameObject;
@@ -40,6 +41,7 @@ public class Network extends Listener
 		this.client.getKryo().register(SimplifiedGameObject[].class);
 		this.client.getKryo().register(SimplifiedGameObject[][].class);
 		this.client.getKryo().register(Vector2f.class);
+		this.client.getKryo().register(PacketSendString.class);
 		this.client.addListener(this);
 	
 		this.client.start();
@@ -84,6 +86,12 @@ public class Network extends Listener
 		{
 			PacketUpdateGameBoard packet = (PacketUpdateGameBoard) object;
 			updateGameDataDelegate.updateBoard(packet.gameBoard);
+		}
+		else if (object instanceof PacketSendString)
+		{
+			PacketSendString packet = (PacketSendString) object;
+			updateGameDataDelegate.updateDisplayString(packet.text);
+			
 		}
 	}
 	

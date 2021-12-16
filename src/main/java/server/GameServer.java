@@ -25,6 +25,7 @@ class GameServer
 
 	protected volatile GameBoard gameBoard;
 
+	protected GameState currentState;
 
 	protected volatile Map<Integer, MPPlayer> players;
 	protected volatile Network network;
@@ -38,7 +39,7 @@ class GameServer
 	private Chain chain2;
 	private Chain chain3;
 	private Chain chain4;
-
+	public boolean enableMovement = false;
 
 	public ItemComponent powerUp;
 
@@ -120,9 +121,73 @@ class GameServer
 		chain1.setNextChain(chain2);
 		chain2.setNextChain(chain3);
 
+		GameState waitForPlayersState = new StateWaitForPlayers();
+		GameState playGameState = new StatePlayGame();
+		GameState endingGameState = new StateEndingGame();
+		GameState changingMapState = new StateChangingMap();
+		
+		waitForPlayersState.setNextState(playGameState);
+		playGameState.setNextState(endingGameState);
+		endingGameState.setNextState(changingMapState);
+		changingMapState.setNextState(waitForPlayersState);	
+		currentState = waitForPlayersState;
+		
+		
+	}
+	
+	protected GameServer getContext()
+	{
+		return this;
+	}
+	
+	public boolean checkIfPlayerDead(){
+		for(MPPlayer p : players.values())
+		{
+			if(p.coordinate != null){
+				if(p.health < 1){
+					p.deathCounter +=1;
+					System.out.println("Mires");
+					//setGameLevel();
+					return true;
+				}
+			}
+		}
+		return false;
 
 	}
+	
+	public String getWinner(){
+		boolean firstCycle = true;
+		for(MPPlayer p : players.values())
+		{
+			if (!firstCycle)
+			{
+				if(p.coordinate != null){
+					if(p.health > 0){
+						p.deathCounter +=1;
+						System.out.println("Mires");
+						//setGameLevel();
+						return p.getName();
+					}
+				}
+			}
+			firstCycle = false;
+		}
+		return "None";
 
+	}
+	
+	public int getConnectedPlayerCount(){
+		return players.size();
+
+	}
+	//nustatome sekancia busena
+	public void setState(GameState nextState) 
+	{
+		this.currentState = nextState;		
+	}
+	
+	
 	public void setGameLevel(){
 
 
@@ -330,39 +395,26 @@ class GameServer
 
 			counter++;
 			levelChangeCounter--;
-
-        	updatePlayers();
-        	gameBoard.runTick();
+			currentState.handleUpdate();
+			if (currentState.isReadyForNextStage())
+			{
+				currentState.getNextState(getContext());
+			}
+			
+			if (enableMovement)
+			{
+	        	updatePlayers();
+	        	gameBoard.runTick();
+			}
 			surenkamTeksta();
 
 
-			CheckIfPlayerDead();
-
-
+			checkIfPlayerDead();
 
 
 
 
         }
-
-		private void CheckIfPlayerDead(){
-			for(MPPlayer p : players.values())
-			{
-				if(p.coordinate != null){
-					if(p.health < 1){
-						p.deathCounter +=1;
-						System.out.println("Mires");
-						setGameLevel();
-						break;
-					}
-				}
-
-			}
-
-		}
-
-
-
 
 
 

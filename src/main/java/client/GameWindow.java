@@ -24,7 +24,7 @@ public class GameWindow implements UpdateGameDataDelegate
 	private Network network;
 	private SimplifiedPlayer mainPlayer;
 	private Map<Integer,SimplifiedPlayer> players;
-	
+	private String displayString = null;
 	//Textures
 	private Sprite drawer;
 	private Sprite				bombSprite;
@@ -149,7 +149,8 @@ public class GameWindow implements UpdateGameDataDelegate
 			Text.drawString("GG", 2, 6, 100, 20);
 		}
 
-		for(SimplifiedPlayer mpPlayer : players.values()) {
+		for(SimplifiedPlayer mpPlayer : players.values()) 
+		{
 
 			if(this.mainPlayer.id != mpPlayer.id){
 
@@ -165,6 +166,11 @@ public class GameWindow implements UpdateGameDataDelegate
 
 			}
 
+		}
+		
+		if (this.displayString != null)
+		{
+			Text.drawString(this.displayString, 10, 40, 70, 3);
 		}
 
 
@@ -426,6 +432,13 @@ public class GameWindow implements UpdateGameDataDelegate
 	public Sprite getSprite(String ref)
 	{
 		return new Sprite(textureLoader, ref);
+	}
+
+	@Override
+	public void updateDisplayString(String text) 
+	{
+		this.displayString = text;
+		
 	}
 
 }
