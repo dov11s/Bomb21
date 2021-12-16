@@ -40,6 +40,22 @@ class GameServer
 	private Chain chain4;
 
 
+	public ItemComponent powerUp;
+
+	public ItemComponent everyItem;
+
+	public Item dash;
+	public Item teleport;
+	public Item jump;
+	public Item slowDown;
+
+	public Item bomb;
+
+
+
+	public ItemList items;
+
+
 	private int levelChangeCounter;
 
 
@@ -48,6 +64,35 @@ class GameServer
 	
 	private GameServer()
 	{
+
+		powerUp = new ItemGroup("Powerup", "holds all powerUps");
+
+		everyItem = new ItemGroup("Item list", "This is the list that hold PowerUps and Walls");
+
+
+
+		dash = new Item("Dash", "Player moves fast", 0);
+		teleport = new Item("Teleport", "Player teleports", 0);
+		slowDown = new Item("SlowDown", "Enemy get slowed down", 0);
+		jump = new Item("Jump", "Player is capable of jumping over walls", 0);
+
+		bomb = new Item("Bomb", "Dangerous item", 0);
+
+
+		everyItem.add(powerUp);
+
+		powerUp.add(dash);
+		powerUp.add(teleport);
+		powerUp.add(slowDown);
+		powerUp.add(jump);
+
+		everyItem.add(bomb);
+
+
+
+		items = new ItemList(everyItem);
+
+
 		counter = 0;
 
 		levelChangeCounter = 0;
@@ -395,25 +440,25 @@ class GameServer
         	int k = 0;
     		for(MPPlayer p : players.values())
     		{
-    			if (k!= 0) 
+    			if (k!= 0)
     			{
 	    			if (p.isHoldingSkill)
 	    			{
 	    				p.tryUsingSpell();
 	    			}
-	    			
+
 	    			p.onTick();
 					p.reduceTimer();
-	    			
+
 					if (p.isHoldingUse)
 					{
-	
+
 						if(p.bombTimer < 0){
 							gameBoard.SpawnBomb(p);
-	
+
 							p.setBombTimer(2);
 						}
-	
+
 					}
 					p.coordinate = checkCollision(p);
 					network.sendGameBoard(gameBoard, p);

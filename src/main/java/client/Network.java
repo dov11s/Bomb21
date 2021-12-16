@@ -22,6 +22,7 @@ public class Network extends Listener
 
 	UpdateGameDataDelegate updateGameDataDelegate;
 	Client client;
+	//String ip = "158.129.18.31";
 	String ip = "localhost";
 	int port = 27960;
 	
