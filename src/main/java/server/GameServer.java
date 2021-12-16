@@ -38,6 +38,8 @@ class GameServer
 	private Chain chain4;
 
 
+	private int levelChangeCounter;
+
 
 	private boolean updateBoard = false;
 
@@ -45,6 +47,8 @@ class GameServer
 	private GameServer()
 	{
 		counter = 0;
+
+		levelChangeCounter = 0;
 
 		//Init Connection
 		if (!initConnection())
@@ -74,6 +78,9 @@ class GameServer
 
 	public void setGameLevel(){
 
+
+
+
 		if(gameLevel == 3)
 			gameLevel = 1;
 		else
@@ -98,6 +105,8 @@ class GameServer
 
 
 	public void ChangeLevel(int level){
+
+		levelChangeCounter = 60 * 2;
 
 		gameLevel = level;
 
@@ -190,7 +199,7 @@ class GameServer
 	public void updatePlayer(int id, PacketUpdatePlayerPos playerPacket) 
 	{
 		MPPlayer player = players.get(id);
-		if (player != null) 
+		if (player != null && levelChangeCounter < 0)
 		{
 			player.isHoldingUp = playerPacket.isHoldingUp != null ? playerPacket.isHoldingUp : player.isHoldingUp;
 			player.isHoldingDown = playerPacket.isHoldingDown != null ? playerPacket.isHoldingDown : player.isHoldingDown;
@@ -259,7 +268,7 @@ class GameServer
         {
 
 			counter++;
-
+			levelChangeCounter--;
 
         	updatePlayers();
         	gameBoard.runTick();
