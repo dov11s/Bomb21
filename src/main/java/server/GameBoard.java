@@ -1,6 +1,7 @@
 package server;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import shared.*;
@@ -157,12 +158,37 @@ public class GameBoard implements Cloneable{
 
 
     public void ClearTarget(int x, int y, boolean fire){
+
+//        if(fire){
+//            this.objects[x][y] = this.factory.createGround();
+//            this.objects[x][y].explodeAnimation = 30;
+//        }else
+//            this.objects[x][y] = this.factory.createGround();
+
         this.objects[x][y] = this.factory.createGround();
-        if (fire)
-        {
-        	this.objects[x][y].explodeAnimation = 30;
+        System.out.println("Removing Item from location " + x + " " + y);
+    }
+
+    public void ClearTarget(List<Vector2f> bLoc){
+
+        for (Vector2f xy : bLoc){
+
+            if((int)xy.x < gridSize-1 && (int)xy.y < gridSize-1){
+                this.objects[(int)xy.x][(int)xy.y] = this.factory.createGround();
+                this.objects[(int)xy.x][(int)xy.y].explodeAnimation = 30;
+            }
+
+
+
+//            if(this.objects[(int)xy.x][(int)xy.y]  instanceof Ground && this.objects[(int)xy.x][(int)xy.y]  instanceof Wall){
+//                this.objects[(int)xy.x][(int)xy.y] = this.factory.createGround();
+//                this.objects[(int)xy.x][(int)xy.y].explodeAnimation = 30;
+//            }
+
+
+
         }
-        System.out.println("Removing bomb from location " + x + " " + y);
+
     }
     
     public SimplifiedGameBoard getSimpleGameBoard()

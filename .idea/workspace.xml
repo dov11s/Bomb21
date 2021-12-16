@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="2212b387-cd80-4167-9009-28578dd54429" name="Changes" comment="Bomb Observer (Not tied to bomb atm)&#10;Factories store color scheme">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/Network.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Network.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/GameServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Client/Network.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Client/Network.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/BombObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/BombObserver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/GameBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/client/GameWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/client/GameWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/server/GameServer$GameCycleThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/GameServer$GameCycleThread.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/server/GameServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/GameServer.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,9 +41,6 @@
     <setting file="file://$PROJECT_DIR$/src/main/java/server/MPPlayer.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/shared/Packet.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/server/GameObjectDelegate.java" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="ProblemsViewState">
-    <option name="selectedIndex" value="1" />
   </component>
   <component name="ProjectId" id="1zN3MikwFA6uf313o0I4RgwEThv" />
   <component name="ProjectLevelVcsManager">

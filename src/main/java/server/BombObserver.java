@@ -129,66 +129,89 @@ public class BombObserver implements BombObserverInterface {
 
         List<Vector2f> bLoc = new ArrayList<>();
 
+
+//        this.gameBoard.ClearTarget(2, 4, true);
+//        this.gameBoard.ClearTarget(3, 4, true);
+//        this.gameBoard.ClearTarget(4, 4, true);
+//
+//        this.gameBoard.ClearTarget(5, 4, true);
+//
+//        this.gameBoard.ClearTarget(6, 4, true);
+//        this.gameBoard.ClearTarget(7, 4, true);
+//        this.gameBoard.ClearTarget(8, 4, true);
+//        this.gameBoard.ClearTarget(9, 4, true);
+//        this.gameBoard.ClearTarget(10, 4, true);
+//
+//
+//        this.gameBoard.ClearTarget(5, 2, true);
+//        this.gameBoard.ClearTarget(5, 3, true);
+//        this.gameBoard.ClearTarget(5, 4, true);
+//
+//        this.gameBoard.ClearTarget(5, 5, true);
+//
+//        this.gameBoard.ClearTarget(5, 6, true);
+//        this.gameBoard.ClearTarget(5, 7, true);
+//        this.gameBoard.ClearTarget(5, 8, true);
+
+
+
         for(int x = 0; x < this.gameBoard.gridSize; x++)
         {
             for (int y = 0; y < this.gameBoard.gridSize; y++)
                 if (this.gameBoard.objects[x][y] == bomb) {
                     for (int i = 0; i <= bomb.explosionRadius(); i++) {
                         //TODO: Make a sophisticated explosion radius calculation
-                        this.gameBoard.ClearTarget(x, y, true);
-
 
                         if (i == 0) {
-                            this.gameBoard.ClearTarget(x, y,true);
+                            this.gameBoard.ClearTarget(x, y, true);
                             bLoc.add(new Vector2f(x, y));
 
 
                         } else {
-                            if (x + i < this.gameBoard.gridSize && right == 0) {                             
-                                this.gameBoard.objects[x + i][y].onDamage();
-                                this.gameBoard.objects[x + i][y].explodeAnimation = 30;
-                                bLoc.add(new Vector2f(x+i, y));
+                            if (x + i < this.gameBoard.gridSize && right == 0) {
 
+                                this.gameBoard.objects[x + i][y].onDamage();
+                                bLoc.add(new Vector2f(x+i, y));
                                 System.out.println("Bomba is kaires");
 
                                 if (this.gameBoard.objects[x + i][y].isDead) {
-                                    this.gameBoard.ClearTarget(x + 1, y, true);
+                                    this.gameBoard.ClearTarget(x + i, y, true);
                                     right++;
 
                                 }
 
                             }
                             if (y + i < this.gameBoard.gridSize && up == 0) {
-                                this.gameBoard.objects[x][y + i].onDamage();
-                                this.gameBoard.objects[x][y + i].explodeAnimation = 30;
-                                bLoc.add(new Vector2f(x, y+i));
 
+                                this.gameBoard.objects[x][y + i].onDamage();
+                                bLoc.add(new Vector2f(x, y+i));
                                 System.out.println("Bomba is apacios");
 
                                 if (this.gameBoard.objects[x][y + i].isDead) {
-                                    this.gameBoard.ClearTarget(x, y + 1, true);
+                                    this.gameBoard.ClearTarget(x, y + i, true);
                                     up++;
 
                                 }
                             }
-                            if (x - i > 0 && left == 0) {                        
+                            if (x - i > 0 && left == 0) {
+
                                 this.gameBoard.objects[x - i][y].onDamage();
-                                this.gameBoard.objects[x - i][y].explodeAnimation = 30;
                                 bLoc.add(new Vector2f(x-i, y));
                                 System.out.println("Bomba is desines");
+
                                 if (this.gameBoard.objects[x - i][y].isDead) {
-                                    this.gameBoard.ClearTarget(x - 1, y, true);
+                                    this.gameBoard.ClearTarget(x - i, y, true);
                                     left++;
 
                                 }
                             }
                             if (y - i > 0 && down == 0) {
                                 this.gameBoard.objects[x][y - i].onDamage();
-                                this.gameBoard.objects[x][y - i].explodeAnimation = 30;
                                 bLoc.add(new Vector2f(x, y-i));
                                 System.out.println("Bomba is virsaus");
+
                                 if (this.gameBoard.objects[x][y - i].isDead) {
-                                    this.gameBoard.ClearTarget(x, y - 1, true);
+                                    this.gameBoard.ClearTarget(x, y - i, true);
                                     down++;
 
                                 }
@@ -202,5 +225,6 @@ public class BombObserver implements BombObserverInterface {
         }
 
         damagePlayers(bLoc);
+        this.gameBoard.ClearTarget(bLoc);
     }
 }
