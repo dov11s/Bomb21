@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2212b387-cd80-4167-9009-28578dd54429" name="Changes" comment="Bomb Observer (Not tied to bomb atm)&#10;Factories store color scheme">
+      <change afterPath="$PROJECT_DIR$/src/main/java/server/PastPowUp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/BombObserver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/BombObserver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/DashSkill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/DashSkill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/GameServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/GameServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/GoingBackInTimeSkill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/GoingBackInTimeSkill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/JumpSkill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/JumpSkill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/SlowAllPlayersSkill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/SlowAllPlayersSkill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/TeleportSkill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/TeleportSkill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/client/GameWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/client/GameWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/server/GameServer$GameCycleThread.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/GameServer$GameCycleThread.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/server/GameServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/server/GameServer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/PowUpFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/PowUpFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/PowerUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/PowerUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Stage1Factory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Stage1Factory.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

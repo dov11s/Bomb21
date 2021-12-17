@@ -47,7 +47,7 @@ public class Stage1Factory extends AbstractFactory{
         PowUp powUp = null;
 
         Random rand = new Random();
-        int randomNum = rand.nextInt((4 - 1) + 1) + 1;
+        int randomNum = rand.nextInt((5 - 1) + 1) + 1;
 
         powUp = powFactory.makePowUp(randomNum);
 

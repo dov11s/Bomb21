@@ -57,6 +57,9 @@ public class PowerUp extends GameObject
 				else if(powUp.getName().equals("Teleport"))
 					gameServer.players.get(player.id).setSkillAlgorithm(new TeleportSkill());
 
+                else if(powUp.getName().equals("Past"))
+                    gameServer.players.get(player.id).setSkillAlgorithm(new GoingBackInTimeSkill());
+
 
 
 

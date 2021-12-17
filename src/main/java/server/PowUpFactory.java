@@ -15,6 +15,8 @@ public class PowUpFactory {
 
         else if(4 == newPowUpType)
             return  new TeleportPowUp();
+        else if(5 == newPowUpType)
+            return  new PastPowUp();
 
         return  newPowUp;
     }
