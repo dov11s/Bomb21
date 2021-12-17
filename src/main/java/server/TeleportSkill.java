@@ -13,6 +13,7 @@ public class TeleportSkill implements SkillAlgorithm
 	{
 		if (this.currentCooldown == 0)
 		{
+			GameServer.getInstance().teleport.increaseCount();
 			GameServer gameserver = GameServer.getInstance();
 			boolean teleported = false;
 			int maxRetry = 60;

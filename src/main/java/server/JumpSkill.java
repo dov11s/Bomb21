@@ -12,6 +12,8 @@ public class JumpSkill implements SkillAlgorithm
 	{
 		if (this.currentCooldown == 0)
 		{
+			GameServer.getInstance().jump.increaseCount();
+
 			this.state = 2;
 			this.currentCooldown = this.cooldown;
 		}

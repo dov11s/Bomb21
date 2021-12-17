@@ -21,6 +21,7 @@ public class SlowAllPlayersSkill implements SkillAlgorithm
 		if (this.currentCooldown == 0)
 		{
 			GameServer gameserver = GameServer.getInstance();
+			gameserver.slowDown.increaseCount();
 			simplifiedPlayers = new HashMap<Integer, SimplifiedPlayer>();
     		for(MPPlayer singlePlayer : gameserver.players.values())
     		{

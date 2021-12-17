@@ -17,6 +17,9 @@ public class GoingBackInTimeSkill implements SkillAlgorithm
 		
 		if (this.currentCooldown == 0)
 		{
+
+			GameServer.getInstance().past.increaseCount();
+
 			this.careTaker = new Caretaker();
 			p.canDie = false;
 			this.currentTimer = timer;

@@ -136,6 +136,9 @@ public class GameBoard implements Cloneable{
         int y = Math.round(player.coordinate.y/(size/gridSize));
         this.objects[x][y] = this.factory.createBomb(player.id);
 
+        GameServer server = GameServer.getInstance();
+
+        server.bomb.increaseCount();
     }
 
     public void spawnWall()

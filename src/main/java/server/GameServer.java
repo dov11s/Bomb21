@@ -49,8 +49,12 @@ class GameServer
 	public Item teleport;
 	public Item jump;
 	public Item slowDown;
+	public Item past;
 
 	public Item bomb;
+
+
+	public Item wall;
 
 
 
@@ -66,18 +70,21 @@ class GameServer
 	private GameServer()
 	{
 
-		powerUp = new ItemGroup("Powerup", "holds all powerUps");
+		powerUp = new ItemGroup("Powerup", "Folder that has all powerups that have been used");
 
-		everyItem = new ItemGroup("Item list", "This is the list that hold PowerUps and Walls");
+		everyItem = new ItemGroup("Item list", "This is the list that hold data of PowerUps, Walls and Bombs");
 
 
 
-		dash = new Item("Dash", "Player moves fast", 0);
-		teleport = new Item("Teleport", "Player teleports", 0);
-		slowDown = new Item("SlowDown", "Enemy get slowed down", 0);
-		jump = new Item("Jump", "Player is capable of jumping over walls", 0);
+		dash = new Item("Dash", "Player moves fast. ", 0);
+		teleport = new Item("Teleport", "Player teleports. ", 0);
+		slowDown = new Item("SlowDown", "Enemy get slowed down. ", 0);
+		jump = new Item("Jump", "Player is capable of jumping over walls. ", 0);
+		past = new Item("Past", "Player is time traveler. ", 0);
 
-		bomb = new Item("Bomb", "Dangerous item", 0);
+
+		bomb = new Item("Bomb", "Dangerous item. ", 0);
+		wall = new Item("Wall", "Blocks players path. ", 0);
 
 
 		everyItem.add(powerUp);
@@ -86,12 +93,15 @@ class GameServer
 		powerUp.add(teleport);
 		powerUp.add(slowDown);
 		powerUp.add(jump);
+		powerUp.add(past);
 
 		everyItem.add(bomb);
+		everyItem.add(wall);
 
 
 
 		items = new ItemList(everyItem);
+
 
 
 		counter = 0;
@@ -448,7 +458,12 @@ class GameServer
 					String[] sarasas = tekstasLower.split(" ");
 
 
-					if(sarasas.length > 3){
+					if(sarasas.length == 1){
+
+						items.getItemList();
+
+					}
+					else if(sarasas.length > 3){
 						ConversionContext task = new ConversionContext(tekstas);
 
 						String whatToPlace = task.getWhat();

@@ -164,6 +164,7 @@ public class BombObserver implements BombObserverInterface {
 
                         if (i == 0) {
                             this.gameBoard.ClearTarget(x, y, true);
+                            GameServer.getInstance().wall.increaseCount();
                             bLoc.add(new Vector2f(x, y));
 
 
@@ -176,6 +177,7 @@ public class BombObserver implements BombObserverInterface {
 
                                 if (this.gameBoard.objects[x + i][y].isDead) {
                                     this.gameBoard.ClearTarget(x + i, y, true);
+                                    GameServer.getInstance().wall.increaseCount();
                                     right++;
 
                                 }
@@ -189,6 +191,7 @@ public class BombObserver implements BombObserverInterface {
 
                                 if (this.gameBoard.objects[x][y + i].isDead) {
                                     this.gameBoard.ClearTarget(x, y + i, true);
+                                    GameServer.getInstance().wall.increaseCount();
                                     up++;
 
                                 }
@@ -201,6 +204,7 @@ public class BombObserver implements BombObserverInterface {
 
                                 if (this.gameBoard.objects[x - i][y].isDead) {
                                     this.gameBoard.ClearTarget(x - i, y, true);
+                                    GameServer.getInstance().wall.increaseCount();
                                     left++;
 
                                 }
@@ -212,6 +216,7 @@ public class BombObserver implements BombObserverInterface {
 
                                 if (this.gameBoard.objects[x][y - i].isDead) {
                                     this.gameBoard.ClearTarget(x, y - i, true);
+                                    GameServer.getInstance().wall.increaseCount();
                                     down++;
 
                                 }

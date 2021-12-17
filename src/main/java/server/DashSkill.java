@@ -17,6 +17,7 @@ public class DashSkill implements SkillAlgorithm
 	{
 		if (this.currentCooldown == 0)
 		{
+			GameServer.getInstance().dash.increaseCount();
 			this.currentTimer = timer;
 			this.currentCooldown = this.cooldown;
 			this.previousSpeed = p.speed;
