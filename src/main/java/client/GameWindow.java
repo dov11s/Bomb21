@@ -23,18 +23,16 @@ public class GameWindow implements UpdateGameDataDelegate
 	private SimplifiedGameBoard board;
 	private Network network;
 	private SimplifiedPlayer mainPlayer;
-	private Map<Integer,SimplifiedPlayer> players;
+	private Map<Integer,ClientPlayer> players;
 	private String displayString = null;
 	//Textures
-	private Sprite drawer;
-	private Sprite				bombSprite;
-	private Sprite				wallSprite;
-	private Sprite				groundSprite;
-	private Sprite				powerupSprite;
-	private Sprite				trapSprite;
-	private Sprite				fireSprite;
-
-	private TextureLoader	textureLoader;
+	private ImageFile				bombSprite;
+	private ImageFile				wallSprite;
+	private ImageFile				groundSprite;
+	private ImageFile				powerupSprite;
+	private ImageFile				trapSprite;
+	private ImageFile				fireSprite;
+	private ImageFile				playerSprite;
 	
 	public GameWindow()
 	{
@@ -55,11 +53,21 @@ public class GameWindow implements UpdateGameDataDelegate
 		
 		
 		this.mainPlayer = new SimplifiedPlayer(this.network.client.getID());
-		this.players = new HashMap<Integer,SimplifiedPlayer>();
+		this.players = new HashMap<Integer,ClientPlayer>();
 		runGame();
 	}
 
 
+	private void initProxies(int size)
+	{
+		bombSprite = new ImageProxy("Tnt.png", size, size);
+		wallSprite = new ImageProxy("Cobble.png",size,size);
+		groundSprite =  new ImageProxy("Grass.png",size,size);
+		powerupSprite = new ImageProxy("Powerup.png",size,size);
+		trapSprite = new ImageProxy("Trap.png", size,size);
+		fireSprite = new ImageProxy("Fire.png",size,size);
+		playerSprite = new ImageProxy("Player.jpg", 40, 40);
+	}
 	
 	private boolean initConnection()
 	{		
@@ -108,20 +116,7 @@ public class GameWindow implements UpdateGameDataDelegate
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, SCREEN_LENGTH, 0, SCREEN_WIDTH, -1, 1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
-		textureLoader = new TextureLoader();
-		initTextures();
 		return true;
-	}
-
-	private void initTextures()
-	
-	{
-		this.bombSprite = getSprite("Tnt.png");
-		this.wallSprite = getSprite("Cobble.png");
-		this.groundSprite = getSprite("Grass.png");
-		this.powerupSprite = getSprite("Powerup.png");
-		this.trapSprite = getSprite("Trap.png");
-		this.fireSprite = getSprite("Fire.png");
 	}
 	private void updateScreen()
 	{			
@@ -129,8 +124,8 @@ public class GameWindow implements UpdateGameDataDelegate
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		renderObjects(board);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		renderPlayers();
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		renderText();
 		GLFW.glfwSwapBuffers(window);
 	}
@@ -159,10 +154,7 @@ public class GameWindow implements UpdateGameDataDelegate
 					float x = mpPlayer.coordinate.x*4/size;
 					float y = mpPlayer.coordinate.y*4/size;
 
-					Text.drawString("enemy",x- 8/10 ,y-1 , size, 2);
 				}
-
-
 
 			}
 
@@ -192,43 +184,9 @@ public class GameWindow implements UpdateGameDataDelegate
 	}
 	private void renderPlayers()
 	{
-		//Render player
-		GL11.glColor3f(0f,(float)(255/255),(float)(127/255));
-//		GL11.glBegin(GL11.GL_TRIANGLES);
-//		GL11.glVertex2f(this.mainPlayer.coordinate.x, mainPlayer.coordinate.y+this.mainPlayer.size);
-//		GL11.glVertex2f(this.mainPlayer.coordinate.x+this.mainPlayer.size, mainPlayer.coordinate.y-this.mainPlayer.size);
-//		GL11.glVertex2f(this.mainPlayer.coordinate.x-this.mainPlayer.size, mainPlayer.coordinate.y-this.mainPlayer.size);
-//		GL11.glEnd();
-
-		GL11.glBegin(GL11.GL_QUADS);
-		GL11.glVertex2f(this.mainPlayer.coordinate.x, this.mainPlayer.coordinate.y);
-		GL11.glVertex2f( this.mainPlayer.coordinate.x + this.mainPlayer.size, this.mainPlayer.coordinate.y);
-		GL11.glVertex2f(this.mainPlayer.coordinate.x + this.mainPlayer.size, this.mainPlayer.coordinate.y + this.mainPlayer.size);
-		GL11.glVertex2f(this.mainPlayer.coordinate.x, this.mainPlayer.coordinate.y + this.mainPlayer.size);
-		GL11.glEnd();
-
-
-		//Render other players
-		//GL11.glColor3f(1, 1, 0);
-
-		GL11.glColor3f(0.98f,0.5f,0.447f);
-		//GL11.glBegin(GL11.GL_TRIANGLES);
-		GL11.glBegin(GL11.GL_QUADS);
-		for(SimplifiedPlayer mpPlayer : players.values()){
-
-			if (mpPlayer.coordinate != null)
-			{
-				GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y);
-				GL11.glVertex2f(mpPlayer.coordinate.x + mpPlayer.size, mpPlayer.coordinate.y);
-				GL11.glVertex2f(mpPlayer.coordinate.x + mpPlayer.size, mpPlayer.coordinate.y + mpPlayer.size);
-				GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y + mpPlayer.size);
-	
-	//			GL11.glVertex2f(mpPlayer.coordinate.x, mpPlayer.coordinate.y+mpPlayer.size);
-	//			GL11.glVertex2f(mpPlayer.coordinate.x+mpPlayer.size, mpPlayer.coordinate.y-mpPlayer.size);
-	//			GL11.glVertex2f(mpPlayer.coordinate.x-mpPlayer.size, mpPlayer.coordinate.y-mpPlayer.size);
-			}
+		for(ClientPlayer mpPlayer : players.values()){
+			mpPlayer.getSprite().drawImage((int)mpPlayer.coordinate.x, (int)mpPlayer.coordinate.y, 0f,(float)(255/255),(float)(127/255));
 		}
-		GL11.glEnd();
 	}
 
 
@@ -249,36 +207,34 @@ public class GameWindow implements UpdateGameDataDelegate
 				float red = (float)Integer.valueOf(board.objects[i][j].color.substring(1,3), 16)/255;
 				float green = (float)Integer.valueOf(board.objects[i][j].color.substring(3,5), 16)/255;
 				float blue = (float)Integer.valueOf(board.objects[i][j].color.substring(5,7), 16)/255;
+				ImageProxy drawer;
 				switch(board.objects[i][j].type)
 				{
+					default:
 					case GROUND:
-						drawer = groundSprite;
+						drawer = new ImageProxy(groundSprite);
 					break;
 					case WALL:
-						drawer = wallSprite;
+						drawer = new ImageProxy(wallSprite);
 					break;
 					case TRAP:
-						drawer = trapSprite;
+						drawer = new ImageProxy(trapSprite);
 					break;
 					case POWERUP:
-						drawer = powerupSprite;
+						drawer = new ImageProxy(powerupSprite);
 					break;
 					case BOMB:
-						drawer = bombSprite;
+						drawer = new ImageProxy(bombSprite);
 					break;
 				}
-				//GL11.glBindTexture(GL11.GL_TEXTURE_2D,0);
-				drawer.setHeight(sizeY);
-				drawer.setWidth(sizeX);
-				drawer.draw(i*sizeX, j*sizeY, red, green, blue);
+			
+				drawer.drawImage(i*sizeX, j*sizeY, red, green, blue);
 				GL11.glDisable(GL11.GL_BLEND);
 				if (board.objects[i][j].explodeAnimation == true)
 				{
 					GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-					drawer = fireSprite;
-					drawer.setHeight(sizeY);
-					drawer.setWidth(sizeX);
-					drawer.draw(i*sizeX, j*sizeY, 1, 1, 1);
+					drawer = new ImageProxy(fireSprite);
+					drawer.drawImage(i*sizeX, j*sizeY, 1, 1, 1);
 				}
 			}
 		}
@@ -402,18 +358,30 @@ public class GameWindow implements UpdateGameDataDelegate
 	{
 		if (this.mainPlayer.id == player.id)
 		{
+			ClientPlayer clientPlayer = new ClientPlayer(player, playerSprite, true);
 			this.mainPlayer = player;
+			this.players.put(player.id, clientPlayer);
 		}
 		else 
 		{
-			this.players.put(player.id, player);
+			ClientPlayer clientPlayer = new ClientPlayer(player, playerSprite, false);
+			this.players.put(player.id, clientPlayer);
 		}
 		
 	}
 	@Override
 	public void addPlayer(int id, SimplifiedPlayer player)
 	{
-		players.put(id, player);
+		if (player.id == mainPlayer.id)
+		{
+			ClientPlayer clientPlayer = new ClientPlayer(player, playerSprite, true);
+			players.put(id, clientPlayer);
+		}
+		else
+		{
+			ClientPlayer clientPlayer = new ClientPlayer(player, playerSprite, false);
+			players.put(id, clientPlayer);
+		}
 	}
 
 	@Override
@@ -425,14 +393,14 @@ public class GameWindow implements UpdateGameDataDelegate
 	@Override
 	public void updateBoard(SimplifiedGameBoard gameboard)
 	{
+		if ( this.board == null)
+		{
+			this.initProxies(gameboard.size /gameboard.gridSize);
+		}
 		this.board = gameboard;
 		
 	}
-	
-	public Sprite getSprite(String ref)
-	{
-		return new Sprite(textureLoader, ref);
-	}
+
 
 	@Override
 	public void updateDisplayString(String text) 

@@ -34,7 +34,31 @@ public class SimplifiedPlayer
 		this.skillName = "none";
 		this.skillCooldown = 0;
 	}
-	
+	public SimplifiedPlayer (SimplifiedPlayer player)
+	{
+		id = player.id;
+		size =  player.size;
+		if (player.coordinate == null)
+		{
+			coordinate = new Vector2f (256, 256); 
+		}
+		else
+		{
+			coordinate =  new Vector2f (player.coordinate.x, player.coordinate.y);
+		}
+		isHoldingLeft =  player.isHoldingLeft;
+		isHoldingRight =  player.isHoldingRight;
+		isHoldingUp =  player.isHoldingUp;
+		isHoldingDown = player.isHoldingDown;
+		isHoldingUse = player.isHoldingUse;
+		isHoldingSkill = player.isHoldingSkill;
+		isHoldingPause = player.isHoldingPause;
+		isHoldingUnPause = player.isHoldingUnPause;
+		speed = player.speed;
+		health = player.health;
+		skillCooldown = player.skillCooldown;
+		skillName = player.skillName;
+	}
 	public SimplifiedPlayer(PacketUpdatePlayerPos packet)
 	{
 		this.id = packet.id;

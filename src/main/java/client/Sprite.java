@@ -59,11 +59,11 @@ public class Sprite {
 	 * @param loader the texture loader to use
 	 * @param ref A reference to the image on which this sprite should be based
 	 */
-	public Sprite(TextureLoader loader, String ref) {
+	public Sprite(TextureLoader loader, String ref, int width, int height) {
     try {
 			texture = loader.getTexture(ref);
-      width = texture.getImageWidth();
-      height = texture.getImageHeight();
+      this.width = width;
+      this.height = height;
     } catch (IOException ioe) {
     	ioe.printStackTrace();
       System.exit(-1);
