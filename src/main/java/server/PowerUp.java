@@ -42,7 +42,9 @@ public class PowerUp extends GameObject
         	{
 				GameServer gameServer = GameServer.getInstance();
 
-
+				player.canDie = true;
+				player.speed = player.baseSpeed;
+				
 				if(powUp.getName().equals("Jump"))
 					gameServer.players.get(player.id).setSkillAlgorithm(new JumpSkill());
 

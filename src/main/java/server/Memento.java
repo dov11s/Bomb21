@@ -38,7 +38,7 @@ public class Memento {
 		{
 			org.setCoordinate(coordinate);
 			org.setPlacedBomb(placedBomb);
-			org.setHealth(baseHealth);
+			org.setHealth(health);
 			org.setBaseHealth(baseHealth);
 			org.setSpeed(baseSpeed);
 			org.setBaseSpeed(baseSpeed);
