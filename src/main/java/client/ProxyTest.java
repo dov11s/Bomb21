@@ -60,7 +60,7 @@ public class ProxyTest {
 	
 		System.gc(); //		Runtime.getRuntime().gc();
 		
-		System.out.println("\n=== Heavy Images ===");	
+		System.out.println("\n=== Heavy Images == - show one image only ====");	
 		long startReal = System.currentTimeMillis();
 		ImageFile h1 = new HeavyImageFile(path,50,50);
 		ImageFile h2 = new HeavyImageFile(path,50,50);

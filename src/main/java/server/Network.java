@@ -69,7 +69,7 @@ public class Network extends Listener
 	
 	public void sendPlayerInfo(MPPlayer player, boolean isAccepted)
 	{
-		PacketUpdatePlayerPos packet = new PacketUpdatePlayerPos(player.c.getID(), player);
+		PacketUpdatePlayerPos packet = player.getPacketUpdatePlayerPos(player.c.getID());
 		packet.accepted = isAccepted;
 		this.server.sendToAllUDP(packet);
 		

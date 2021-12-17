@@ -144,7 +144,7 @@ class GameServer
 		for(MPPlayer p : players.values())
 		{
 			if(p.coordinate != null){
-				if(p.health < 1){
+				if(p.health < 1 && p.canDie){
 					p.deathCounter +=1;
 					System.out.println("Mires");
 					//setGameLevel();

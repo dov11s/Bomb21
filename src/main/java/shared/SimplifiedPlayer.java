@@ -40,7 +40,7 @@ public class SimplifiedPlayer
 		size =  player.size;
 		if (player.coordinate == null)
 		{
-			coordinate = new Vector2f (256, 256); 
+			coordinate = new Vector2f (-200, -200); 
 		}
 		else
 		{
