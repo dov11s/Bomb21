@@ -59,7 +59,54 @@ public class GameBoard implements Cloneable{
         this.factory.SetBombObserver(bombObserver);
 
 
+        if(level == 2){
+            for(int x = 1; x<gridSize-1; x++){
 
+                Random rand = new Random();
+
+                int xx = rand.nextInt((10 - 0) + 1) + 0;
+
+                if(xx >= 7){
+                    for(int y = 1; y<gridSize-1; y++){
+
+                        int yy = rand.nextInt((19 - 0) + 1) + 0;
+
+                        if(yy > 10){
+                            this.objects[x][y] = this.factory.createWall(true);
+                        }
+
+                    }
+
+                }
+
+
+
+            }
+
+            for(int x = 1; x<gridSize-1; x++){
+
+                Random rand = new Random();
+
+                int xx = rand.nextInt((10 - 0) + 1) + 0;
+
+                if(xx > 4){
+                    for(int y = 1; y<gridSize-1; y++){
+
+                        int yy = rand.nextInt((19 - 0) + 1) + 0;
+
+                        if(yy > 12){
+                            this.objects[y][x] = this.factory.createWall(true);
+                        }
+
+                    }
+
+                }
+
+
+
+            }
+
+        }
 
         if(level == 3){
             startingTraps();
